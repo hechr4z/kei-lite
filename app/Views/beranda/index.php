@@ -706,7 +706,7 @@ $this->setData([
                 <div class="border-top1 ms-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
             </div>
         </div>
-        <h1 class="text-center" data-en="WHO WE ARE" data-id="SIAPA KAMI"><b><?= lang('Blog.topMemberSpotlightTitle'); ?><span style="color: #03AADE;"> SPOTLIGHT</span></b></h1>
+        <h1 class="text-center" data-en="WHO WE ARE" data-id="SIAPA KAMI"><b><?= lang('Blog.topMemberTitle'); ?><span style="color: #03AADE;"> <?= lang('Blog.spotlightTitle'); ?></span></b></h1>
     </div>
     <div class="card-member container mt-5">
         <?php if (empty($top4_member)): ?>
@@ -838,12 +838,12 @@ $this->setData([
             <div class="d-flex justify-content-center align-items-center mb-2">
                 <div class="border-top6 mx-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
             </div>
-            <h5 class="fw-lighter">YOUR PACKAGE</h5>
+            <h5 class="fw-lighter"><?= lang('Blog.yourPackageTitle'); ?></h5>
             <div class="d-flex justify-content-center align-items-center mb-2">
                 <div class="border-top7 ms-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
             </div>
         </div>
-        <h1 class="fw-bold text-dark">CHOOSE THE RIGHT PACKAGE <span style="color: #03AADE;">FOR YOU</span></h1>
+        <h1 class="fw-bold text-dark"><?= lang('Blog.chooseTitle'); ?> <span style="color: #03AADE;"><?= lang('Blog.forYouTitle'); ?></span></h1>
     </div>
 
     <div class="pacakage row mt-3 g-4">
@@ -855,8 +855,8 @@ $this->setData([
                 </div>
                 <div class="card-body">
                     <i class="fas fa-user-slash fa-3x text-secondary mb-4"></i>
-                    <h6 class="fw-bold">Basic Access</h6>
-                    <h6 class="fw-bold text-secondary">FREE</h6>
+                    <h6 class="fw-bold"><?= lang('Blog.basicAccess'); ?></h6>
+                    <h6 class="fw-bold text-secondary"><?= lang('Blog.freeTitle'); ?></h6>
                     <p><?php echo lang('Blog.deskNonMember'); ?></p>
                     <div class="benefits-list" style="max-height: 150px; overflow-y: auto;">
                         <hr>
@@ -875,21 +875,21 @@ $this->setData([
                     </div>
                 </div>
                 <div class="card-footer bg-light py-3">
-                    <button class="btn btn-outline-secondary btn-sm" disabled>Current Package</button>
+                    <button class="btn btn-outline-secondary btn-sm" disabled><?php echo lang('Blog.currentPackage'); ?></button>
                 </div>
             </div>
         </div>
 
         <!-- Member Card -->
         <div class="col-md-6 position-relative">
-            <div class="recommended-label position-absolute text-white px-3 py-1">Recommended</div>
+            <div class="recommended-label position-absolute text-white px-3 py-1"><?= lang('Blog.recommendedTitle'); ?></div>
             <div class="card h-100 border-0 shadow-lg rounded text-center">
                 <div class="card-header bg-primary text-white py-4">
                     <h5 class="mb-0 fw-bold">Member</h5>
                 </div>
                 <div class="card-body">
                     <i class="fas fa-crown fa-3x text-primary mb-4"></i>
-                    <h6 class="fw-bold">Full Access</h6>
+                    <h6 class="fw-bold"><?= lang('Blog.fullAccess'); ?></h6>
                     <h6 class="fw-bold text-primary"><?php echo lang('Blog.packageRegistered'); ?></h6>
                     <p><?php echo lang('Blog.deskMemberFree'); ?></p>
                     <div class="benefits-list" style="max-height: 150px; overflow-y: auto;">
@@ -918,7 +918,7 @@ $this->setData([
                 </div>
                 <div class="card-footer bg-light py-3">
                     <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
-                        <button class="btn btn-primary btn-sm">Join Now</button>
+                        <button class="btn btn-primary btn-sm"><?php echo lang('Blog.joinNow'); ?></button>
                     </a>
                 </div>
             </div>
