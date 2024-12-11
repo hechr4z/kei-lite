@@ -4,6 +4,7 @@ return [
     'headerBeranda' => 'Home',
     'headerTentang' => 'About Us',
     'headerArtikel' => 'Export Learning',
+    'headerMateri' => 'Export Lesson',
     'headerPendaftaran' => 'Registration',
     'headerVideo' => 'Video Tutorials',
     'headerMember' => 'Members',
@@ -13,6 +14,8 @@ return [
     'headerApp3' => 'Audit Website',
     'headerApp4' => 'Investment Feasibility',
     'headerBuyers' => 'Buyers Data',
+    'headerPengumuman' => 'Announcement',
+    'headerEditProfile' => 'Edit Profile',
     //en navbar
 
     //beranda
@@ -61,21 +64,19 @@ return [
     //halaman_belajar_ekspor
     'belajarEksporTitle' => 'Learn Exporting',
     'belajarEksporSubtitle' => 'Enhance your business with the right export strategies!',
-    'belajarEksporCTA' => 'Start learning about exporting now, conquer the global market!',
+    'belajarEksporCTA' => 'Start learning about exporting lesson now, conquer the global market!',
     'belajarEksporPlaceholder' => 'Search Export Materials ...',
     'filterAllPlaceholder' => 'All Categories',
     // Filter Section
     'filterCategory' => 'Filter Category',
     'noCategory' => 'No categories available',
     'noContent' => 'There is no content to display on this page yet.',
-    'readMore' => 'Read More',
     //halaman search artikel
     'searchTitle' => 'Export Learning',
     'searchResults' => 'Displaying search results for:',
-    'searchPlaceholder' => 'Search articles...',
+    'searchPlaceholder' => 'Search lessons...',
     'noArticlesFound' => 'No articles found.',
-    'readMore' => 'Read More',
-    'seeMore' => 'See more articles',
+    'seeMore' => 'See More Lessons',
     //end halaman search artikel
 
     // Video Tutorial Section
@@ -84,10 +85,11 @@ return [
     // Video Category Section
     'noVideosAvailable' => 'No videos are available in this category.',
     'readMore' => 'Read More',
+    'allVideo' => 'All Video',
     'videoCategory' => 'Video Category:',
     'titleDesc' => 'Description',
     'titleOther' => 'Other Videos',
-    'backtovideos' => 'Back to Videos',
+    'backtovideos' => 'Back To Tutorial Videos',
 
 
     //halaman data member
@@ -188,7 +190,7 @@ return [
     // Join Member Section
     'joinMemberTitle' => 'Join as a Member <br> for 100% Access',
     'memberRegistration' => 'Member Registration',
-    'backtoArticle' => 'Back to Article',
+    'backtoArticle' => 'Back to Export Lesson',
 
     // Sweetalert
     'wantToOpenBE' => 'Want To Open Export Learning Feature?',
@@ -215,7 +217,7 @@ return [
     'packageCompleteData' => 'Registered (Data Must Be Complete)',
     'packageRegistered' => 'Registered',
     'deskNonMember' => 'Basic access for initial exploration',
-    'deskMemberFree' => 'Join now for more features!',
+    'deskMemberFree' => 'Join now for all features!',
     'deskMemberPremium' => 'Get all premium features now!',
 
     'alertSliderBeranda' => 'Still no Data Slider',
