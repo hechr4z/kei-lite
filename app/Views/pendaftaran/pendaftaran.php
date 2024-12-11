@@ -276,7 +276,6 @@
                         </select>
                     </div>
 
-
                     <!-- Alamat Perusahaan -->
                     <div class="form-group">
                         <label for="alamat_perusahaan"><?= lang('Blog.alamatperusahaan'); ?><span class="required">*</span></label>
@@ -288,6 +287,18 @@
                         <label for="produk_utama"><?= lang('Blog.produkperusahaan'); ?><span class="required">*</span></label>
                         <textarea id="produk_utama" name="produk_utama" required placeholder="<?= lang('Blog.placeholderaprodukperusahaan'); ?>"><?= old('produk_utama') ?></textarea>
                     </div>
+
+                    <!-- Kategori Produk -->
+                    <div class="form-group">
+                        <label for="kategori_produk"><?= lang('Blog.kategoriProduk'); ?></label>
+                        <select id="kategori_produk" name="kategori_produk" required>
+                            <option value="" disabled selected><?= lang('Blog.placeholderKategoriProduk'); ?></option>
+                            <optgroup label='TES-GROUP'>
+                                <option value="TES1">TES1</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
 
                     <!-- Alamat Website Perusahaan -->
                     <div class="form-group">
