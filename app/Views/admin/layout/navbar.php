@@ -46,7 +46,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link <?=
                                         (current_url() == base_url('admin-produk')) ? 'active' : ((current_url() == base_url('admin-search-produk')) ? 'active' : ((current_url() == base_url('admin-add-produk')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-produk')) === 0) ? 'active' : '')))
                                         ?>" href="<?= base_url('admin-produk') ?>">
@@ -66,14 +66,14 @@
                         </span>
                         <span class="nav-link-text">Sertifikat</span>
                     </a>
-                </li>
+                </li> -->
 
                 <li class="nav-item">
                     <a class="nav-link <?= (current_url() == base_url('admin-belajar-ekspor')) ? 'active' : '' ?>" href="<?= base_url('admin-belajar-ekspor') ?>">
                         <span class="nav-icon">
                             <i class="fa-solid fa-book"></i>
                         </span>
-                        <span class="nav-link-text">Belajar Ekspor</span>
+                        <span class="nav-link-text">Materi Ekspor</span>
                     </a>
                 </li>
 
@@ -82,7 +82,7 @@
                         <span class="nav-icon">
                             <i class="fa-solid fa-list"></i>
                         </span>
-                        <span class="nav-link-text">Kategori Belajar Ekspor</span>
+                        <span class="nav-link-text">Kategori Materi Ekspor</span>
                     </a>
                 </li>
 
@@ -168,14 +168,14 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link <?= (current_url() == base_url('admin-website-audit') || current_url() == base_url('admin-search-website-audit') || (strpos(current_url(), base_url('admin-process-website-audit')) === 0)) ? 'active' : '' ?>" href="<?= base_url('admin-website-audit') ?>">
                         <span class="nav-icon">
                             <i class="fa-solid fa-globe"></i>
                         </span>
                         <span class="nav-link-text">Website Audit</span>
                     </a>
-                </li>
+                </li> -->
 
                 <li class="nav-item">
                     <a class="nav-link <?= (current_url() == base_url('admin-pengumuman')) ? 'active' : '' ?>" href="<?= base_url('admin-pengumuman') ?>">

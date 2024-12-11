@@ -246,22 +246,22 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
     $routes->get('/admin-delete-buyers/(:num)', 'KomunitasEkspor::admin_delete_buyers/$1');
 
     // Admin - Produk
-    $routes->get('/admin-produk', 'KomunitasEkspor::admin_produk');
-    $routes->get('/admin-search-produk', 'KomunitasEkspor::admin_search_produk');
-    $routes->get('/admin-add-produk', 'KomunitasEkspor::admin_add_produk');
-    $routes->post('/admin-create-produk', 'KomunitasEkspor::admin_create_produk');
-    $routes->get('/admin-edit-produk/(:num)', 'KomunitasEkspor::admin_edit_produk/$1');
-    $routes->post('/admin-update-produk/(:num)', 'KomunitasEkspor::admin_update_produk/$1');
-    $routes->get('/admin-delete-produk/(:num)', 'KomunitasEkspor::admin_delete_produk/$1');
+    // $routes->get('/admin-produk', 'KomunitasEkspor::admin_produk');
+    // $routes->get('/admin-search-produk', 'KomunitasEkspor::admin_search_produk');
+    // $routes->get('/admin-add-produk', 'KomunitasEkspor::admin_add_produk');
+    // $routes->post('/admin-create-produk', 'KomunitasEkspor::admin_create_produk');
+    // $routes->get('/admin-edit-produk/(:num)', 'KomunitasEkspor::admin_edit_produk/$1');
+    // $routes->post('/admin-update-produk/(:num)', 'KomunitasEkspor::admin_update_produk/$1');
+    // $routes->get('/admin-delete-produk/(:num)', 'KomunitasEkspor::admin_delete_produk/$1');
 
     // Admin - Sertifikat
-    $routes->get('/admin-sertifikat', 'KomunitasEkspor::admin_sertifikat');
-    $routes->get('/admin-search-sertifikat', 'KomunitasEkspor::admin_search_sertifikat');
-    $routes->get('/admin-add-sertifikat', 'KomunitasEkspor::admin_add_sertifikat');
-    $routes->post('/admin-create-sertifikat', 'KomunitasEkspor::admin_create_sertifikat');
-    $routes->get('/admin-edit-sertifikat/(:num)', 'KomunitasEkspor::admin_edit_sertifikat/$1');
-    $routes->post('/admin-update-sertifikat/(:num)', 'KomunitasEkspor::admin_update_sertifikat/$1');
-    $routes->get('/admin-delete-sertifikat/(:num)', 'KomunitasEkspor::admin_delete_sertifikat/$1');
+    // $routes->get('/admin-sertifikat', 'KomunitasEkspor::admin_sertifikat');
+    // $routes->get('/admin-search-sertifikat', 'KomunitasEkspor::admin_search_sertifikat');
+    // $routes->get('/admin-add-sertifikat', 'KomunitasEkspor::admin_add_sertifikat');
+    // $routes->post('/admin-create-sertifikat', 'KomunitasEkspor::admin_create_sertifikat');
+    // $routes->get('/admin-edit-sertifikat/(:num)', 'KomunitasEkspor::admin_edit_sertifikat/$1');
+    // $routes->post('/admin-update-sertifikat/(:num)', 'KomunitasEkspor::admin_update_sertifikat/$1');
+    // $routes->get('/admin-delete-sertifikat/(:num)', 'KomunitasEkspor::admin_delete_sertifikat/$1');
 
     // Admin - Belajar Ekspor
     $routes->get('/admin-belajar-ekspor', 'KomunitasEkspor::admin_belajar_ekspor');
