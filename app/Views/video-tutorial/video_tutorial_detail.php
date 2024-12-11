@@ -88,18 +88,18 @@
                         </h4>
 
                         <!-- Video Player Start -->
-                        <div class="ratio ratio-16x9 mb-3 position-relative" style="width: 100%; height: auto; cursor: pointer;" onclick="showSweetAlert()">
-                            <img
-                                id="my-video-thumbnail"
-                                class="rounded img-fluid"
-                                src="<?= base_url('/img/' . $video['thumbnail']); ?>"
-                                alt="Thumbnail"
-                                style="object-fit: cover;">
-
-                            <!-- Play Icon -->
-                            <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
-                                <i class="fas fa-play-circle" style="font-size: 64px; color: white;"></i>
-                            </div>
+                        <div class="ratio ratio-16x9 mb-3">
+                            <iframe
+                                id="my-video"
+                                class="rounded"
+                                controls
+                                preload="auto"
+                                src="https://www.youtube.com/embed/<?= $video['video_url']; ?>"
+                                sandbox="allow-scripts allow-same-origin"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
                         </div>
                         <!-- Video Player End -->
 
@@ -127,7 +127,7 @@
                     <?php foreach ($related_videos as $related_video): ?>
                         <!-- card lainnya -->
                         <div class="card bg-white border border-top-0 p-3 rounded shadow-sm mb-3">
-                            <a href="<?= base_url(($lang === 'en' ? 'en/video-tutorial' : 'id/tutorial-video') . '/' . ($lang === 'en' ? $related_video['slug_en'] : $related_video['slug'])); ?>" class="text-decoration-none">
+                            <a href="<?= base_url(($lang === 'en' ? 'en/tutorial-video' : 'id/video-tutorial') . '/' . ($lang === 'en' ? $related_video['slug_en'] : $related_video['slug'])); ?>" class="text-decoration-none">
 
                                 <div class="d-flex align-items-center bg-white rounded border border-light overflow-hidden shadow-sm">
                                     <img class="img-fluid" style="object-fit: cover; width: 100px; height: 100px;" src="<?= base_url('/img/' . $related_video['thumbnail']); ?>" alt="Thumbnail Video">
@@ -145,7 +145,6 @@
                             </a>
                         </div>
                     <?php endforeach; ?>
-
                 </div>
                 <!-- video lainnya End -->
             </div>
@@ -153,36 +152,5 @@
     </div>
 </div>
 <!-- Video Details End -->
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<script>
-    function showSweetAlert() {
-        let title = "<?= $lang === 'en' ? 'Want to Watch the Video?' : 'Mau Lihat Videonya?'; ?>";
-        let text = "<?= $lang === 'en' ? 'Sign up as a member first!' : 'Yuk Daftar Member Dulu!'; ?>";
-        let confirmButtonText = "<?= $lang === 'en' ? 'Sign Up' : 'Daftar'; ?>";
-        let cancelButtonText = "<?= $lang === 'en' ? 'Later' : 'Nanti'; ?>";
-        let reminderText = "<?= $lang === 'en' ? 'Okay, don\'t forget to sign up!' : 'Oke, Jangan Lupa Daftar!'; ?>";
-        let registrationUrl = "<?= base_url($lang === 'en' ? 'en/registration' : 'id/pendaftaran'); ?>";
-
-
-        Swal.fire({
-            title: title,
-            text: text,
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: confirmButtonText,
-            cancelButtonText: cancelButtonText
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = registrationUrl; // Redirect to the language-specific registration page
-            } else {
-                Swal.fire(reminderText); // Optional message if "Later" is clicked
-            }
-        });
-    }
-</script>
-
-
 
 <?= $this->endSection(); ?>

@@ -642,9 +642,9 @@
     // Definisikan tautan untuk setiap halaman berdasarkan bahasa
     $homeLink = ($lang_segment === 'en/') ? '/' : '/';
     $aboutLink = ($lang_segment === 'en/') ? 'about-us' : 'tentang-kami';
-    $belajarEksporLink = ($lang_segment === 'en/') ? 'export-learning' : 'belajar-ekspor';
+    $belajarEksporLink = ($lang_segment === 'en/') ? 'export-lessons' : 'materi-ekspor';
     $pendaftaranLink = ($lang_segment === 'en/') ? 'registration' : 'pendaftaran';
-    $videoTutorialLink = ($lang_segment === 'en/') ? 'video-tutorial' : 'tutorial-video';
+    $videoTutorialLink = ($lang_segment === 'en/') ? 'tutorial-video' : 'video-tutorial';
     $memberLink = ($lang_segment === 'en/') ? 'data-member' : 'data-member';
     $buyersLink = ($lang_segment === 'en/') ? 'data-buyers' : 'data-buyers';
 
@@ -652,9 +652,9 @@
     $replace_map = [
         'tentang-kami' => 'about-us',
         'pendaftaran' => 'registration',
-        'belajar-ekspor' => 'export-learning',
+        'materi-ekspor' => 'export-lessons',
         'kategori' => 'category',
-        'tutorial-video' => 'video-tutorial',
+        'video-tutorial' => 'tutorial-video',
     ];
 
     // Ambil bagian dari URL tanpa segmen bahasa
@@ -770,37 +770,17 @@
                                     <?php echo lang('Blog.headerArtikel'); ?>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-light">
-                                    <li onclick="showSweetAlertBE()"><a class="dropdown-item nav-link" href="#"><?php echo lang('Blog.headerArtikel'); ?></a></li>
-                                    <li onclick="showSweetAlertTV()"><a class="dropdown-item nav-link" href="#"><?php echo lang('Blog.headerVideo'); ?></a></li>
+                                    <li><a class="dropdown-item nav-link" href="<?= base_url($lang .  '/' . $belajarEksporLink) ?>"><?php echo lang('Blog.headerMateri'); ?></a></li>
+                                    <li><a class="dropdown-item nav-link" href="<?= base_url($lang .  '/' . $videoTutorialLink) ?>"><?php echo lang('Blog.headerVideo'); ?></a></li>
                                 </ul>
                             </li>
                         </ul>
                     </div>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url($lang .  '/' . $pendaftaranLink) ?>"><?php echo lang('Blog.headerPendaftaran'); ?>
-                        </a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url($lang .  '/' . $memberLink) ?>"><?php echo lang('Blog.headerMember'); ?></a>
                     </li>
-                    <div id="navbarNavDarkDropdown">
-                        <ul class="navbar-nav">
-                            <li class="nav-item dropdown">
-                                <button class="btn dropdown-toggle text-light nav-link" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <?php echo lang('Blog.headerAplikasi'); ?>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-light">
-                                    <li onclick="showSweetAlertKHE()"><a class="dropdown-item nav-link" href="#"><?php echo lang('Blog.headerApp1'); ?></a></li>
-                                    <li onclick="showSweetAlertMPP()"><a class="dropdown-item nav-link" href="#"><?php echo lang('Blog.headerApp2'); ?></a></li>
-                                    <li onclick="showSweetAlertAW()"><a class="dropdown-item nav-link" href="#"><?php echo lang('Blog.headerApp3'); ?></a></li>
-                                    <li onclick="showSweetAlertKI()"><a class="dropdown-item nav-link" href="#"><?php echo lang('Blog.headerApp4'); ?></a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <li class="nav-item" onclick="showSweetAlertDB()">
-                        <a class="nav-link" href="#"><?php echo lang('Blog.headerBuyers'); ?>
-                        </a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url($lang .  '/' . $pendaftaranLink) ?>"><?php echo lang('Blog.headerPendaftaran'); ?></a>
                     </li>
                     <div class="border-top line " style="width: 1.5px; height: 40px; background-color: white; margin: 0 23px;"></div>
                     <?php if (session()->get('logged_in')): ?>
@@ -887,19 +867,12 @@
                     <div class="col-md-2">
                         <h5 class="mt-4"><b>Menu</b></h5>
                         <div class="list-unstyled pt-2">
-                            <p onclick="showSweetAlertBE()"><a href="#" class="footer-link"><?php echo lang('Blog.headerArtikel'); ?></a></p>
-                            <p onclick="showSweetAlertTV()"><a href="#" class="footer-link"><?php echo lang('Blog.headerVideo'); ?></a></p>
+                            <p><a href="<?= base_url('/') ?>" class="footer-link"><?php echo lang('Blog.headerBeranda'); ?></a></p>
+                            <p><a href="<?= base_url($lang .  '/' . $aboutLink) ?>" class="footer-link"><?php echo lang('Blog.headerTentang'); ?></a></p>
+                            <p><a href="<?= base_url($lang .  '/' . $belajarEksporLink) ?>" class="footer-link"><?php echo lang('Blog.headerMateri'); ?></a></p>
+                            <p><a href="<?= base_url($lang .  '/' . $videoTutorialLink) ?>" class="footer-link"><?php echo lang('Blog.headerVideo'); ?></a></p>
                             <p><a href="<?= base_url($lang .  '/' . $memberLink) ?>" class="footer-link"><?php echo lang('Blog.headerMember'); ?></a></p>
-                            <p onclick="showSweetAlertDB()"><a href="#" class="footer-link"><?php echo lang('Blog.headerBuyers'); ?></a></p>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <h5 class="mt-4"><b><?php echo lang('Blog.headerAplikasi'); ?></b></h5>
-                        <div class="list-unstyled pt-2">
-                            <p onclick="showSweetAlertKHE()"><a href="#" class="footer-link"><?php echo lang('Blog.headerApp1'); ?></a></p>
-                            <p onclick="showSweetAlertMPP()"><a href="#" class="footer-link"><?php echo lang('Blog.headerApp2'); ?></a></p>
-                            <p onclick="showSweetAlertAW()"><a href="#" class="footer-link"><?php echo lang('Blog.headerApp3'); ?></a></p>
-                            <p onclick="showSweetAlertKI()"><a href="#" class="footer-link"><?php echo lang('Blog.headerApp4'); ?></a></p>
+                            <p><a href="<?= base_url($lang .  '/' . $pendaftaranLink) ?>" class="footer-link"><?php echo lang('Blog.headerPendaftaran'); ?></a></p>
                         </div>
                     </div>
                 </div>
@@ -914,9 +887,7 @@
             <p class="text-light" style="text-align: center;"><?= $webprofile[0]['footer_text'] ?></p>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    
     <script>
         window.addEventListener('scroll', function() {
             var navbar = document.querySelector('.navbar-custom');
@@ -926,125 +897,6 @@
                 navbar.classList.remove('scrolled');
             }
         });
-
-        function showSweetAlertBE() {
-            Swal.fire({
-                title: "<?php echo lang('Blog.wantToOpenBE'); ?>",
-                text: "<?php echo lang('Blog.letsGoRegisterSA'); ?>",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "<?php echo lang('Blog.registerSA'); ?>",
-                cancelButtonText: "<?php echo lang('Blog.laterSA'); ?>"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>";
-                } else {
-                    Swal.fire("<?php echo lang('Blog.dontForgetSA'); ?>");
-                }
-            });
-        }
-
-        function showSweetAlertTV() {
-            Swal.fire({
-                title: "<?php echo lang('Blog.wantToOpenTV'); ?>",
-                text: "<?php echo lang('Blog.letsGoRegisterSA'); ?>",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "<?php echo lang('Blog.registerSA'); ?>",
-                cancelButtonText: "<?php echo lang('Blog.laterSA'); ?>"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>";
-                } else {
-                    Swal.fire("<?php echo lang('Blog.dontForgetSA'); ?>");
-                }
-            });
-        }
-
-        function showSweetAlertKHE() {
-            Swal.fire({
-                title: "<?php echo lang('Blog.wantToOpenApp1'); ?>",
-                text: "<?php echo lang('Blog.letsGoRegisterSA'); ?>",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "<?php echo lang('Blog.registerSA'); ?>",
-                cancelButtonText: "<?php echo lang('Blog.laterSA'); ?>"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>";
-                } else {
-                    Swal.fire("<?php echo lang('Blog.dontForgetSA'); ?>");
-                }
-            });
-        }
-
-        function showSweetAlertMPP() {
-            Swal.fire({
-                title: "<?php echo lang('Blog.wantToOpenApp2'); ?>",
-                text: "<?php echo lang('Blog.letsGoRegisterSA'); ?>",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "<?php echo lang('Blog.registerSA'); ?>",
-                cancelButtonText: "<?php echo lang('Blog.laterSA'); ?>"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>";
-                } else {
-                    Swal.fire("<?php echo lang('Blog.dontForgetSA'); ?>");
-                }
-            });
-        }
-
-        function showSweetAlertAW() {
-            Swal.fire({
-                title: "<?php echo lang('Blog.wantToOpenApp3'); ?>",
-                text: "<?php echo lang('Blog.letsGoRegisterSAPremium'); ?>",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "<?php echo lang('Blog.registerSA'); ?>",
-                cancelButtonText: "<?php echo lang('Blog.laterSA'); ?>"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>";
-                } else {
-                    Swal.fire("<?php echo lang('Blog.dontForgetSA'); ?>");
-                }
-            });
-        }
-
-        function showSweetAlertKI() {
-            Swal.fire({
-                title: "<?php echo lang('Blog.wantToOpenApp4'); ?>",
-                text: "<?php echo lang('Blog.letsGoRegisterSAPremium'); ?>",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "<?php echo lang('Blog.registerSA'); ?>",
-                cancelButtonText: "<?php echo lang('Blog.laterSA'); ?>"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>";
-                } else {
-                    Swal.fire("<?php echo lang('Blog.dontForgetSA'); ?>");
-                }
-            });
-        }
-
-        function showSweetAlertDB() {
-            Swal.fire({
-                title: "<?php echo lang('Blog.wantToOpenDB'); ?>",
-                text: "<?php echo lang('Blog.letsGoRegisterSAPremium'); ?>",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "<?php echo lang('Blog.registerSA'); ?>",
-                cancelButtonText: "<?php echo lang('Blog.laterSA'); ?>"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>";
-                } else {
-                    Swal.fire("<?php echo lang('Blog.dontForgetSA'); ?>");
-                }
-            });
-        }
     </script>
 
 

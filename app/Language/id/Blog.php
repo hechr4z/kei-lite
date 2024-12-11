@@ -5,15 +5,18 @@ return [
     'headerBeranda' => 'Beranda',
     'headerTentang' => 'Tentang Kami',
     'headerArtikel' => 'Belajar Ekspor',
+    'headerMateri' => 'Materi Ekspor',
     'headerPendaftaran' => 'Pendaftaran',
-    'headerVideo' => 'Tutorial Video',
+    'headerVideo' => 'Video Tutorial',
     'headerMember' => 'Data Member',
     'headerAplikasi' => 'Aplikasi',
     'headerApp1' => 'Kalkulator Harga Ekspor',
-    'headerApp2' => 'Monitoring Progres Pemasaran',
+    'headerApp2' => 'Marketing Progress Monitoring',
     'headerApp3' => 'Website Audit',
     'headerApp4' => 'Kelayakan Investasi',
     'headerBuyers' => 'Data Buyers',
+    'headerPengumuman' => 'Pengumuman',
+    'headerEditProfile' => 'Edit Profile',
     //endnavbar
 
     //beranda
@@ -65,7 +68,7 @@ return [
     //halaman_belajar_ekspor
     'belajarEksporTitle' => 'Belajar Ekspor',
     'belajarEksporSubtitle' => 'Tingkatkan bisnis Anda dengan strategi ekspor yang tepat!',
-    'belajarEksporCTA' => 'Belajar ekspor sekarang, kuasai pasar global!',
+    'belajarEksporCTA' => 'Belajar materi ekspor sekarang, kuasai pasar global!',
     'belajarEksporPlaceholder' => 'Cari Materi Ekspor ...',
     'filterAllPlaceholder' => 'Semua Kategori',
     // Filter Section
@@ -79,8 +82,7 @@ return [
     'searchResults' => 'Menampilkan hasil pencarian untuk:',
     'searchPlaceholder' => 'Cari artikel...',
     'noArticlesFound' => 'Tidak ada artikel yang ditemukan.',
-    'readMore' => 'Baca Selengkapnya',
-    'seeMore' => 'Lihat lebih banyak artikel',
+    'seeMore' => 'Lihat Lebih Banyak Materi',
     //end halaman belaajr ekspor
 
     //halaman tutorial video
@@ -89,10 +91,11 @@ return [
     'videoTutorialDescription' => 'Temukan video tutorial dari komunitas kami,<br>dan pelajari dengan mendalam melalui video-video yang informatif dan mudah dipahami.',
     // Video Category Section
     'noVideosAvailable' => 'Belum ada video yang tersedia di kategori ini.',
-    'readMore' => 'Semua',
     'videoCategory' => 'Video Kategori:',
+    'allVideo' => 'Semua Video',
     'titleDesc' => 'Deskripsi',
     'titleOther' => 'Video Lainnya',
+    'backtovideos' => 'Kembali Ke Video Tutorial',
 
 
     //halaman data member
@@ -188,7 +191,7 @@ return [
     // Join Member Section
     'joinMemberTitle' => 'Gabung Member Yuk<br> untuk Akses 100%',
     'memberRegistration' => 'Pendaftaran Member',
-    'backtoArticle' => 'Kembali ke Artikel',
+    'backtoArticle' => 'Kembali ke Materi Ekspor',
 
     // Sweetalert
     'wantToOpenBE' => 'Mau Buka Fitur Belajar Ekspor?',
@@ -215,7 +218,7 @@ return [
     'packageCompleteData' => 'Didaftarkan (Data Harus Lengkap)',
     'packageRegistered' => 'Didaftarkan',
     'deskNonMember' => 'Akses dasar untuk eksplorasi awal',
-    'deskMemberFree' => 'Bergabunglah sekarang untuk lebih banyak fitur!',
+    'deskMemberFree' => 'Bergabunglah sekarang untuk semua fitur!',
     'deskMemberPremium' => 'Dapatkan semua fitur premium sekarang juga!',
 
     'alertSliderBeranda' => 'Masih belum ada Data Slider',

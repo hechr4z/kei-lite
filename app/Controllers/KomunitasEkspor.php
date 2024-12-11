@@ -339,7 +339,7 @@ class KomunitasEkspor extends BaseController
         if (($lang === 'id' && $slug !== $artikel['slug']) || ($lang === 'en' && $slug !== $artikel['slug_en'])) {
             // Redirect ke URL slug yang benar sesuai bahasa
             $correctSlug = $lang === 'id' ? $artikel['slug'] : $artikel['slug_en'];
-            $correctulr = $lang === 'id' ? 'belajar-ekspor' : 'export-learning';
+            $correctulr = $lang === 'id' ? 'materi-ekspor' : 'export-lessons';
             return redirect()->to("$lang/$correctulr/$correctSlug");
         }
 
@@ -376,7 +376,7 @@ class KomunitasEkspor extends BaseController
         return view('pendaftaran/pendaftaran', $data);
     }
 
-    public function video_tutorial_member($slug = null)
+    public function video_tutorial($slug = null)
     {
         $lang = session()->get('lang') ?? 'id';
         $data['lang'] = $lang;
@@ -432,7 +432,7 @@ class KomunitasEkspor extends BaseController
         if (($lang === 'id' && $slug !== $kategori['slug']) || ($lang === 'en' && $slug !== $kategori['slug_en'])) {
             // Redirect ke URL slug yang benar sesuai bahasa
             $correctSlug = $lang === 'id' ? $kategori['slug'] : $kategori['slug_en'];
-            $correctulr = $lang === 'id' ? 'tutorial-video' : 'video-tutorial';
+            $correctulr = $lang === 'id' ? 'video-tutorial' : 'tutorial-video';
             $correctulr2 = $lang === 'id' ? 'kategori' : 'category';
             return redirect()->to("$lang/$correctulr/$correctulr2/$correctSlug");
         }
@@ -475,7 +475,7 @@ class KomunitasEkspor extends BaseController
         if (($lang === 'id' && $slug !== $video['slug']) || ($lang === 'en' && $slug !== $video['slug_en'])) {
             // Redirect ke URL slug yang benar sesuai bahasa
             $correctSlug = $lang === 'id' ? $video['slug'] : $video['slug_en'];
-            $correctulr = $lang === 'id' ? 'tutorial-video' : 'video-tutorial';
+            $correctulr = $lang === 'id' ? 'video-tutorial' : 'tutorial-video';
             return redirect()->to("$lang/$correctulr/$correctSlug");
         }
 

@@ -164,13 +164,13 @@
 
 <!-- judul -->
 <div class="artikel-detail-section py-5" style="text-align: center;">
-    <h2 class="artikel-detail-section text-custom-title"><?= lang('Blog.searchTitle') ?></h2>
+    <h2 class="artikel-detail-section text-custom-title"><?= lang('Blog.headerMateri') ?></h2>
     <?php if (!empty($keyword)): ?>
         <p class="text-custom-paragraph mt-2"><?= lang('Blog.searchResults') ?> <strong><?= esc($keyword) ?></strong></p>
     <?php endif; ?>
 
     <!-- Search Bar Start -->
-    <form class="form mt-4" action="<?= base_url(($lang == 'en') ? 'en/export-learning/search' : 'id/belajar-ekspor/search') ?>" method="GET">
+    <form class="form mt-4" action="<?= base_url(($lang == 'en') ? 'en/export-lessons/search' : 'id/materi-ekspor/search') ?>" method="GET">
         <button>
             <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="search">
                 <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -206,7 +206,7 @@
                                 <p style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
                                     <?= ($lang == 'en') ? $item['deskripsi_belajar_ekspor_en'] : $item['deskripsi_belajar_ekspor']; ?>
                                 </p>
-                                <a href="<?= base_url(($lang == 'en' ? 'en/export-learning/' : 'id/belajar-ekspor/') . (($lang == 'en') ? $item['slug_en'] : $item['slug'])); ?>" class="btn btn-custom mt-auto" style="width: 100%; display: block; text-align: center;">
+                                <a href="<?= base_url(($lang == 'en' ? 'en/export-lessons/' : 'id/materi-ekspor/') . (($lang == 'en') ? $item['slug_en'] : $item['slug'])); ?>" class="btn btn-custom mt-auto" style="width: 100%; display: block; text-align: center;">
                                     <?= lang('Blog.readMore') ?>
                                 </a>
                             </div>
