@@ -114,11 +114,16 @@ return [
     'businessType' => 'Tipe Bisnis: ',
     'mainProduct' => 'Produk Utama: ',
     'yearEstablished' => 'Tahun Didirikan: ',
+    'companyAddress' => 'Alamat Perusahaan: ',
+    'websiteAddress' => 'Alamat Website: ',
     'businessScale' => 'Skala Bisnis: ',
     'emailDetail' => 'Email: ',
     'productCategory' => 'Kategori Produk: ',
     'pic' => 'PIC: ',
-    'picPhone' => 'No Telp. PIC: ',
+    'tabPIC' => 'PIC',
+    'picName' => 'Nama PIC: ',
+    'picEmail' => 'Email PIC: ',
+    'picPhone' => 'Nomor Telepon PIC: ',
 
 
 
