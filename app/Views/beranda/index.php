@@ -847,22 +847,30 @@ $this->setData([
     </div>
 
     <div class="pacakage row mt-3 g-4">
-        <!-- Non Member Card -->
-        <div class="col-md-4">
+        <!-- Visitor Card -->
+        <div class="col-md-6">
             <div class="card h-100 border-0 shadow-lg rounded text-center">
                 <div class="card-header bg-secondary text-white py-4">
-                    <h5 class="mb-0 fw-bold">Non Member</h5>
+                    <h5 class="mb-0 fw-bold">Visitor</h5>
                 </div>
                 <div class="card-body">
                     <i class="fas fa-user-slash fa-3x text-secondary mb-4"></i>
                     <h6 class="fw-bold">Basic Access</h6>
-                    <h6 class="fw-bold text-secondary"> Rp. 0</h6>
+                    <h6 class="fw-bold text-secondary">FREE</h6>
                     <p><?php echo lang('Blog.deskNonMember'); ?></p>
                     <div class="benefits-list" style="max-height: 150px; overflow-y: auto;">
                         <hr>
                         <p class="mb-2">- <?php echo lang('Blog.headerBeranda'); ?></p>
                         <hr>
                         <p class="mb-2">- <?php echo lang('Blog.headerTentang'); ?></p>
+                        <hr>
+                        <p class="mb-2">- <?php echo lang('Blog.headerMateri'); ?> (<?php echo lang('Blog.packageAllSubject'); ?>)</p>
+                        <hr>
+                        <p class="mb-2">- <?php echo lang('Blog.headerVideo'); ?> (<?php echo lang('Blog.packageAllVideo'); ?>)</p>
+                        <hr>
+                        <p class="mb-2">- <?php echo lang('Blog.headerMember'); ?></p>
+                        <hr>
+                        <p class="mb-2">- <?php echo lang('Blog.headerPendaftaran'); ?></p>
                         <hr>
                     </div>
                 </div>
@@ -872,16 +880,17 @@ $this->setData([
             </div>
         </div>
 
-        <!-- Member Free Card -->
-        <div class="col-md-4">
+        <!-- Member Card -->
+        <div class="col-md-6 position-relative">
+            <div class="recommended-label position-absolute text-white px-3 py-1">Recommended</div>
             <div class="card h-100 border-0 shadow-lg rounded text-center">
-                <div class="card-header bg-info text-white py-4">
-                    <h5 class="mb-0 fw-bold">Member Free</h5>
+                <div class="card-header bg-primary text-white py-4">
+                    <h5 class="mb-0 fw-bold">Member</h5>
                 </div>
                 <div class="card-body">
-                    <i class="fas fa-user fa-3x text-info mb-4"></i>
-                    <h6 class="fw-bold">Enhanced Features</h6>
-                    <h6 class="fw-bold text-info"><?php echo lang('Blog.packageRegistered'); ?></h6>
+                    <i class="fas fa-crown fa-3x text-primary mb-4"></i>
+                    <h6 class="fw-bold">Full Access</h6>
+                    <h6 class="fw-bold text-primary"><?php echo lang('Blog.packageRegistered'); ?></h6>
                     <p><?php echo lang('Blog.deskMemberFree'); ?></p>
                     <div class="benefits-list" style="max-height: 150px; overflow-y: auto;">
                         <hr>
@@ -889,63 +898,21 @@ $this->setData([
                         <hr>
                         <p class="mb-2">- <?php echo lang('Blog.headerTentang'); ?></p>
                         <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerArtikel'); ?> (10 <?php echo lang('Blog.packageSubject'); ?>)</p>
-                        <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerVideo'); ?> (3 <?php echo lang('Blog.packageVideo'); ?>)</p>
-                        <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerAplikasi'); ?> <?php echo lang('Blog.headerApp1'); ?></p>
-                        <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerAplikasi'); ?> <?php echo lang('Blog.headerApp2'); ?></p>
-                        <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.productData'); ?> (1 <?php echo lang('Blog.product'); ?>)</p>
-                        <hr>
-                    </div>
-                </div>
-                <div class="card-footer bg-light py-3">
-                    <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
-                        <button class="btn btn-info btn-sm">Join Now</button>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Member Premium Card -->
-        <div class="col-md-4 position-relative">
-            <div class="recommended-label position-absolute text-white px-3 py-1">Recommended</div>
-            <div class="card h-100 border-0 shadow-lg rounded text-center">
-                <div class="card-header bg-primary text-white py-4">
-                    <h5 class="mb-0 fw-bold">Member Premium</h5>
-                </div>
-                <div class="card-body">
-                    <i class="fas fa-crown fa-3x text-primary mb-4"></i>
-                    <h6 class="fw-bold">Full Access</h6>
-                    <h6 class="fw-bold text-primary"><?php echo lang('Blog.packageCompleteData'); ?></h6>
-                    <p><?php echo lang('Blog.deskMemberPremium'); ?></p>
-                    <div class="benefits-list" style="max-height: 150px; overflow-y: auto;">
-                        <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerBeranda'); ?></p>
-                        <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerTentang'); ?></p>
-                        <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerArtikel'); ?> (<?php echo lang('Blog.packageAllSubject'); ?>)</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerMateri'); ?> (<?php echo lang('Blog.packageAllSubject'); ?>)</p>
                         <hr>
                         <p class="mb-2">- <?php echo lang('Blog.headerVideo'); ?> (<?php echo lang('Blog.packageAllVideo'); ?>)</p>
-                        <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerAplikasi'); ?> <?php echo lang('Blog.headerApp1'); ?></p>
-                        <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerAplikasi'); ?> <?php echo lang('Blog.headerApp2'); ?></p>
-                        <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerAplikasi'); ?> <?php echo lang('Blog.headerApp3'); ?></p>
-                        <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerAplikasi'); ?> <?php echo lang('Blog.headerApp4'); ?></p>
                         <hr>
                         <p class="mb-2">- <?php echo lang('Blog.headerMember'); ?></p>
                         <hr>
                         <p class="mb-2">- <?php echo lang('Blog.headerBuyers'); ?></p>
                         <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.packageLP'); ?></p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerAplikasi'); ?> <?php echo lang('Blog.headerApp1'); ?></p>
                         <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.productData'); ?> (3 <?php echo lang('Blog.product'); ?>)</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerAplikasi'); ?> <?php echo lang('Blog.headerApp2'); ?></p>
+                        <hr>
+                        <p class="mb-2">- <?php echo lang('Blog.headerPengumuman'); ?></p>
+                        <hr>
+                        <p class="mb-2">- <?php echo lang('Blog.headerEditProfile'); ?></p>
                         <hr>
                     </div>
                 </div>
