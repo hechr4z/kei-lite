@@ -91,20 +91,6 @@
         /* Menjamin badge sesuai dengan teks */
     }
 
-    .badgepanjang {
-        font-weight: normal;
-        color: #000;
-        font-size: 0.9rem;
-        padding: 0.8em 1.5em;
-        border-radius: 5px;
-        background-color: #fff;
-        width: 100%;
-        border: 1px solid #cccccc;
-        /* Membuat lebar badge mengikuti panjang teks */
-        display: inline-block;
-        /* Menjamin badge sesuai dengan teks */
-    }
-
     .line-separator {
         width: 100%;
         height: 2px;
@@ -119,28 +105,6 @@
     .card:hover {
         box-shadow: 0px 0px 25px #03AADE !important;
         transform: translateY(-5px) !important;
-    }
-
-    .text-container {
-        display: -webkit-box;
-        -webkit-line-clamp: 10;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        position: relative;
-        user-select: none;
-    }
-
-    .text-container::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 50px;
-        /* Sesuaikan tinggi efek blur */
-        background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
-        pointer-events: none;
-        /* Agar gradient tidak mengganggu */
     }
 
     @media (max-width: 768px) {
@@ -193,20 +157,12 @@
                 <div class="text-container">
                     <?= nl2br(($lang == 'en') ? $artikel['deskripsi_belajar_ekspor_en'] : $artikel['deskripsi_belajar_ekspor']); ?>
                 </div>
-
-                <!-- Tombol Hilangi Blur -->
-                <div class="badgepanjang p-3">
-                    <div class="d-flex justify-content-between align-items-center mt-3 mb-3 flex-md-row flex-column">
-                        <h5 class="kategori font-weight-bold mb-0 text-left text-md-left"><?= lang('Blog.joinMemberTitle') ?></h5>
-                        <a href="<?= base_url(($lang == 'en') ? 'en/registration' : 'id/pendaftaran') ?>" class="btn btn-custom mt-md-0"><?= lang('Blog.memberRegistration') ?></a>
-                    </div>
-                </div>
             </div>
         </div>
 
         <!-- Back Button -->
         <div class="artikel-detail-footer text-center mt-5">
-            <a href="<?= base_url(($lang == 'en') ? 'en/export-learning' : 'id/belajar-ekspor'); ?>" class="btn btn-custom"><?= lang('Blog.backtoArticle') ?></a>
+            <a href="<?= base_url(($lang == 'en') ? 'en/export-lessons' : 'id/materi-ekspor'); ?>" class="btn btn-custom"><?= lang('Blog.backtoArticle') ?></a>
         </div>
     </div>
 </section>
@@ -233,7 +189,7 @@
                             <p style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
                                 <?= ($lang == 'en') ? $item['deskripsi_belajar_ekspor_en'] : $item['deskripsi_belajar_ekspor']; ?>
                             </p>
-                            <a href="<?= base_url(($lang == 'en' ? 'en/export-learning/' : 'id/belajar-ekspor/') . (($lang == 'en') ? $item['slug_en'] : $item['slug'])); ?>" class="btn btn-custom mt-auto" style="width: 100%; display: block; text-align: center;">
+                            <a href="<?= base_url(($lang == 'en' ? 'en/export-lessons/' : 'id/materi-ekspor/') . (($lang == 'en') ? $item['slug_en'] : $item['slug'])); ?>" class="btn btn-custom mt-auto" style="width: 100%; display: block; text-align: center;">
                                 <?= ($lang == 'en') ? 'Read More' : 'Baca Selengkapnya'; ?>
                             </a>
                         </div>
@@ -243,10 +199,5 @@
         </div>
     </div>
 </section>
-
-
-
-
-
 
 <?= $this->endSection(); ?>
