@@ -108,11 +108,16 @@ return [
     'businessType' => 'Business Type: ',
     'mainProduct' => 'Main Product: ',
     'yearEstablished' => 'Year Established: ',
+    'companyAddress' => 'Company Address: ',
+    'websiteAddress' => 'Website Address: ',
     'businessScale' => 'Business Scale: ',
     'emailDetail' => 'Email: ',
     'productCategory' => 'Product Category: ',
     'pic' => 'PIC: ',
-    'picPhone' => 'PIC Phone No.: ',
+    'tabPIC' => 'PIC',
+    'picName' => 'PIC Name: ',
+    'picEmail' => 'PIC Email: ',
+    'picPhone' => 'PIC Phone Number: ',
 
 
     'populerMember' => 'POPULAR MEMBER',
