@@ -167,11 +167,24 @@ return [
     'placeholderReferral' => 'Masukkan Kode Referral',
     'profilPerusahaan' => 'Profil Perusahaan',
     'namaPerusahaan' => 'Nama Perusahaan',
+    'deskripsiPerusahaan' => 'Deskripsi Perusahaan',
     'placeholderNamaPerusahaan' => 'Masukkan Nama Perusahaan',
+    'placeholderDeskripsiPerusahaan' => 'Masukkan Deskripsi Perusahaan',
+    'tahunberdiri' => 'Tahun Berdiri',
+    'placeholdertahunberdiri' => 'Pilih Tahun Berdiri Perusahaan',
+    'alamatperusahaan' => 'Alamat Perusahaan',
+    'placeholderalamatperusahaan' => 'Masukkan Alamat Perusahaan',
+    'produkperusahaan' => 'Produk Utama',
+    'placeholderaprodukperusahaan' => 'Masukkan Produk Utama',
+    'alamatwebperusahaan' => 'Alamat Website',
+    'placeholderalamatwebperusahaan' => 'Masukkan alamat website',
+
+
     'pic' => 'PIC',
     'placeholderPIC' => 'Masukkan Nama PIC',
     'noPIC' => 'Nomor PIC',
     'placeholderNoPIC' => 'Masukkan Nomor PIC',
+    'profilpic' => 'Profile PIC',
     'submitButton' => 'Daftar Member',
 
     //halaman data buyers

@@ -513,10 +513,14 @@ class KomunitasEkspor extends BaseController
         $password = $this->request->getPost('password');
         $referral = $this->request->getPost('referral');
         $nama_perusahaan = $this->request->getPost('nama_perusahaan');
+        $deskripsi_perusahaan = $this->request->getPost('deskripsi_perusahaan');
+        $tahun_berdiri = $this->request->getPost('tahun_berdiri');
+        $alamat_perusahaan = $this->request->getPost('alamat_perusahaan');
+        $produk_utama = $this->request->getPost('produk_utama');
+        $alamat_website = $this->request->getPost('alamat_website');
         $pic = $this->request->getPost('pic');
         $nomor_pic = $this->request->getPost('nomor_pic');
         $pilihan = $this->request->getPost('pilihan');
-        $maps = $this->request->getPost('maps');
 
         // Validasi data
         $existingUserByUsername = $userModel->where('username', $username)->first();
@@ -535,42 +539,23 @@ class KomunitasEkspor extends BaseController
 
         // Buat pesan WA
         $pesan = "Pendaftaran Member Baru:\n\n" .
-            "Username: $username\n" .
-            "Email: $email\n" .
-            "Nama Perusahaan: $nama_perusahaan\n" .
-            "Nama PIC: $pic\n" .
-            "Nomor PIC: $nomor_pic\n" .
-            "Jenis Member: $pilihan\n" .
-            ($referral ? "Kode Referral: $referral\n" : "") .
-            "Lokasi Google Maps: $maps\n";
+            "Username: $username\n\n" .
+            "Email: $email\n\n" .
+            "Password: $password\n\n" .
+            "Nama Perusahaan: $nama_perusahaan\n\n" .
+            "Deskripsi Perusahaan: $deskripsi_perusahaan\n\n" .
+            "Tahun Berdiri: $tahun_berdiri\n\n" .
+            "Alamat Perusahaan: $alamat_perusahaan\n\n" .
+            "Produk Utama: $produk_utama\n\n" .
+            "Alamat Website: $alamat_website\n\n" .
+            "Nama PIC: $pic\n\n" .
+            "Nomor PIC: $nomor_pic\n\n" .
+            ($referral ? "Kode Referral: $referral\n\n" : "") .
+            "\nCatatan:\n" .
+            "- Mohon pastikan lokasi perusahaan sudah benar.\n" .
+            ($pilihan === 'Member Premium' ? "- Mohon lengkapi data dengan versi Bahasa Inggris (EN).\n" : "") .
+            "- Mohon pastikan data perusahaan sudah benar.\n";
 
-        // Tambahkan data tambahan sesuai jenis member
-        if ($pilihan === 'Member Premium') {
-            $pesan .=
-                "\nMohon Lengkapi Data Perusahaan Berikut;\n" .
-                "Deskripsi Perusahaan: \n" .
-                "Deskripsi Perusahaan (EN): \n" .
-                "Tipe Bisnis: \n" .
-                "Tipe Bisnis (EN): \n" .
-                "Produk Utama: \n" .
-                "Produk Utama (EN): \n" .
-                "Tahun Dibentuk: \n" .
-                "Skala Bisnis: \n" .
-                "Skala Bisnis (EN): \n" .
-                "Kategori Produk: \n" .
-                "Kategori Produk (EN): \n";
-
-            $pesan .=
-                "\nCatatan\n" .
-                "- Mohon pastikan lokasi perusahaan sudah benar.\n" .
-                "- Mohon lengkapi data dengan versi Bahasa Inggris (EN).\n" .
-                "- Mohon pastikan Data perusahaan sudah benar.\n";
-        } elseif ($pilihan === 'Member Free') {
-            $pesan .=
-                "\nCatatan\n" .
-                "- Mohon pastikan lokasi perusahaan sudah benar.\n" .
-                "- Mohon pastikan data sudah benar.\n";
-        }
 
         // Nomor tujuan WA
         $nomor_wa = '6283153270334'; // Ganti dengan nomor WA yang benar

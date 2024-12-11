@@ -96,6 +96,20 @@
         /* Memberikan jarak antar radio button */
     }
 
+    .form-group textarea {
+        flex: 1;
+        /* Membuat textarea menyesuaikan dengan kolom lainnya */
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 100%;
+        /* Menyelaraskan panjang dengan input lainnya */
+        min-height: 100px;
+        /* Memberikan sedikit lebar ke bawah */
+        resize: vertical;
+        /* Membolehkan pengguna menyesuaikan tinggi */
+    }
+
     /*responsive mobile*/
     @media (max-width: 768px) {
 
@@ -196,13 +210,6 @@
                         <input type="text" id="username" name="username" required placeholder="<?= lang('Blog.placeholderUsername'); ?>" value="<?= old('username') ?>">
                     </div>
 
-                    <!-- Email -->
-                    <span id="email-status" class="form-text" style="margin-bottom: 10px; display: block; margin-left: 160px;"></span> <!-- Status pengecekan email di bawah input -->
-                    <div class="form-group">
-                        <label for="email"><?= lang('Blog.emailPendaftaran'); ?><span class="required">*</span></label>
-                        <input type="email" id="email" name="email" required placeholder="<?= lang('Blog.placeholderEmail'); ?>" value="<?= old('email') ?>">
-                    </div>
-
                     <!-- Password -->
                     <div class="form-group">
                         <label for="password"><?= lang('Blog.password'); ?><span class="required">*</span></label>
@@ -221,7 +228,7 @@
                         <input type="text" id="referral" name="referral" placeholder="<?= lang('Blog.placeholderReferral'); ?>" value="<?= old('referral') ?>">
                     </div>
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label>Jenis Member</label>
                         <div class="form-check d-flex align-items-start">
                             <input class="form-check-input" type="radio" name="pilihan" id="memberPremium" value="Member Premium" required>
@@ -235,10 +242,7 @@
                                 Member Free
                             </label>
                         </div>
-                    </div>
-
-
-
+                    </div> -->
 
                     <div class="textcontent mt-5">
                         <h5><?= lang('Blog.profilPerusahaan'); ?></h5>
@@ -252,10 +256,61 @@
                         <input type="text" id="nama_perusahaan" name="nama_perusahaan" required placeholder="<?= lang('Blog.placeholderNamaPerusahaan'); ?>" value="<?= old('nama_perusahaan') ?>">
                     </div>
 
+                    <!-- Deskripsi Perusahaan -->
+                    <div class="form-group">
+                        <label for="deskripsi_perusahaan"><?= lang('Blog.deskripsiPerusahaan'); ?><span class="required">*</span></label>
+                        <textarea type="text" id="deskripsi_perusahaan" name="deskripsi_perusahaan" required placeholder="<?= lang('Blog.placeholderDeskripsiPerusahaan'); ?>" value="<?= old('deskripsi_perusahaan') ?>"></textarea>
+                    </div>
+
+                    <!-- Tahun Berdiri Perusahaan -->
+                    <div class="form-group">
+                        <label for="tahun_berdiri"><?= lang('Blog.tahunberdiri'); ?><span class="required">*</span></label>
+                        <select id="tahun_berdiri" name="tahun_berdiri" required>
+                            <option value="" disabled selected><?= lang('Blog.placeholdertahunberdiri'); ?></option>
+                            <?php
+                            $currentYear = date('Y');
+                            for ($year = $currentYear; $year >= 1900; $year--) {
+                                echo "<option value=\"$year\"" . (old('tahun_berdiri') == $year ? ' selected' : '') . ">$year</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+
+                    <!-- Alamat Perusahaan -->
+                    <div class="form-group">
+                        <label for="alamat_perusahaan"><?= lang('Blog.alamatperusahaan'); ?><span class="required">*</span></label>
+                        <textarea id="alamat_perusahaan" name="alamat_perusahaan" required placeholder="<?= lang('Blog.placeholderalamatperusahaan'); ?>"><?= old('alamat_perusahaan') ?></textarea>
+                    </div>
+
+                    <!-- Produk Perusahaan -->
+                    <div class="form-group">
+                        <label for="produk_utama"><?= lang('Blog.produkperusahaan'); ?><span class="required">*</span></label>
+                        <textarea id="produk_utama" name="produk_utama" required placeholder="<?= lang('Blog.placeholderaprodukperusahaan'); ?>"><?= old('produk_utama') ?></textarea>
+                    </div>
+
+                    <!-- Alamat Website Perusahaan -->
+                    <div class="form-group">
+                        <label for="alamat_website"><?= lang('Blog.alamatwebperusahaan'); ?><span class="required">*</span></label>
+                        <textarea id="alamat_website" name="alamat_website" required placeholder="<?= lang('Blog.placeholderalamatwebperusahaan'); ?>"><?= old('alamat_website') ?></textarea>
+                    </div>
+
+                    <div class="textcontent mt-5">
+                        <h5><?= lang('Blog.profilpic'); ?></h5>
+                        <hr class="line-separatorkecil">
+                    </div>
+
                     <!-- Nama PIC -->
                     <div class="form-group">
                         <label for="pic"><?= lang('Blog.pic'); ?><span class="required">*</span></label>
                         <input type="text" id="pic" name="pic" required placeholder="<?= lang('Blog.placeholderPIC'); ?>" value="<?= old('pic') ?>">
+                    </div>
+
+                    <!-- Email -->
+                    <span id="email-status" class="form-text" style="margin-bottom: 10px; display: block; margin-left: 160px;"></span> <!-- Status pengecekan email di bawah input -->
+                    <div class="form-group">
+                        <label for="email"><?= lang('Blog.emailPendaftaran'); ?><span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required placeholder="<?= lang('Blog.placeholderEmail'); ?>" value="<?= old('email') ?>">
                     </div>
 
                     <!-- No HP Perusahaan -->
