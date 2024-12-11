@@ -107,6 +107,12 @@ class CreateMemberTable extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
             ],
+            'alamat_perusahaan' => [
+                'type' => 'TEXT',
+            ],
+            'alamat_website' => [
+                'type' => 'TEXT',
+            ],
             'latitude' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,

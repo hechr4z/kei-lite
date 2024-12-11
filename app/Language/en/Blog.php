@@ -166,11 +166,26 @@ return [
     'placeholderReferral' => 'Enter Referral Code',
     'profilPerusahaan' => 'Company Profile',
     'namaPerusahaan' => 'Company Name',
+    'deskripsiPerusahaan' => 'Description Company',
     'placeholderNamaPerusahaan' => 'Enter Company Name',
+    'placeholderDeskripsiPerusahaan' => 'Enter Company Description',
+    'tahunberdiri' => 'year of company establishment',
+    'placeholdertahunberdiri' => 'select the year the company was founded',
+    'alamatperusahaan' => 'companys address',
+    'placeholderalamatperusahaan' => 'Enter companys address',
+    'produkperusahaan' => 'Enter Main Product',
+    'placeholderaprodukperusahaan' => 'Enter main product',
+    'alamatwebperusahaan' => 'website address',
+    'placeholderalamatwebperusahaan' => 'Enter the website address',
+
+
+
+
     'pic' => 'PIC',
     'placeholderPIC' => 'Enter PIC Name',
     'noPIC' => 'PIC Number',
     'placeholderNoPIC' => 'Enter PIC Number',
+    'profilpic' => 'PIC Profile',
     'submitButton' => 'Register Member',
 
     //halaman data buyers
