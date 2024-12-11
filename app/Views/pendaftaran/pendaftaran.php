@@ -290,7 +290,7 @@
 
                     <!-- Kategori Produk -->
                     <div class="form-group">
-                        <label for="kategori_produk"><?= lang('Blog.kategoriProduk'); ?></label>
+                        <label for="kategori_produk"><?= lang('Blog.kategoriProduk'); ?><span class="required">*</span></label>
                         <select id="kategori_produk" name="kategori_produk" required>
                             <option value="" disabled selected><?= lang('Blog.placeholderKategoriProduk'); ?></option>
                             <optgroup label='TES-GROUP'>
