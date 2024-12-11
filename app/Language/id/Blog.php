@@ -176,6 +176,8 @@ return [
     'placeholderalamatperusahaan' => 'Masukkan Alamat Perusahaan',
     'produkperusahaan' => 'Produk Utama',
     'placeholderaprodukperusahaan' => 'Masukkan Produk Utama',
+    'kategoriProduk' => 'Kategori Produk',
+    'placeholderKategoriProduk' => 'Pilih Kategori Produk',
     'alamatwebperusahaan' => 'Alamat Website',
     'placeholderalamatwebperusahaan' => 'Masukkan alamat website',
 
