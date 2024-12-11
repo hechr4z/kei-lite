@@ -791,8 +791,7 @@ class KomunitasEkspor extends BaseController
 
         // Fetch members with pagination
         $members = $model_member
-            ->where('role', 'premium')
-            ->where('status_premium', 'verified')
+            ->whereIn('role', ['member', 'premium'])
             ->orderBy('popular_point', 'DESC')
             ->paginate($perPage);
 
@@ -844,8 +843,7 @@ class KomunitasEkspor extends BaseController
 
         // Cari member berdasarkan username, karena slug dibuat dari username
         $member = $model_member
-            ->where('role', 'premium')
-            ->where('status_premium', 'verified')
+            ->whereIn('role', ['member', 'premium'])
             ->where('username', url_title($slug, '-', true))
             ->first();
 
@@ -865,8 +863,7 @@ class KomunitasEkspor extends BaseController
 
         // Top 3 popular members
         $members = $model_member
-            ->where('role', 'premium')
-            ->where('status_premium', 'verified')
+            ->whereIn('role', ['member', 'premium'])
             ->orderBy('popular_point', 'DESC')
             ->findAll(); // Tambahkan findAll() untuk mengambil data
 
