@@ -175,6 +175,8 @@ return [
     'placeholderalamatperusahaan' => 'Enter companys address',
     'produkperusahaan' => 'Enter Main Product',
     'placeholderaprodukperusahaan' => 'Enter main product',
+    'kategoriProduk' => 'Product Category',
+    'placeholderKategoriProduk' => 'Select Product Category',
     'alamatwebperusahaan' => 'website address',
     'placeholderalamatwebperusahaan' => 'Enter the website address',
 
