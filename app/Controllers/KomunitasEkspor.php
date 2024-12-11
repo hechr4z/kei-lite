@@ -544,17 +544,18 @@ class KomunitasEkspor extends BaseController
             "Password: $password\n\n" .
             "Nama Perusahaan: $nama_perusahaan\n\n" .
             "Deskripsi Perusahaan: $deskripsi_perusahaan\n\n" .
-            "Tahun Berdiri: $tahun_berdiri\n\n" .
+            "Tahun Didirikan: $tahun_berdiri\n\n" .
             "Alamat Perusahaan: $alamat_perusahaan\n\n" .
             "Produk Utama: $produk_utama\n\n" .
             "Alamat Website: $alamat_website\n\n" .
             "Nama PIC: $pic\n\n" .
-            "Nomor PIC: $nomor_pic\n\n" .
+            "Nomor HP PIC: $nomor_pic\n\n" .
             ($referral ? "Kode Referral: $referral\n\n" : "") .
             "\nCatatan:\n" .
             "- Mohon pastikan lokasi perusahaan sudah benar.\n" .
             ($pilihan === 'Member Premium' ? "- Mohon lengkapi data dengan versi Bahasa Inggris (EN).\n" : "") .
-            "- Mohon pastikan data perusahaan sudah benar.\n";
+            "- Mohon pastikan data perusahaan sudah benar.\n" .
+            "- Mohon juga diberikan file gambar Logo Perusahaan.\n";
 
 
         // Nomor tujuan WA
