@@ -151,7 +151,6 @@
                 <hr class="line-separator">
             </div>
 
-
             <!-- Deskripsi artikel -->
             <div class="artikel-text">
                 <!-- Teks hanya dipanggil sekali -->
@@ -160,7 +159,6 @@
                 </div>
             </div>
         </div>
-
 
         <!-- Back Button -->
         <div class="artikel-detail-footer text-center mt-5">
@@ -195,9 +193,5 @@
         </div>
     </div>
 </section>
-
-
-
-
 
 <?= $this->endSection(); ?>
