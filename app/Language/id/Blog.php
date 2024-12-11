@@ -104,7 +104,7 @@ return [
     'btndataMember' => 'Lihat Profil',
 
     //halaman detail data member
-    'referralCode' => 'Kode Refferal: ',
+    'referralCode' => 'Kode Referral: ',
     'companyProfile' => 'Profil Perusahaan',
     'certificate' => 'Sertifikat',
     'productData' => 'Data Produk',
