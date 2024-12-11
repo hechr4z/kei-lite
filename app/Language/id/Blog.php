@@ -158,7 +158,7 @@ return [
     'infoAkun' => 'Informasi Akun',
     'username' => 'Username',
     'placeholderUsername' => 'Masukkan Username',
-    'emailPendaftaran' => 'Email',
+    'emailPendaftaran' => 'Email PIC',
     'placeholderEmail' => 'Masukkan Email',
     'password' => 'Password',
     'placeholderPassword' => 'Masukkan Password',
@@ -177,14 +177,14 @@ return [
     'produkperusahaan' => 'Produk Utama',
     'placeholderaprodukperusahaan' => 'Masukkan Produk Utama',
     'alamatwebperusahaan' => 'Alamat Website',
-    'placeholderalamatwebperusahaan' => 'Masukkan alamat website',
+    'placeholderalamatwebperusahaan' => 'Masukkan Alamat Website',
 
 
-    'pic' => 'PIC',
+    'pic' => 'Nama PIC',
     'placeholderPIC' => 'Masukkan Nama PIC',
     'noPIC' => 'Nomor PIC',
     'placeholderNoPIC' => 'Masukkan Nomor PIC',
-    'profilpic' => 'Profile PIC',
+    'profilpic' => 'PIC',
     'submitButton' => 'Daftar Member',
 
     //halaman data buyers
