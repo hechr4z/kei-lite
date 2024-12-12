@@ -98,7 +98,7 @@ return [
 
 
     //halaman data member
-    'dataMemberTitle' => 'Member Data',
+    'dataMemberTitle' => 'Members',
     'dataMemberSubtitle' => 'The following is a page that displays member data from Indonesian Export Commodities',
     'btndataMember' => 'See Profile',
 
