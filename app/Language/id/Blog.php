@@ -125,10 +125,10 @@ return [
     'emailDetail' => 'Email: ',
     'productCategory' => 'Kategori Produk: ',
     'pic' => 'PIC: ',
-    'tabPIC' => 'PIC',
+    'tabPIC' => 'Kontak',
     'picName' => 'Nama PIC: ',
     'picEmail' => 'Email PIC: ',
-    'picPhone' => 'Nomor Telepon PIC: ',
+    'picPhone' => 'Nomor HP PIC: ',
 
 
 
