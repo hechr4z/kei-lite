@@ -1,6 +1,13 @@
 <?= $this->extend('layout/app'); ?>
 <?= $this->section('content'); ?>
 
+<?php
+$this->setData([
+    'meta_title' => ($lang == 'id') ? $meta['meta_title_tutorial'] : $meta['meta_title_tutorial_en'],
+    'meta_description' => ($lang == 'id') ? $meta['meta_description_tutorial'] : $meta['meta_description_tutorial_en']
+]);
+?>
+
 <style>
     /* Video Detail Section */
     .video-detail-section {
@@ -68,9 +75,7 @@
     }
 </style>
 
-
 <!-- Halaman untuk kategori video -->
-
 <div class="video-detail-section pt-5 pb-2 text-center">
     <h2 class="text-custom-title"><?= lang('Blog.videoTutorialTitle'); ?>: <?= ($lang === 'en') ? $kategori['nama_kategori_video_en'] : $kategori['nama_kategori_video']; ?> </h2>
 </div>
