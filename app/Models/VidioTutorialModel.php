@@ -26,6 +26,24 @@ class VidioTutorialModel extends Model
         'updated_at'
     ];
 
+    public function getVideosByKategori($slug)
+    {
+        return $this->select('video_tutorial.*, kategori_video.nama_kategori_video, kategori_video.nama_kategori_video_en')
+            ->join('kategori_video', 'kategori_video.id_kategori_video = video_tutorial.id_kategori_video')
+            ->where('kategori_video.slug', $slug)
+            ->orWhere('kategori_video.slug_en', $slug)
+            ->findAll();
+    }
+
+    public function getVideosByKategoriWithPagination($slug, $perPage, $page)
+    {
+        return $this->select('video_tutorial.*, kategori_video.nama_kategori_video, kategori_video.nama_kategori_video_en')
+            ->join('kategori_video', 'kategori_video.id_kategori_video = video_tutorial.id_kategori_video')
+            ->where('kategori_video.slug', $slug)
+            ->orWhere('kategori_video.slug_en', $slug)
+            ->paginate($perPage, 'default', $page);
+    }
+
     // Method untuk mengambil semua video tutorial dan join dengan kategori video
     public function getAllVideos()
     {
@@ -45,14 +63,14 @@ class VidioTutorialModel extends Model
     }
 
     // Method untuk mengambil video berdasarkan kategori
-    public function getVideosByKategori($kategoriSlug)
-    {
-        return $this->select('video_tutorial.*, kategori_video.nama_kategori_video')
-            ->join('kategori_video', 'video_tutorial.id_kategori_video = kategori_video.id_kategori_video')
-            ->where('kategori_video.slug', $kategoriSlug)
-            ->orwhere('kategori_video.slug_en', $kategoriSlug)
-            ->findAll();
-    }
+    // public function getVideosByKategori($kategoriSlug)
+    // {
+    //     return $this->select('video_tutorial.*, kategori_video.nama_kategori_video')
+    //         ->join('kategori_video', 'video_tutorial.id_kategori_video = kategori_video.id_kategori_video')
+    //         ->where('kategori_video.slug', $kategoriSlug)
+    //         ->orwhere('kategori_video.slug_en', $kategoriSlug)
+    //         ->findAll();
+    // }
 
     public function getRelatedVideos($id_kategori_video, $id_video)
     {
