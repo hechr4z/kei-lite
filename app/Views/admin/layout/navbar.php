@@ -70,6 +70,50 @@
 
                 <li class="nav-item">
                     <a class="nav-link <?=
+                                        (current_url() == base_url('admin-kategori-induk')) ? 'active' : ((current_url() == base_url('admin-search-kategori-induk')) ? 'active' : ((current_url() == base_url('admin-kategori-induk-tambah')) ? 'active' : ((strpos(current_url(), base_url('admin-kategori-induk-edit')) === 0) ? 'active' : '')))
+                                        ?>" href="<?= base_url('admin-kategori-induk') ?>">
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-list"></i>
+                        </span>
+                        <span class="nav-link-text">Kategori Induk</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link <?=
+                                        (current_url() == base_url('admin-kategori-produk')) ? 'active' : ((current_url() == base_url('admin-search-kategori-produk')) ? 'active' : ((current_url() == base_url('admin-kategori-produk-tambah')) ? 'active' : ((strpos(current_url(), base_url('admin-kategori-produk-edit')) === 0) ? 'active' : '')))
+                                        ?>" href="<?= base_url('admin-kategori-produk') ?>">
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-list"></i>
+                        </span>
+                        <span class="nav-link-text">Kategori Produk</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link <?=
+                                        (current_url() == base_url('admin-kategori-belajar-ekspor')) ? 'active' : ((current_url() == base_url('admin-kategori-belajar-ekspor')) ? 'active' : ((current_url() == base_url('admin-kategori-belajar-ekspor-tambah')) ? 'active' : ((strpos(current_url(), base_url('admin-kategori-belajar-ekspor-ubah')) === 0) ? 'active' : '')))
+                                        ?>" href="<?= base_url('admin-kategori-belajar-ekspor') ?>">
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-list"></i>
+                        </span>
+                        <span class="nav-link-text">Kategori Materi Ekspor</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link <?=
+                                        (current_url() == base_url('admin-kategori-video-tutorial')) ? 'active' : ((current_url() == base_url('admin-search-video-tutorial')) ? 'active' : ((current_url() == base_url('admin-kategori-video-tutorial-tambah')) ? 'active' : ((strpos(current_url(), base_url('admin-kategori-video-tutorial-ubah')) === 0) ? 'active' : '')))
+                                        ?>" href="<?= base_url('admin-kategori-video-tutorial') ?>">
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-list"></i>
+                        </span>
+                        <span class="nav-link-text">Kategori Video Tutorial</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link <?=
                                         (current_url() == base_url('admin-belajar-ekspor')) ? 'active' : ((current_url() == base_url('admin-belajar-ekspor-search')) ? 'active' : ((current_url() == base_url('admin-belajar-ekspor-tambah')) ? 'active' : ((strpos(current_url(), base_url('admin-belajar-ekspor-ubah')) === 0) ? 'active' : '')))
                                         ?>" href="<?= base_url('admin-belajar-ekspor') ?>">
                         <span class="nav-icon">
@@ -81,56 +125,12 @@
 
                 <li class="nav-item">
                     <a class="nav-link <?=
-                                        (current_url() == base_url('admin-kategori-induk')) ? 'active' : ((current_url() == base_url('admin-search-kategori-induk')) ? 'active' : ((current_url() == base_url('admin-kategori-induk-tambah')) ? 'active' : ((strpos(current_url(), base_url('admin-kategori-induk-edit')) === 0) ? 'active' : '')))
-                                        ?>" href="<?= base_url('admin-kategori-induk') ?>">
-                        <span class="nav-icon">
-                            <i class="fa-solid fa-calculator"></i>
-                        </span>
-                        <span class="nav-link-text">Kategori Induk</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link <?=
-                                        (current_url() == base_url('admin-kategori-produk')) ? 'active' : ((current_url() == base_url('admin-search-kategori-produk')) ? 'active' : ((current_url() == base_url('admin-kategori-produk-tambah')) ? 'active' : ((strpos(current_url(), base_url('admin-kategori-produk-edit')) === 0) ? 'active' : '')))
-                                        ?>" href="<?= base_url('admin-kategori-produk') ?>">
-                        <span class="nav-icon">
-                            <i class="fa-solid fa-calculator"></i>
-                        </span>
-                        <span class="nav-link-text">Kategori Produk</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link <?=
-                                        (current_url() == base_url('admin-kategori-belajar-ekspor')) ? 'active' : ((current_url() == base_url('admin-kategori-belajar-ekspor')) ? 'active' : ((current_url() == base_url('admin-kategori-belajar-ekspor-tambah')) ? 'active' : ((strpos(current_url(), base_url('admin-kategori-belajar-ekspor-ubah')) === 0) ? 'active' : '')))
-                                        ?>" href="<?= base_url('admin-kategori-belajar-ekspor') ?>">
-                        <span class="nav-icon">
-                            <i class="fa-solid fa-calculator"></i>
-                        </span>
-                        <span class="nav-link-text">Kategori Materi Ekspor</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link <?=
                                         (current_url() == base_url('admin-video-tutorial')) ? 'active' : ((current_url() == base_url('admin-search-video-tutorial')) ? 'active' : ((current_url() == base_url('admin-video-tutorial-tambah')) ? 'active' : ((strpos(current_url(), base_url('admin-video-tutorial-ubah')) === 0) ? 'active' : '')))
                                         ?>" href="<?= base_url('admin-video-tutorial') ?>">
                         <span class="nav-icon">
-                            <i class="fa-solid fa-calculator"></i>
+                            <i class="fa-solid fa-video"></i>
                         </span>
                         <span class="nav-link-text">Video Tutorial</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link <?=
-                                        (current_url() == base_url('admin-kategori-video-tutorial')) ? 'active' : ((current_url() == base_url('admin-search-video-tutorial')) ? 'active' : ((current_url() == base_url('admin-kategori-video-tutorial-tambah')) ? 'active' : ((strpos(current_url(), base_url('admin-kategori-video-tutorial-ubah')) === 0) ? 'active' : '')))
-                                        ?>" href="<?= base_url('admin-kategori-video-tutorial') ?>">
-                        <span class="nav-icon">
-                            <i class="fa-solid fa-calculator"></i>
-                        </span>
-                        <span class="nav-link-text">Kategori Video Tutorial</span>
                     </a>
                 </li>
 
@@ -203,7 +203,7 @@
                                         (current_url() == base_url('admin-meta')) ? 'active' : ((current_url() == base_url('admin-search-meta')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-meta')) === 0) ? 'active' : ''))
                                         ?>" href="<?= base_url('admin-meta') ?>">
                         <span class="nav-icon">
-                            <i class="fa-solid fa-calculator"></i>
+                            <i class="fa-solid fa-eject"></i>
                         </span>
                         <span class="nav-link-text">Meta</span>
                     </a>
@@ -223,7 +223,7 @@
                                         (current_url() == base_url('admin-pengumuman')) ? 'active' : ((current_url() == base_url('admin-search-pengumuman')) ? 'active' : ((current_url() == base_url('admin-add-pengumuman')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-pengumuman')) === 0) ? 'active' : '')))
                                         ?>" href="<?= base_url('admin-pengumuman') ?>">
                         <span class="nav-icon">
-                            <i class="fa-solid fa-calculator"></i>
+                            <i class="fa-solid fa-bullhorn"></i>
                         </span>
                         <span class="nav-link-text">Pengumuman</span>
                     </a>
@@ -234,7 +234,7 @@
                                         (current_url() == base_url('admin-manfaat-join')) ? 'active' : ((current_url() == base_url('admin-search-manfaat-join')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-manfaat-join')) === 0) ? 'active' : ''))
                                         ?>" href="<?= base_url('admin-manfaat-join') ?>">
                         <span class="nav-icon">
-                            <i class="fa-solid fa-calculator"></i>
+                            <i class="fa-solid fa-sign-in-alt"></i>
                         </span>
                         <span class="nav-link-text">Manfaat Join</span>
                     </a>
@@ -245,7 +245,7 @@
                                         (current_url() == base_url('admin-slider')) ? 'active' : ((current_url() == base_url('admin-search-slider')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-slider')) === 0) ? 'active' : ''))
                                         ?>" href="<?= base_url('admin-slider') ?>">
                         <span class="nav-icon">
-                            <i class="fa-solid fa-calculator"></i>
+                            <i class="fa-solid fa-sliders-h"></i>
                         </span>
                         <span class="nav-link-text">Slider</span>
                     </a>
@@ -256,7 +256,7 @@
                                         (current_url() == base_url('admin-web-profile')) ? 'active' : ((current_url() == base_url('admin-search-web-profile')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-web-profile')) === 0) ? 'active' : ''))
                                         ?>" href="<?= base_url('admin-web-profile') ?>">
                         <span class="nav-icon">
-                            <i class="fa-solid fa-calculator"></i>
+                            <i class="fa-solid fa-id-card"></i>
                         </span>
                         <span class="nav-link-text">Web Profile</span>
                     </a>
@@ -267,7 +267,7 @@
                                         (current_url() == base_url('admin-tentang-kami')) ? 'active' : ((current_url() == base_url('admin-search-tentang-kami')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-tentang-kami')) === 0) ? 'active' : ''))
                                         ?>" href="<?= base_url('admin-tentang-kami') ?>">
                         <span class="nav-icon">
-                            <i class="fa-solid fa-calculator"></i>
+                            <i class="fa-solid fa-address-card"></i>
                         </span>
                         <span class="nav-link-text">Tentang Kami</span>
                     </a>
