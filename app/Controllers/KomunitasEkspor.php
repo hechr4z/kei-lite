@@ -23,6 +23,9 @@ use App\Models\WebProfile;
 use App\Models\ManfaatJoin;
 use App\Models\Pengumuman;
 use App\Models\TentangKami;
+use App\Models\KategoriInduk;
+use App\Models\KategoriProduk;
+use App\Models\Meta;
 use CodeIgniter\I18n\Time;
 use DateTime;
 use Exception;
@@ -36,10 +39,14 @@ class KomunitasEkspor extends BaseController
         $data['lang'] = $lang;
 
         $model_webprofile = new WebProfile();
-
         $webprofile = $model_webprofile->findAll();
-
         $data['webprofile'] = $webprofile;
+
+        $model_meta = new Meta();
+        $meta = $model_meta
+            ->select('meta_title_beranda, meta_title_beranda_en, meta_description_beranda, meta_description_beranda_en')
+            ->first();
+        $data['meta'] = $meta;
 
         $model_slider = new Slider();
         $model_member = new Member();
@@ -106,6 +113,12 @@ class KomunitasEkspor extends BaseController
     {
         $lang = session()->get('lang') ?? 'id';
         $data['lang'] = $lang;
+
+        $model_meta = new Meta();
+        $meta = $model_meta
+            ->select('meta_title_tentang, meta_title_tentang_en, meta_description_tentang, meta_description_tentang_en')
+            ->first();
+        $data['meta'] = $meta;
 
         $model_webprofile = new WebProfile();
         $model_tentang = new TentangKami();
@@ -204,10 +217,14 @@ class KomunitasEkspor extends BaseController
         $data['lang'] = $lang;
 
         $model_webprofile = new WebProfile();
-
         $webprofile = $model_webprofile->findAll();
-
         $data['webprofile'] = $webprofile;
+
+        $model_meta = new Meta();
+        $meta = $model_meta
+            ->select('meta_title_materi, meta_title_materi_en, meta_description_materi, meta_description_materi_en')
+            ->first();
+        $data['meta'] = $meta;
 
         $belajarEksporModel = new BelajarEksporModel();
         $kategoriBelajarEksporModel = new KategoriBelajarEksporModel();
@@ -241,11 +258,16 @@ class KomunitasEkspor extends BaseController
     {
         $lang = session()->get('lang') ?? 'id';
         $data['lang'] = $lang;
+
         $model_webprofile = new WebProfile();
-
         $webprofile = $model_webprofile->findAll();
-
         $data['webprofile'] = $webprofile;
+
+        $model_meta = new Meta();
+        $meta = $model_meta
+            ->select('meta_title_materi, meta_title_materi_en, meta_description_materi, meta_description_materi_en')
+            ->first();
+        $data['meta'] = $meta;
 
         helper('text');
 
@@ -289,10 +311,14 @@ class KomunitasEkspor extends BaseController
         $data['lang'] = $lang;
 
         $model_webprofile = new WebProfile();
-
         $webprofile = $model_webprofile->findAll();
-
         $data['webprofile'] = $webprofile;
+
+        $model_meta = new Meta();
+        $meta = $model_meta
+            ->select('meta_title_materi, meta_title_materi_en, meta_description_materi, meta_description_materi_en')
+            ->first();
+        $data['meta'] = $meta;
 
         $belajarEksporModel = new BelajarEksporModel();
         $kategoriBelajarEksporModel = new KategoriBelajarEksporModel();
@@ -321,7 +347,6 @@ class KomunitasEkspor extends BaseController
         $lang = session()->get('lang') ?? 'id';
 
         $model_webprofile = new WebProfile();
-
         $webprofile = $model_webprofile->findAll();
 
         $belajarEksporModel = new BelajarEksporModel();
@@ -368,10 +393,29 @@ class KomunitasEkspor extends BaseController
     public function pendaftaran()
     {
         $model_webprofile = new WebProfile();
-
         $webprofile = $model_webprofile->findAll();
-
         $data['webprofile'] = $webprofile;
+
+        $model_meta = new Meta();
+        $meta = $model_meta
+            ->select('meta_title_daftar, meta_title_daftar_en, meta_description_daftar, meta_description_daftar_en')
+            ->first();
+        $data['meta'] = $meta;
+
+        $lang = session()->get('lang') ?? 'id';
+        $data['lang'] = $lang;
+
+        $model_kategori_induk = new KategoriInduk();
+        $kategori_induk = $model_kategori_induk->findAll();
+        $data['kategori_induk'] = $kategori_induk;
+
+        $model_kategori_produk = new KategoriProduk();
+        $kategori_produk = $model_kategori_produk->findAll();
+        $kategori_produk_terkelompok = [];
+        foreach ($kategori_produk as $produk) {
+            $kategori_produk_terkelompok[$produk['id_kategori_induk']][] = $produk;
+        }
+        $data['kategori_produk_terkelompok'] = $kategori_produk_terkelompok;
 
         return view('pendaftaran/pendaftaran', $data);
     }
@@ -382,10 +426,15 @@ class KomunitasEkspor extends BaseController
         $data['lang'] = $lang;
 
         $model_webprofile = new WebProfile();
-
         $webprofile = $model_webprofile->findAll();
-
         $data['webprofile'] = $webprofile;
+
+        $model_meta = new Meta();
+        $meta = $model_meta
+            ->select('meta_title_tutorial, meta_title_tutorial_en, meta_description_tutorial, meta_description_tutorial_en')
+            ->first();
+        $data['meta'] = $meta;
+
         $vidioModel = new VidioTutorialModel();
         $kategoriModel = new KategoriVidioModel();
 
@@ -418,8 +467,12 @@ class KomunitasEkspor extends BaseController
         $lang = session()->get('lang') ?? 'id';
 
         $model_webprofile = new WebProfile();
-
         $webprofile = $model_webprofile->findAll();
+
+        $model_meta = new Meta();
+        $meta = $model_meta
+            ->select('meta_title_tutorial, meta_title_tutorial_en, meta_description_tutorial, meta_description_tutorial_en')
+            ->first();
 
         $vidioModel = new VidioTutorialModel();
         $kategoriModel = new KategoriVidioModel();
@@ -449,7 +502,8 @@ class KomunitasEkspor extends BaseController
             'kategori' => $kategori,
             'video_tutorial' => $videos,
             'webprofile' => $webprofile,
-            'lang' => $lang
+            'lang' => $lang,
+            'meta' => $meta,
         ];
 
         return view('video-tutorial/video_selengkapnya', $data);
@@ -460,13 +514,16 @@ class KomunitasEkspor extends BaseController
         $lang = session()->get('lang') ?? 'id';
 
         $model_webprofile = new WebProfile();
-
         $webprofile = $model_webprofile->findAll();
+
+        $model_meta = new Meta();
+        $meta = $model_meta
+            ->select('meta_title_tutorial, meta_title_tutorial_en, meta_description_tutorial, meta_description_tutorial_en')
+            ->first();
 
         // Inisialisasi model untuk video dan kategori
         $vidioModel = new VidioTutorialModel();
         $kategoriModel = new KategoriVidioModel();
-
 
         // Mengambil data video berdasarkan slug
         $video = $vidioModel->getVideoBySlug($slug);
@@ -496,7 +553,8 @@ class KomunitasEkspor extends BaseController
             'related_videos' => $related_videos,
             'kategori' => $kategori,
             'webprofile' => $webprofile,
-            'lang' => $lang
+            'lang' => $lang,
+            'meta' => $meta,
         ];
 
         // Mengembalikan view dengan data yang telah disiapkan
@@ -763,8 +821,13 @@ class KomunitasEkspor extends BaseController
         $model_webprofile = new WebProfile();
 
         $webprofile = $model_webprofile->findAll();
-
         $data['webprofile'] = $webprofile;
+
+        $model_meta = new Meta();
+        $meta = $model_meta
+            ->select('meta_title_member, meta_title_member_en, meta_description_member, meta_description_member_en')
+            ->first();
+        $data['meta'] = $meta;
 
         $lang = session()->get('lang') ?? 'id';
         $data['lang'] = $lang;
@@ -817,8 +880,13 @@ class KomunitasEkspor extends BaseController
         $model_webprofile = new WebProfile();
 
         $webprofile = $model_webprofile->findAll();
-
         $data['webprofile'] = $webprofile;
+
+        $model_meta = new Meta();
+        $meta = $model_meta
+            ->select('meta_title_member, meta_title_member_en, meta_description_member, meta_description_member_en')
+            ->first();
+        $data['meta'] = $meta;
 
         $lang = session()->get('lang') ?? 'id';
         $data['lang'] = $lang;

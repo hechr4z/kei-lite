@@ -1,6 +1,13 @@
 <?= $this->extend('layout/app'); ?>
 <?= $this->section('content'); ?>
 
+<?php
+$this->setData([
+    'meta_title' => ($lang == 'id') ? $meta['meta_title_tutorial'] : $meta['meta_title_tutorial_en'],
+    'meta_description' => ($lang == 'id') ? $meta['meta_description_tutorial'] : $meta['meta_description_tutorial_en']
+]);
+?>
+
 <style>
     /* Add this to your CSS file */
     .embed-responsive {
@@ -65,7 +72,6 @@
         transform: translateY(-5px) !important;
     }
 </style>
-
 
 <!-- Video Details Start -->
 <div class="container-fluid pt-5 mb-3">

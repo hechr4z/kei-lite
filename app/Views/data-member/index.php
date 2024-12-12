@@ -1,6 +1,13 @@
 <?= $this->extend('layout/app'); ?>
 <?= $this->section('content'); ?>
 
+<?php
+$this->setData([
+    'meta_title' => ($lang == 'id') ? $meta['meta_title_member'] : $meta['meta_title_member_en'],
+    'meta_description' => ($lang == 'id') ? $meta['meta_description_member'] : $meta['meta_description_member_en']
+]);
+?>
+
 <style>
     .card {
         transition: box-shadow 0.3s ease, transform 0.3s ease;

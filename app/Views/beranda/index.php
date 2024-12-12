@@ -2,10 +2,9 @@
 <?= $this->section('content'); ?>
 
 <?php
-// Mengirimkan meta title dan description
 $this->setData([
-    'meta_title' => 'Beranda - Komunitas Ekspor',
-    'meta_description' => 'Sorotan member komunitas ekspor Indonesia. Temukan anggota populer dalam peta eksportir kami.'
+    'meta_title' => ($lang == 'id') ? $meta['meta_title_beranda'] : $meta['meta_title_beranda_en'],
+    'meta_description' => ($lang == 'id') ? $meta['meta_description_beranda'] : $meta['meta_description_beranda_en']
 ]);
 ?>
 

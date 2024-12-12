@@ -1,6 +1,13 @@
 <?= $this->extend('layout/app'); ?>
 <?= $this->section('content'); ?>
 
+<?php
+$this->setData([
+    'meta_title' => ($lang == 'id') ? $meta['meta_title_member'] : $meta['meta_title_member_en'],
+    'meta_description' => ($lang == 'id') ? $meta['meta_description_member'] : $meta['meta_description_member_en']
+]);
+?>
+
 <style>
     .img-fluid {
         border-radius: 8px;
@@ -201,7 +208,7 @@
                                     <strong>
                                         <?php echo lang('Blog.companyAddress') ?>
                                     </strong>
-                                    <?= $member['tahun_dibentuk'] ?>
+                                    <?= $member['alamat_perusahaan'] ?>
                                     <!-- harusnya 'alamat_perusahaan' -->
                                 </p>
                             </div>
@@ -235,7 +242,7 @@
                                     <strong>
                                         <?php echo lang('Blog.websiteAddress') ?>
                                     </strong>
-                                    <?= $member['tahun_dibentuk'] ?>
+                                    <?= $member['alamat_website'] ?>
                                     <!-- harusnya 'alamat_website' -->
                                 </p>
                             </div>

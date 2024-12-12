@@ -1,6 +1,13 @@
 <?= $this->extend('layout/app'); ?>
 <?= $this->section('content'); ?>
 
+<?php
+$this->setData([
+    'meta_title' => ($lang == 'id') ? $meta['meta_title_tentang'] : $meta['meta_title_tentang_en'],
+    'meta_description' => ($lang == 'id') ? $meta['meta_description_tentang'] : $meta['meta_description_tentang_en']
+]);
+?>
+
 <div class="container my-4">
     <div class="row align-items-center">
         <!-- Bagian Gambar -->

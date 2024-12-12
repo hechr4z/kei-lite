@@ -21,5 +21,8 @@ class AllInOne extends Seeder
         $this->call(ManfaatJoinSeeder::class);
         $this->call(Pengumuman::class);
         $this->call(TentangSeeder::class);
+        $this->call(KategoriInduk::class);
+        $this->call(KategoriProduk::class);
+        $this->call(Meta::class);
     }
 }

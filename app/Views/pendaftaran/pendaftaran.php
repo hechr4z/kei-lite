@@ -1,6 +1,13 @@
 <?= $this->extend('layout/app'); ?>
 <?= $this->section('content'); ?>
 
+<?php
+$this->setData([
+    'meta_title' => ($lang == 'id') ? $meta['meta_title_daftar'] : $meta['meta_title_daftar_en'],
+    'meta_description' => ($lang == 'id') ? $meta['meta_description_daftar'] : $meta['meta_description_daftar_en']
+]);
+?>
+
 <style>
     /* Artikel Detail Section */
     .pendaftaran-section {
@@ -140,7 +147,6 @@
         }
     }
 </style>
-
 
 <!-- judul -->
 <div class="pendaftaran-section pt-5 text-center">
@@ -293,9 +299,17 @@
                         <label for="kategori_produk"><?= lang('Blog.kategoriProduk'); ?><span class="required">*</span></label>
                         <select id="kategori_produk" name="kategori_produk" required>
                             <option value="" disabled selected><?= lang('Blog.placeholderKategoriProduk'); ?></option>
-                            <optgroup label='TES-GROUP'>
-                                <option value="TES1">TES1</option>
-                            </optgroup>
+                            <?php foreach ($kategori_induk as $item): ?>
+                                <optgroup label='<?= ($lang == 'id') ? $item['nama_kategori_induk'] : $item['nama_kategori_induk_en'] ?>'>
+                                    <?php if (!empty($kategori_produk_terkelompok[$item['id_kategori_induk']])): ?>
+                                        <?php foreach ($kategori_produk_terkelompok[$item['id_kategori_induk']] as $produk): ?>
+                                            <option value="<?= ($lang == 'id') ? $produk['nama_kategori_produk'] : $produk['nama_kategori_produk_en'] ?>">
+                                                <?= ($lang == 'id') ? $produk['nama_kategori_produk'] : $produk['nama_kategori_produk_en'] ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </optgroup>
+                            <?php endforeach; ?>
                         </select>
                     </div>
 

@@ -1,6 +1,13 @@
 <?= $this->extend('layout/app'); ?>
 <?= $this->section('content'); ?>
 
+<?php
+$this->setData([
+    'meta_title' => ($lang == 'id') ? $meta['meta_title_tutorial'] : $meta['meta_title_tutorial_en'],
+    'meta_description' => ($lang == 'id') ? $meta['meta_description_tutorial'] : $meta['meta_description_tutorial_en']
+]);
+?>
+
 <style>
     /* Video Detail Section */
     .video-detail-section {
@@ -65,7 +72,6 @@
         }
     }
 </style>
-
 
 <!-- judul -->
 <div class="video-detail-section container py-5 text-center">
