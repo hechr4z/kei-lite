@@ -1,6 +1,13 @@
 <?= $this->extend('layout/app'); ?>
 <?= $this->section('content'); ?>
 
+<?php
+$this->setData([
+    'meta_title' => ($lang == 'id') ? $artikel['meta_title'] : $artikel['meta_title_en'],
+    'meta_description' => ($lang == 'id') ? $artikel['meta_deskripsi'] : $artikel['meta_deskripsi_en']
+]);
+?>
+
 <style>
     /* Artikel Detail Section */
     .artikel-detail-section {
