@@ -78,6 +78,24 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link <?= (current_url() == base_url('admin-kategori-induk')) ? 'active' : '' ?>" href="<?= base_url('admin-kategori-induk') ?>">
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-list"></i>
+                        </span>
+                        <span class="nav-link-text">Kategori Induk</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link <?= (current_url() == base_url('admin-kategori-produkr')) ? 'active' : '' ?>" href="<?= base_url('admin-kategori-produk') ?>">
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-list"></i>
+                        </span>
+                        <span class="nav-link-text">Kategori Produk</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link <?= (current_url() == base_url('admin-kategori-belajar-ekspor')) ? 'active' : '' ?>" href="<?= base_url('admin-kategori-belajar-ekspor') ?>">
                         <span class="nav-icon">
                             <i class="fa-solid fa-list"></i>

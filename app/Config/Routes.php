@@ -374,4 +374,7 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
     $routes->get('/admin-tentang-kami', 'KomunitasEkspor::admin_tentang_kami');
     $routes->get('/admin-edit-tentang-kami/(:num)', 'KomunitasEkspor::edit_admin_tentang_kami/$1');
     $routes->post('/admin-update-tentang-kami/(:num)', 'KomunitasEkspor::update_admin_tentang_kami/$1');
+
+    // Kategori Induk
+    $routes->get('/admin-kategori-induk', 'KomunitasEkspor:kategori_induk');
 });
