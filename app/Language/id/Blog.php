@@ -175,7 +175,7 @@ return [
     'deskripsiPerusahaan' => 'Deskripsi Perusahaan',
     'placeholderNamaPerusahaan' => 'Masukkan Nama Perusahaan',
     'placeholderDeskripsiPerusahaan' => 'Masukkan Deskripsi Perusahaan',
-    'tahunberdiri' => 'Tahun Didirikan',
+    'tahunberdiri' => 'Tahun Dibentuk',
     'placeholdertahunberdiri' => 'Pilih Tahun Didirikannya Perusahaan',
     'alamatperusahaan' => 'Alamat Perusahaan',
     'placeholderalamatperusahaan' => 'Masukkan Alamat Perusahaan',
