@@ -232,24 +232,29 @@ class KomunitasEkspor extends BaseController
         // Mengambil semua kategori
         $data['kategori_belajar_ekspor'] = $kategoriBelajarEksporModel->findAll();
 
+        $perPage = 9; // Number of items per page
+        $page = $this->request->getVar('page') ?? 1; // Get the current page number
+
         if ($slug) {
             // Jika slug kategori dipilih, ambil data sesuai kategori
             $kategori = $kategoriBelajarEksporModel->where('slug', $slug)->first();
             if (!$kategori) {
                 return redirect()->to('/')->with('error', 'Kategori tidak ditemukan');
             }
-            // Mengambil data berdasarkan kategori
-            $data['belajar_ekspor'] = $belajarEksporModel->getByCategory($kategori['id_kategori_belajar_ekspor']);
+            // Mengambil data berdasarkan kategori dengan pagination
+            $data['belajar_ekspor'] = $belajarEksporModel->getByCategoryWithPagination($kategori['id_kategori_belajar_ekspor'], $perPage, $page);
 
             // Mengirimkan data kategori yang dipilih ke view
             $data['active_category'] = $kategori['id_kategori_belajar_ekspor'];
         } else {
-            // Jika tidak ada slug, tampilkan semua data
-            $data['belajar_ekspor'] = $belajarEksporModel->getAllWithCategory();
+            // Jika tidak ada slug, tampilkan semua data dengan pagination
+            $data['belajar_ekspor'] = $belajarEksporModel->getAllWithCategoryAndPagination($perPage, $page);
 
             // Tidak ada kategori yang aktif
             $data['active_category'] = null;
         }
+
+        $data['pager'] = $belajarEksporModel->pager; // Get the pager instance
 
         return view('belajar-ekspor/belajar_ekspor', $data);
     }
@@ -281,12 +286,11 @@ class KomunitasEkspor extends BaseController
         // Mengambil semua kategori untuk ditampilkan di sidebar/filter
         $data['kategori_belajar_ekspor'] = $kategoriBelajarEksporModel->findAll();
 
+        $perPage = 9; // Number of items per page
+        $page = $this->request->getVar('page') ?? 1; // Get the current page number
+
         // Query pencarian: mencari berdasarkan judul, tags, atau deskripsi
-        $hasilPencarian = $belajarEksporModel->like('judul_belajar_ekspor', $keyword)
-            ->orLike('judul_belajar_ekspor_en', $keyword)
-            ->orLike('deskripsi_belajar_ekspor', $keyword)
-            ->orLike('deskripsi_belajar_ekspor_en', $keyword)
-            ->getAllWithCategory(); // Pastikan method ini mengembalikan data dengan kategori
+        $hasilPencarian = $belajarEksporModel->getSearchAllWithCategoryAndPagination($keyword, $perPage, $page);
 
         // Jika ada hasil pencarian
         if (count($hasilPencarian) > 0) {
@@ -302,6 +306,8 @@ class KomunitasEkspor extends BaseController
         $data['active_category'] = null;
 
         // Render view hasil pencarian
+        $data['pager'] = $belajarEksporModel->pager; // Get the pager instance
+
         return view('belajar-ekspor/belajar_ekspor_search', $data);
     }
 
@@ -330,14 +336,19 @@ class KomunitasEkspor extends BaseController
             return redirect()->to('/')->with('error', 'Kategori tidak ditemukan');
         }
 
+        $perPage = 9; // Number of items per page
+        $page = $this->request->getVar('page') ?? 1; // Get the current page number
+
         // Mengambil data belajar ekspor yang terkait dengan kategori yang dipilih
-        $data['belajar_ekspor'] = $belajarEksporModel->getByCategory($kategori['id_kategori_belajar_ekspor']);
+        $data['belajar_ekspor'] = $belajarEksporModel->getSpecificByCategoryWithPagination($kategori['id_kategori_belajar_ekspor'], $perPage, $page);
 
         // Mengambil semua kategori untuk menu dropdown
         $data['kategori_belajar_ekspor'] = $kategoriBelajarEksporModel->findAll();
 
         // Mengirim data kategori yang dipilih untuk ditampilkan di view
         $data['active_category'] = $kategori['id_kategori_belajar_ekspor'];
+
+        $data['pager'] = $belajarEksporModel->pager; // Get the pager instance
 
         return view('belajar-ekspor/belajar_ekspor', $data);
     }
@@ -490,9 +501,12 @@ class KomunitasEkspor extends BaseController
             return redirect()->to("$lang/$correctulr/$correctulr2/$correctSlug");
         }
 
+        $perPage = 9; // Number of items per page
+        $page = $this->request->getVar('page') ?? 1; // Get the current page number
+
         // Jika kategori ditemukan, ambil video yang sesuai
         if ($kategori) {
-            $videos = $vidioModel->getVideosByKategori($slug);
+            $videos = $vidioModel->getVideosByKategoriWithPagination($slug, $perPage, $page);
         } else {
             $videos = [];
         }
@@ -505,6 +519,8 @@ class KomunitasEkspor extends BaseController
             'lang' => $lang,
             'meta' => $meta,
         ];
+
+        $data['pager'] = $vidioModel->pager; // Get the pager instance
 
         return view('video-tutorial/video_selengkapnya', $data);
     }

@@ -218,9 +218,11 @@ $this->setData([
                                 </a>
                             </div>
                         </div>
-
                     </div>
                 <?php endforeach; ?>
+                <div class="mt-5">
+                    <?= $pager->links('default', 'bootstrap_pagination') ?>
+                </div>
             <?php else: ?>
                 <div class="col-12 d-flex justify-content-center">
                     <div class="alert alert-info text-center" role="alert">
