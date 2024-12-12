@@ -641,7 +641,8 @@ $this->setData([
     <!-- slider -->
     <div id="carouselExampleDark" class="carousel carousel-dark slide">
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
@@ -700,12 +701,14 @@ $this->setData([
             <div class="garis d-flex justify-content-center align-items-center mb-2">
                 <div class="border-top1 mx-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
             </div>
-            <h5 class="fw-lighter" data-en="ABOUT US" data-id="TENTANG KAMI"><?= lang('Blog.populerMemberTitle'); ?></h5>
+            <h5 class="fw-lighter" data-en="ABOUT US" data-id="TENTANG KAMI"><?= lang('Blog.populerMemberTitle'); ?>
+            </h5>
             <div class="garis d-flex justify-content-center align-items-center mb-2">
                 <div class="border-top1 ms-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
             </div>
         </div>
-        <h1 class="text-center" data-en="WHO WE ARE" data-id="SIAPA KAMI"><b><?= lang('Blog.topMemberTitle'); ?><span style="color: #03AADE;"> <?= lang('Blog.spotlightTitle'); ?></span></b></h1>
+        <h1 class="text-center" data-en="WHO WE ARE" data-id="SIAPA KAMI"><b><?= lang('Blog.topMemberTitle'); ?><span
+                    style="color: #03AADE;"> <?= lang('Blog.spotlightTitle'); ?></span></b></h1>
     </div>
     <div class="card-member container mt-5">
         <?php if (empty($top4_member)): ?>
@@ -720,11 +723,18 @@ $this->setData([
                     <div class="col-12 col-md-6 col-lg-3 rounded"> <!-- Responsive column sizes -->
                         <div class="card">
                             <div class="img-content" style="display: flex; justify-content: center;">
-                                <img src="<?= base_url('img/' . $item['foto_profil']); ?>" class="card-img-top" style="width: 90%; height: 90%; object-fit: cover; border-radius: 10px;" alt="...">
+                                <img src="<?= base_url('img/' . $item['foto_profil']); ?>" class="card-img-top"
+                                    style="width: 90%; height: 90%; object-fit: cover; border-radius: 10px;" alt="...">
                             </div>
                             <div class="content text-center" style="padding: 10px 0; color: #03AADE;">
-                                <p class="heading" style="margin-bottom: 5px; font-weight: bold; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;"><?= $item['username'] ?></p>
-                                <p class="heading" style="margin-bottom: 5px; font-size: 15px; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;"><?= $item['nama_perusahaan'] ?></p>
+                                <p class="heading"
+                                    style="margin-bottom: 5px; font-weight: bold; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;">
+                                    <?= $item['username'] ?>
+                                </p>
+                                <p class="heading"
+                                    style="margin-bottom: 5px; font-size: 15px; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;">
+                                    <?= $item['nama_perusahaan'] ?>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -736,7 +746,8 @@ $this->setData([
 <!-- end -->
 
 <!-- tombol daftar -->
-<section class="container-fluid text-dark rounded-5 daftar-section" style="background-color: #03AADE; max-width: 1100px; margin-top: 80px; padding: 40px;">
+<section class="container-fluid text-dark rounded-5 daftar-section"
+    style="background-color: #03AADE; max-width: 1100px; margin-top: 80px; padding: 40px;">
     <div class="isi row align-items-center text-center text-md-start">
         <!-- Teks Section -->
         <div class="col-md-6 mb-4 mb-md-0 d-flex flex-column align-items-center align-items-md-start">
@@ -760,7 +771,8 @@ $this->setData([
 
         <!-- Gambar Section -->
         <div class="col-md-6 d-flex justify-content-center">
-            <img src="/img/slider-2.jpg" class="rounded shadow" style="width: 90%; max-width: 400px; height: auto;" alt="Image Description">
+            <img src="/img/slider-2.jpg" class="rounded shadow" style="width: 90%; max-width: 400px; height: auto;"
+                alt="Image Description">
         </div>
     </div>
 </section>
@@ -787,18 +799,12 @@ $this->setData([
                         style="background-color: #ffffff; width: 100px; height: 100px; border-radius:10px;">
                         <?php if (!empty($manfaat['gambar'])): ?>
                             <!-- Menampilkan gambar dari gambar -->
-                            <img src="<?= base_url('img/' . $manfaat['gambar']); ?>"
-                                alt="Icon"
-                                width="90px"
-                                height="90px"
+                            <img src="<?= base_url('img/' . $manfaat['gambar']); ?>" alt="Icon" width="90px" height="90px"
                                 style="object-fit: cover;" />
                         <?php else: ?>
                             <!-- Gambar default jika gambar kosong -->
-                            <img src="<?= base_url('img/icons/default-icon.png'); ?>"
-                                alt="Default Icon"
-                                width="60px"
-                                height="60px"
-                                style="object-fit: cover;" />
+                            <img src="<?= base_url('img/icons/default-icon.png'); ?>" alt="Default Icon" width="60px"
+                                height="60px" style="object-fit: cover;" />
                         <?php endif; ?>
                     </div>
                     <div class="mt-3">
@@ -818,11 +824,14 @@ $this->setData([
 <section class="animasi mt-5 footer-custom" style="background-color: #03AADE; width: 100%; height: 350px;">
     <div class="background-image animated-element">
         <div class="centered-text">
-            <h2 class="text-center text-light" style="padding-top: 100px; font-family: Lato, sans-serif;"><b><?= lang('Blog.joinExporterCommunityTitle'); ?></b></h2>
+            <h2 class="text-center text-light" style="padding-top: 100px; font-family: Lato, sans-serif;">
+                <b><?= lang('Blog.joinExporterCommunityTitle'); ?></b>
+            </h2>
             <p class="text-center fw-lighter text-light"><?= lang('Blog.joinExporterCommunityDescription'); ?></p>
         </div>
         <div class="text-center centered-button pt-2">
-            <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>" class="btn btn-outline-light">
+            <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>"
+                class="btn btn-outline-light">
                 <?= lang('Blog.btnCarousel'); ?>
             </a>
         </div>
@@ -842,7 +851,8 @@ $this->setData([
                 <div class="border-top7 ms-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
             </div>
         </div>
-        <h1 class="fw-bold text-dark"><?= lang('Blog.chooseTitle'); ?> <span style="color: #03AADE;"><?= lang('Blog.forYouTitle'); ?></span></h1>
+        <h1 class="fw-bold text-dark"><?= lang('Blog.chooseTitle'); ?> <span
+                style="color: #03AADE;"><?= lang('Blog.forYouTitle'); ?></span></h1>
     </div>
 
     <div class="pacakage row mt-3 g-4">
@@ -857,15 +867,17 @@ $this->setData([
                     <h6 class="fw-bold"><?= lang('Blog.basicAccess'); ?></h6>
                     <h6 class="fw-bold text-secondary"><?= lang('Blog.freeTitle'); ?></h6>
                     <p><?php echo lang('Blog.deskNonMember'); ?></p>
-                    <div class="benefits-list" style="max-height: 150px; overflow-y: auto;">
+                    <div class="benefits-list">
                         <hr>
                         <p class="mb-2">- <?php echo lang('Blog.headerBeranda'); ?></p>
                         <hr>
                         <p class="mb-2">- <?php echo lang('Blog.headerTentang'); ?></p>
                         <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerMateri'); ?> (<?php echo lang('Blog.packageAllSubject'); ?>)</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerMateri'); ?>
+                            (<?php echo lang('Blog.packageAllSubject'); ?>)</p>
                         <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerVideo'); ?> (<?php echo lang('Blog.packageAllVideo'); ?>)</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerVideo'); ?>
+                            (<?php echo lang('Blog.packageAllVideo'); ?>)</p>
                         <hr>
                         <p class="mb-2">- <?php echo lang('Blog.headerMember'); ?></p>
                         <hr>
@@ -874,14 +886,16 @@ $this->setData([
                     </div>
                 </div>
                 <div class="card-footer bg-light py-3">
-                    <button class="btn btn-outline-secondary btn-sm" disabled><?php echo lang('Blog.currentPackage'); ?></button>
+                    <button class="btn btn-outline-secondary btn-sm"
+                        disabled><?php echo lang('Blog.currentPackage'); ?></button>
                 </div>
             </div>
         </div>
 
         <!-- Member Card -->
         <div class="col-md-6 position-relative">
-            <div class="recommended-label position-absolute text-white px-3 py-1"><?= lang('Blog.recommendedTitle'); ?></div>
+            <div class="recommended-label position-absolute text-white px-3 py-1"><?= lang('Blog.recommendedTitle'); ?>
+            </div>
             <div class="card h-100 border-0 shadow-lg rounded text-center">
                 <div class="card-header bg-primary text-white py-4">
                     <h5 class="mb-0 fw-bold">Member</h5>
@@ -891,23 +905,29 @@ $this->setData([
                     <h6 class="fw-bold"><?= lang('Blog.fullAccess'); ?></h6>
                     <h6 class="fw-bold text-primary"><?php echo lang('Blog.packageRegistered'); ?></h6>
                     <p><?php echo lang('Blog.deskMemberFree'); ?></p>
-                    <div class="benefits-list" style="max-height: 150px; overflow-y: auto;">
+                    <div class="benefits-list">
                         <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerBeranda'); ?></p>
+                        <p class=" mb-2">- <?php echo lang('Blog.headerBeranda'); ?></p>
                         <hr>
                         <p class="mb-2">- <?php echo lang('Blog.headerTentang'); ?></p>
                         <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerMateri'); ?> (<?php echo lang('Blog.packageAllSubject'); ?>)</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerMateri'); ?>
+                            (<?php echo lang('Blog.packageAllSubject'); ?>)</p>
                         <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerVideo'); ?> (<?php echo lang('Blog.packageAllVideo'); ?>)</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerVideo'); ?>
+                            (<?php echo lang('Blog.packageAllVideo'); ?>)</p>
                         <hr>
                         <p class="mb-2">- <?php echo lang('Blog.headerMember'); ?></p>
                         <hr>
                         <p class="mb-2">- <?php echo lang('Blog.headerBuyers'); ?></p>
                         <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerAplikasi'); ?> <?php echo lang('Blog.headerApp1'); ?></p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerAplikasi'); ?>
+                            <?php echo lang('Blog.headerApp1'); ?>
+                        </p>
                         <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerAplikasi'); ?> <?php echo lang('Blog.headerApp2'); ?></p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerAplikasi'); ?>
+                            <?php echo lang('Blog.headerApp2'); ?>
+                        </p>
                         <hr>
                         <p class="mb-2">- <?php echo lang('Blog.headerPengumuman'); ?></p>
                         <hr>
@@ -937,7 +957,10 @@ $this->setData([
                 <div class="border-top7 ms-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
             </div>
         </div>
-        <h1 class="text-center" data-en="TOP MEMBERS SPOTLIGHT" data-id="SOROTAN MEMBER UNGGUL"><b><?= lang('Blog.communityMemberSpotlightTitle'); ?><span style="color: #03AADE;"> <?= lang('Blog.communityMemberSpotlightTitle2'); ?></span></b></h1>
+        <h1 class="text-center" data-en="TOP MEMBERS SPOTLIGHT" data-id="SOROTAN MEMBER UNGGUL">
+            <b><?= lang('Blog.communityMemberSpotlightTitle'); ?><span style="color: #03AADE;">
+                    <?= lang('Blog.communityMemberSpotlightTitle2'); ?></span></b>
+        </h1>
     </div>
     <div class="container gambar-peta mt-5">
         <div id="map" class="map" style="width: 100%; height: 700px;"></div>
