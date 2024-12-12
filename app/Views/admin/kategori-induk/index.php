@@ -49,11 +49,11 @@
     <div class="container-xl">
         <div class="row g-3 mb-4 align-items-center justify-content-between">
             <div class="col-auto">
-                <h1 class="app-page-title mb-0" style="color: #03AADE;">List Kategori Video Tutorial</h1>
+                <h1 class="app-page-title mb-0" style="color: #03AADE;">List Kategori Induk</h1>
             </div>
 
             <div class="col-auto">
-                <a href="<?= base_url('admin-kategori-video-tutorial-tambah') ?>" class="btn text-white" style="background-color: #03AADE;"> + Tambah Video</a>
+                <a href="<?= base_url('/admin-kategori-induk-tambah') ?>" class="btn text-white" style="background-color: #03AADE;"> + Tambah Kategori Induk</a>
             </div>
         </div>
 
@@ -66,8 +66,8 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center" valign="middle">No</th>
-                                        <th class="text-center" valign="middle">Kategori Video Indonesia</th>
-                                        <th class="text-center" valign="middle">Kategori Video English</th>
+                                        <th class="text-center" valign="middle">Kategori Induk Indonesia</th>
+                                        <th class="text-center" valign="middle">Kategori Induk English</th>
                                         <th class="text-center" valign="middle">Aksi</th>
                                     </tr>
                                 </thead>
@@ -76,15 +76,15 @@
 
                                 <tbody>
                                     <?php $no = 1; ?>
-                                    <?php foreach ($kategori_video as $item): ?>
+                                    <?php foreach ($kategori_induk as $item): ?>
                                         <tr>
                                             <td class="text-center" valign="middle"><?= $no++; ?></td>
-                                            <td class="text-center" valign="middle"><?= $item['nama_kategori_video']; ?></td>
-                                            <td class="text-center" valign="middle"><?= $item['nama_kategori_video_en']; ?></td>
+                                            <td class="text-center" valign="middle"><?= $item['nama_kategori_induk']; ?></td>
+                                            <td class="text-center" valign="middle"><?= $item['nama_kategori_induk_en']; ?></td>
                                             <td class="text-center align-middle">
                                                 <div class="d-flex justify-content-center align-items-center">
-                                                    <a href="<?= base_url('/admin-kategori-video-tutorial-delete/' . $item['id_kategori_video']) ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">Hapus</a>
-                                                    <a href="<?= base_url('/admin-kategori-video-tutorial-ubah/' . $item['id_kategori_video']) ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">Ubah</a>
+                                                    <a href="<?= base_url('/admin-kategori-induk-delete/' . $item['id_kategori_induk']) ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">Hapus</a>
+                                                    <a href="<?= base_url('/admin-kategori-induk-edit/' . $item['id_kategori_induk']) ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">Ubah</a>
                                                 </div>
                                             </td>
                                         </tr>
