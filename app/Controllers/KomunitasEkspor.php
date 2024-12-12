@@ -591,6 +591,7 @@ class KomunitasEkspor extends BaseController
         $tahun_berdiri = $this->request->getPost('tahun_berdiri');
         $alamat_perusahaan = $this->request->getPost('alamat_perusahaan');
         $produk_utama = $this->request->getPost('produk_utama');
+        $kategori_produk = $this->request->getPost('kategori_produk');
         $alamat_website = $this->request->getPost('alamat_website');
         $pic = $this->request->getPost('pic');
         $nomor_pic = $this->request->getPost('nomor_pic');
@@ -621,6 +622,7 @@ class KomunitasEkspor extends BaseController
             "Tahun Didirikan: $tahun_berdiri\n\n" .
             "Alamat Perusahaan: $alamat_perusahaan\n\n" .
             "Produk Utama: $produk_utama\n\n" .
+            "Kategori Produk: $kategori_produk\n\n" .
             "Alamat Website: $alamat_website\n\n" .
             "Nama PIC: $pic\n\n" .
             "Nomor HP PIC: $nomor_pic\n\n" .
@@ -5941,5 +5943,161 @@ class KomunitasEkspor extends BaseController
         $data['webprofile'] = $webprofile;
 
         return view('premium/kelayakan-investasi/kelayakan-investasi', $data);
+    }
+
+    // Kategori Induk
+    public function admin_kategori_induk()
+    {
+        $model_kategori_induk = new KategoriInduk();
+
+        $kategori_induk = $model_kategori_induk->findAll();
+
+        $data['kategori_induk'] = $kategori_induk;
+
+        return view('admin/kategori-induk/index', $data);
+    }
+
+    public function admin_kategori_induk_create()
+    {
+        return view('admin/kategori-induk/tambah');
+    }
+
+    public function admin_kategori_induk_store()
+    {
+        $model_kategori_induk = new KategoriInduk();
+
+        $data = [
+            'nama_kategori_induk' => $this->request->getPost('nama_kategori_induk'),
+            'nama_kategori_induk_en' => $this->request->getPost('nama_kategori_induk_en'),
+        ];
+
+        $model_kategori_induk->insert($data);
+
+        return redirect()->to('admin-kategori-induk');
+    }
+
+    public function admin_kategori_induk_edit($id)
+    {
+        $model_kategori_induk = new KategoriInduk();
+
+        $kategori_induk = $model_kategori_induk->find($id);
+
+        $data['kategori_induk'] = $kategori_induk;
+
+        return view('admin/kategori-induk/edit', $data);
+    }
+
+    public function admin_kategori_induk_update($id)
+    {
+        $model_kategori_induk = new KategoriInduk();
+
+        $data = [
+            'nama_kategori_induk' => $this->request->getPost('nama_kategori_induk'),
+            'nama_kategori_induk_en' => $this->request->getPost('nama_kategori_induk_en'),
+        ];
+
+        $model_kategori_induk->update($id, $data);
+
+        return redirect()->to('admin-kategori-induk');
+    }
+
+    public function admin_kategori_induk_destroy($id)
+    {
+        $model_kategori_induk = new KategoriInduk();
+
+        $model_kategori_induk->delete($id);
+
+        return redirect()->to('admin-kategori-induk');
+    }
+
+    // Kategori Produk
+    public function admin_kategori_produk()
+    {
+        $model_kategori_produk = new KategoriProduk();
+
+        $kategori_produk = $model_kategori_produk->findAll();
+
+        $data['kategori_produk'] = $kategori_produk;
+
+        return view('admin/kategori-produk/index', $data);
+    }
+
+    public function admin_kategori_produk_create()
+    {
+        $model_kategori_induk = new KategoriInduk();
+        $model_kategori_produk = new KategoriProduk();
+
+        $kategori_induk = $model_kategori_induk->findAll();
+        $kategori_produk = $model_kategori_produk->findAll();
+
+        $data['kategori_induk'] = $kategori_induk;
+        $data['kategori_produk'] = $kategori_produk;
+
+        return view('admin/kategori-produk/tambah', $data);
+    }
+
+    public function admin_kategori_produk_store()
+    {
+        $model_kategori_produk = new KategoriProduk();
+
+        $data = [
+            'id_kategori_induk' => $this->request->getPost('id_kategori_induk'),
+            'nama_kategori_produk' => $this->request->getPost('nama_kategori_produk'),
+            'nama_kategori_produk_en' => $this->request->getPost('nama_kategori_produk_en'),
+        ];
+
+        $model_kategori_produk->insert($data);
+
+        return redirect()->to('admin-kategori-produk');
+    }
+
+    public function admin_kategori_produk_edit($id)
+    {
+        $model_kategori_induk = new KategoriInduk();
+        $model_kategori_produk = new KategoriProduk();
+
+        $kategori_induk = $model_kategori_induk->findAll();
+        $kategori_produk = $model_kategori_produk->find($id);
+
+        $data['kategori_induk'] = $kategori_induk;
+        $data['kategori_produk'] = $kategori_produk;
+
+        return view('admin/kategori-produk/edit', $data);
+    }
+
+    public function admin_kategori_produk_update($id)
+    {
+        $model_kategori_produk = new KategoriProduk();
+
+        $data = [
+            'id_kategori_induk' => $this->request->getPost('id_kategori_induk'),
+            'nama_kategori_produk' => $this->request->getPost('nama_kategori_produk'),
+            'nama_kategori_produk_en' => $this->request->getPost('nama_kategori_produk_en'),
+        ];
+
+        $model_kategori_produk->update($id, $data);
+
+        return redirect()->to('admin-kategori-produk');
+    }
+
+    public function admin_kategori_produk_destroy($id)
+    {
+        $model_kategori_produk = new KategoriProduk();
+
+        $model_kategori_produk->delete($id);
+
+        return redirect()->to('admin-kategori-produk');
+    }
+
+    // Meta
+    public function admin_meta()
+    {
+        $model_meta = new Meta();
+
+        $meta = $model_meta->findAll();
+
+        $data['meta'] = $meta;
+
+        return view('admin/meta/index', $data);
     }
 }

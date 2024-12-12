@@ -27,12 +27,10 @@ class CreateManfaatJoinTable extends Migration
                 'constraint' => 255,
             ],
             'deskripsi_manfaat' => [
-                'type'       => 'VARCHAR',
-                'constraint' => 255,
+                'type'       => 'TEXT',
             ],
             'deskripsi_manfaat_en' => [
-                'type'       => 'VARCHAR',
-                'constraint' => 255,
+                'type'       => 'TEXT',
             ],
         ]);
 
