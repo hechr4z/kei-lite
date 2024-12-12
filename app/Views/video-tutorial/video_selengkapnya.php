@@ -114,10 +114,13 @@ $this->setData([
             </div>
         <?php endif; ?>
     </div>
+    <div class="mt-2">
+        <?= $pager->links('default', 'bootstrap_pagination') ?>
+    </div>
 </div>
 
 <!-- Back Button -->
-<div class="artikel-detail-footer text-center mt-5">
+<div class="artikel-detail-footer text-center mt-2">
     <a href="<?= base_url(($lang == 'en') ? 'en/tutorial-video' : 'id/video-tutorial'); ?>" class="btn btn-custom"><?= lang('Blog.backtovideos') ?></a>
     </a>
 </div>
