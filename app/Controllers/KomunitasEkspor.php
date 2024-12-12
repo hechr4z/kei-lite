@@ -1195,6 +1195,18 @@ class KomunitasEkspor extends BaseController
         $sertifikat = $model_sertifikat->where('id_member', $user_id)->findAll();
         $produk = $model_produk->where('id_member', $user_id)->findAll();
 
+        $model_kategori_induk = new KategoriInduk();
+        $kategori_induk = $model_kategori_induk->findAll();
+        $data['kategori_induk'] = $kategori_induk;
+
+        $model_kategori_produk = new KategoriProduk();
+        $kategori_produk = $model_kategori_produk->findAll();
+        $kategori_produk_terkelompok = [];
+        foreach ($kategori_produk as $produk) {
+            $kategori_produk_terkelompok[$produk['id_kategori_induk']][] = $produk;
+        }
+        $data['kategori_produk_terkelompok'] = $kategori_produk_terkelompok;
+
         $data['member'] = $member;
         $data['sertifikat'] = $sertifikat;
         $data['produk'] = $produk;
@@ -1306,53 +1318,69 @@ class KomunitasEkspor extends BaseController
     {
         $session = session();
         $user_id = $session->get('user_id');
-
         $model_member = new Member();
 
         $fields = [
             'nama_perusahaan',
             'deskripsi_perusahaan',
             'deskripsi_perusahaan_en',
+            'alamat_perusahaan',
+            'alamat_website',
+            'tahun_dibentuk',
+            'kategori_produk',
+            'kategori_produk_en',
             'produk_utama',
             'produk_utama_en',
             'pic',
             'pic_phone',
         ];
 
-        // Initialize validation rules without individual error messages
-        $validationRules = array_fill_keys($fields, [
-            'rules' => 'required'
-        ]);
+        // Initialize validation rules with error messages
+        $validationRules = [
+            'nama_perusahaan' => 'required',
+            'deskripsi_perusahaan' => 'required',
+            'deskripsi_perusahaan_en' => 'required',
+            'alamat_perusahaan' => 'required',
+            'alamat_website' => 'required',
+            'tahun_dibentuk' => 'required',
+            'kategori_produk' => 'required',
+            'kategori_produk_en' => 'required',
+            'produk_utama' => 'required',
+            'produk_utama_en' => 'required',
+            'pic' => 'required',
+            'pic_phone' => 'required',
+        ];
 
-        // Perform validation
         if (!$this->validate($validationRules)) {
             // Get all validation errors
             $errors = $this->validator->getErrors();
 
-            // Count the number of missing fields
-            $missingCount = count($errors);
-
-            // Set the custom error message with the missing count
-            $generalErrorMessage = "Ada $missingCount Input Yang Masih Belum Diisi!";
-
-            // Redirect back with the input and only the general error message
-            return redirect()->back()->withInput()->with('errors', ['general' => $generalErrorMessage]);
+            // Redirect back with errors and old input
+            return redirect()->back()->withInput()->with('errors', $errors);
         }
 
+        // Prepare data for update
         $data = [
             'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
             'deskripsi_perusahaan' => $this->request->getPost('deskripsi_perusahaan'),
             'deskripsi_perusahaan_en' => $this->request->getPost('deskripsi_perusahaan_en'),
+            'alamat_perusahaan' => $this->request->getPost('alamat_perusahaan'),
+            'alamat_website' => $this->request->getPost('alamat_website'),
+            'tahun_dibentuk' => $this->request->getPost('tahun_berdiri'),
+            'kategori_produk' => $this->request->getPost('kategori_produk'),
+            'kategori_produk_en' => $this->request->getPost('kategori_produk_en'),
             'produk_utama' => $this->request->getPost('produk_utama'),
             'produk_utama_en' => $this->request->getPost('produk_utama_en'),
             'pic' => $this->request->getPost('pic'),
             'pic_phone' => $this->request->getPost('pic_phone'),
         ];
 
+        // Update member's profile
         $model_member->update($user_id, $data);
 
         return redirect()->to('/edit-profile');
     }
+
 
     // public function add_sertifikat()
     // {
@@ -3540,7 +3568,19 @@ class KomunitasEkspor extends BaseController
 
     public function admin_add_member()
     {
-        return view('admin/member/add');
+        $model_kategori_induk = new KategoriInduk();
+        $kategori_induk = $model_kategori_induk->findAll();
+        $data['kategori_induk'] = $kategori_induk;
+
+        $model_kategori_produk = new KategoriProduk();
+        $kategori_produk = $model_kategori_produk->findAll();
+        $kategori_produk_terkelompok = [];
+        foreach ($kategori_produk as $produk) {
+            $kategori_produk_terkelompok[$produk['id_kategori_induk']][] = $produk;
+        }
+        $data['kategori_produk_terkelompok'] = $kategori_produk_terkelompok;
+
+        return view('admin/member/add', $data);
     }
 
     public function admin_create_member()
@@ -3560,13 +3600,13 @@ class KomunitasEkspor extends BaseController
             $fotoProfil->move(ROOTPATH . 'public/img', $namaFile);
         }
 
-        $role = $this->request->getPost('role');
+        // $role = $this->request->getPost('role');
 
-        if ($role == 'premium') {
-            $status_premium = 'pending';
-        } else {
-            $status_premium = null;
-        }
+        // if ($role == 'premium') {
+        //     $status_premium = 'pending';
+        // } else {
+        //     $status_premium = null;
+        // }
 
         $tahun_dibentuk = $this->request->getPost('tahun_dibentuk');
 
@@ -3575,8 +3615,8 @@ class KomunitasEkspor extends BaseController
         }
 
         $data = [
-            'role' => $role,
-            'status_premium' => $status_premium,
+            'role' => 'member',
+            // 'status_premium' => $status_premium,
             'username' => $this->request->getPost('username_referral'),
             'password' => password_hash($password, PASSWORD_DEFAULT),
             'foto_profil' => $namaFile,
@@ -3585,13 +3625,15 @@ class KomunitasEkspor extends BaseController
             'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
             'deskripsi_perusahaan' => $this->request->getPost('deskripsi_perusahaan'),
             'deskripsi_perusahaan_en' => $this->request->getPost('deskripsi_perusahaan_en'),
-            'tipe_bisnis' => $this->request->getPost('tipe_bisnis'),
-            'tipe_bisnis_en' => $this->request->getPost('tipe_bisnis_en'),
+            // 'tipe_bisnis' => $this->request->getPost('tipe_bisnis'),
+            // 'tipe_bisnis_en' => $this->request->getPost('tipe_bisnis_en'),
             'produk_utama' => $this->request->getPost('produk_utama'),
             'produk_utama_en' => $this->request->getPost('produk_utama_en'),
+            'alamat_perusahaan' => $this->request->getPost('alamat_perusahaan'),
+            'alamat_website' => $this->request->getPost('alamat_website'),
             'tahun_dibentuk' => $tahun_dibentuk,
-            'skala_bisnis' => $this->request->getPost('skala_bisnis'),
-            'skala_bisnis_en' => $this->request->getPost('skala_bisnis_en'),
+            // 'skala_bisnis' => $this->request->getPost('skala_bisnis'),
+            // 'skala_bisnis_en' => $this->request->getPost('skala_bisnis_en'),
             'email' => $this->request->getPost('email'),
             'pic' => $this->request->getPost('pic'),
             'pic_phone' => $this->request->getPost('pic_phone'),
@@ -3618,6 +3660,17 @@ class KomunitasEkspor extends BaseController
     public function admin_edit_member($id)
     {
         $model_member = new Member();
+        $model_kategori_induk = new KategoriInduk();
+        $kategori_induk = $model_kategori_induk->findAll();
+        $data['kategori_induk'] = $kategori_induk;
+
+        $model_kategori_produk = new KategoriProduk();
+        $kategori_produk = $model_kategori_produk->findAll();
+        $kategori_produk_terkelompok = [];
+        foreach ($kategori_produk as $produk) {
+            $kategori_produk_terkelompok[$produk['id_kategori_induk']][] = $produk;
+        }
+        $data['kategori_produk_terkelompok'] = $kategori_produk_terkelompok;
 
         $member = $model_member->whereIn('role', ['member', 'premium'])->find($id);
 
@@ -3659,21 +3712,23 @@ class KomunitasEkspor extends BaseController
 
         // Populate the remaining fields for data array
         $data = array_merge($data, [
-            'role' => $this->request->getPost('role'),
-            'status_premium' => $this->request->getPost('status_premium'),
+            'role' => 'member',
+            // 'status_premium' => $this->request->getPost('status_premium'),
             'username' => $this->request->getPost('username_referral'),
             'kode_referral' => $this->request->getPost('username_referral'),
             'popular_point' => $this->request->getPost('popular_point'),
             'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
             'deskripsi_perusahaan' => $this->request->getPost('deskripsi_perusahaan'),
             'deskripsi_perusahaan_en' => $this->request->getPost('deskripsi_perusahaan_en'),
-            'tipe_bisnis' => $this->request->getPost('tipe_bisnis'),
-            'tipe_bisnis_en' => $this->request->getPost('tipe_bisnis_en'),
+            // 'tipe_bisnis' => $this->request->getPost('tipe_bisnis'),
+            // 'tipe_bisnis_en' => $this->request->getPost('tipe_bisnis_en'),
             'produk_utama' => $this->request->getPost('produk_utama'),
             'produk_utama_en' => $this->request->getPost('produk_utama_en'),
+            'alamat_perusahaan' => $this->request->getPost('alamat_perusahaan'),
+            'alamat_website' => $this->request->getPost('alamat_website'),
             'tahun_dibentuk' => $this->request->getPost('tahun_dibentuk'),
-            'skala_bisnis' => $this->request->getPost('skala_bisnis'),
-            'skala_bisnis_en' => $this->request->getPost('skala_bisnis_en'),
+            // 'skala_bisnis' => $this->request->getPost('skala_bisnis'),
+            // 'skala_bisnis_en' => $this->request->getPost('skala_bisnis_en'),
             'email' => $this->request->getPost('email'),
             'pic' => $this->request->getPost('pic'),
             'pic_phone' => $this->request->getPost('pic_phone'),

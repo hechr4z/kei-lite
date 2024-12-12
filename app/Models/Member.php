@@ -41,7 +41,9 @@ class Member extends Model
         'warna_utama',
         'warna_sekunder',
         'gambar_utama',
-        'gambar_perusahaan'
+        'gambar_perusahaan',
+        'alamat_perusahaan',
+        'alamat_website'
     ];
 
     protected bool $allowEmptyInserts = false;
