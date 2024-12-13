@@ -697,7 +697,7 @@ $this->setData([
                 <div class="border-top1 ms-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
             </div>
         </div>
-        <h1 class="text-center" data-en="WHO WE ARE" data-id="SIAPA KAMI"><b><?= lang('Blog.topMemberSpotlightTitle'); ?><span style="color: #03AADE;"> SPOTLIGHT</span></b></h1>
+        <h1 class="text-center" data-en="WHO WE ARE" data-id="SIAPA KAMI"><b><?= lang('Blog.topMemberTitle'); ?><span style="color: #03AADE;"> SPOTLIGHT</span></b></h1>
     </div>
     <div class="card-member container mt-5">
         <?php if (empty($top4_member)): ?>
@@ -819,116 +819,84 @@ $this->setData([
             <div class="d-flex justify-content-center align-items-center mb-2">
                 <div class="border-top6 mx-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
             </div>
-            <h5 class="fw-lighter">YOUR PACKAGE</h5>
+            <h5 class="fw-lighter"><?= lang('Blog.yourPackageTitle'); ?></h5>
             <div class="d-flex justify-content-center align-items-center mb-2">
                 <div class="border-top7 ms-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
             </div>
         </div>
-        <h1 class="fw-bold text-dark"><span style="color: #03AADE;">CHOOSE THE RIGHT PACKAGE</span> FOR YOU</h1>
+        <h1 class="fw-bold text-dark"><?= lang('Blog.chooseTitle'); ?> <span style="color: #03AADE;"><?= lang('Blog.forYouTitle'); ?></span></h1>
     </div>
 
     <div class="pacakage row mt-3 g-4">
-        <!-- Non Member Card -->
-        <div class="col-md-4">
+        <!-- Visitor Card -->
+        <div class="col-md-6">
             <div class="card h-100 border-0 shadow-lg rounded text-center">
                 <div class="card-header bg-secondary text-white py-4">
-                    <h5 class="mb-0 fw-bold">Non Member</h5>
+                    <h5 class="mb-0 fw-bold">Visitor</h5>
                 </div>
                 <div class="card-body">
                     <i class="fas fa-user-slash fa-3x text-secondary mb-4"></i>
-                    <h6 class="fw-bold">Basic Access</h6>
-                    <h6 class="fw-bold text-secondary"> Rp. 0</h6>
-                    <p>Akses dasar untuk eksplorasi awal</p>
-                    <div class="benefits-list" style="max-height: 150px; overflow-y: auto;">
+                    <h6 class="fw-bold"><?= lang('Blog.basicAccess'); ?></h6>
+                    <h6 class="fw-bold text-secondary"><?= lang('Blog.freeTitle'); ?></h6>
+                    <p><?php echo lang('Blog.deskNonMember'); ?></p>
+                    <div class="benefits-list">
                         <hr>
-                        <p class="mb-2">- Beranda</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerMateri'); ?>
+                            (<?php echo lang('Blog.packageAllSubject'); ?>)</p>
                         <hr>
-                        <p class="mb-2">- Tentang Kami</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerVideo'); ?>
+                            (<?php echo lang('Blog.packageAllVideo'); ?>)</p>
+                        <hr>
+                        <p class="mb-2">- <?php echo lang('Blog.headerMember'); ?></p>
+                        <hr>
+                        <p class="mb-2">- <?php echo lang('Blog.headerPendaftaran'); ?></p>
                         <hr>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Member Free Card -->
-        <div class="col-md-4">
-            <div class="card h-100 border-0 shadow-lg rounded text-center">
-                <div class="card-header bg-info text-white py-4">
-                    <h5 class="mb-0 fw-bold">Member Free</h5>
-                </div>
-                <div class="card-body">
-                    <i class="fas fa-user fa-3x text-info mb-4"></i>
-                    <h6 class="fw-bold">Enhanced Features</h6>
-                    <h6 class="fw-bold text-info">Didaftrakan</h6>
-                    <p>Bergabunglah sekarang untuk lebih banyak fitur!</p>
-                    <div class="benefits-list" style="max-height: 150px; overflow-y: auto;">
-                        <hr>
-                        <p class="mb-2">- Beranda</p>
-                        <hr>
-                        <p class="mb-2">- Tentang Kami</p>
-                        <hr>
-                        <p class="mb-2">- Belajar Ekspor (10 Materi)</p>
-                        <hr>
-                        <p class="mb-2">- Video Tutorial (3 Video)</p>
-                        <hr>
-                        <p class="mb-2">- Aplikasi Kalkulator Harga Ekspor</p>
-                        <hr>
-                        <p class="mb-2">- Aplikasi MPM</p>
-                        <hr>
-                        <p class="mb-2">- Data Produk (1 Produk)</p>
-                        <hr>
-                    </div>
-                </div>
-                <div class="card-footer bg-light py-3">
-                    <button class="btn btn-outline-secondary btn-sm" disabled>Current Package</button>
-                </div>
+        <!-- Member Card -->
+        <div class="col-md-6 position-relative">
+            <div class="recommended-label position-absolute text-white px-3 py-1"><?= lang('Blog.recommendedTitle'); ?>
             </div>
-        </div>
-
-        <!-- Member Premium Card -->
-        <div class="col-md-4 position-relative">
-            <div class="recommended-label position-absolute text-white px-3 py-1">Recommended</div>
             <div class="card h-100 border-0 shadow-lg rounded text-center">
                 <div class="card-header bg-primary text-white py-4">
-                    <h5 class="mb-0 fw-bold">Member Premium</h5>
+                    <h5 class="mb-0 fw-bold">Member</h5>
                 </div>
                 <div class="card-body">
                     <i class="fas fa-crown fa-3x text-primary mb-4"></i>
-                    <h6 class="fw-bold">Full Access</h6>
-                    <h6 class="fw-bold text-primary">Didaftarkan (Data Harus Lengkap)</h6>
-                    <p>Dapatkan semua fitur premium sekarang juga!</p>
-                    <div class="benefits-list" style="max-height: 150px; overflow-y: auto;">
+                    <h6 class="fw-bold"><?= lang('Blog.fullAccess'); ?></h6>
+                    <h6 class="fw-bold text-primary"><?php echo lang('Blog.packageRegistered'); ?></h6>
+                    <p><?php echo lang('Blog.deskMemberFree'); ?></p>
+                    <div class="benefits-list">
                         <hr>
-                        <p class="mb-2">- Beranda</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerMateri'); ?>
+                            (<?php echo lang('Blog.packageAllSubject'); ?>)</p>
                         <hr>
-                        <p class="mb-2">- Tentang Kami</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerVideo'); ?>
+                            (<?php echo lang('Blog.packageAllVideo'); ?>)</p>
                         <hr>
-                        <p class="mb-2">- Belajar Ekspor (Semua Materi)</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerMember'); ?></p>
                         <hr>
-                        <p class="mb-2">- Video Tutorial (Semua Video)</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerBuyers'); ?></p>
                         <hr>
-                        <p class="mb-2">- Aplikasi Kalkulator Harga Ekspor</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerAplikasi'); ?>
+                            <?php echo lang('Blog.headerApp1'); ?>
+                        </p>
                         <hr>
-                        <p class="mb-2">- Aplikasi MPM</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerAplikasi'); ?>
+                            <?php echo lang('Blog.headerApp2'); ?>
+                        </p>
                         <hr>
-                        <p class="mb-2">- Aplikasi Website Audit</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerPengumuman'); ?></p>
                         <hr>
-                        <p class="mb-2">- Aplikasi Kelayakan Investasi</p>
-                        <hr>
-                        <p class="mb-2">- Data Member</p>
-                        <hr>
-                        <p class="mb-2">- Data Buyers</p>
-                        <hr>
-                        <p class="mb-2">- Mendapatkan Landing-Page KEI</p>
-                        <hr>
-                        <p class="mb-2">- Data Produk (3 Produk)</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerEditProfile'); ?></p>
                         <hr>
                     </div>
                 </div>
                 <div class="card-footer bg-light py-3">
-                    <a href="<?= base_url('/daftar-premium') ?>" target="_blank">
-                        <button class="btn btn-primary btn-sm">Upgrade Now</button>
-                    </a>
+                    <button class="btn btn-outline-secondary btn-sm" disabled><?php echo lang('Blog.currentPackage'); ?></button>
                 </div>
             </div>
         </div>
