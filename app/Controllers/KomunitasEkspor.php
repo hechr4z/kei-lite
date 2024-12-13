@@ -1366,7 +1366,7 @@ class KomunitasEkspor extends BaseController
             'deskripsi_perusahaan_en' => $this->request->getPost('deskripsi_perusahaan_en'),
             'alamat_perusahaan' => $this->request->getPost('alamat_perusahaan'),
             'alamat_website' => $this->request->getPost('alamat_website'),
-            'tahun_dibentuk' => $this->request->getPost('tahun_berdiri'),
+            'tahun_dibentuk' => $this->request->getPost('tahun_dibentuk'),
             'kategori_produk' => $this->request->getPost('kategori_produk'),
             'kategori_produk_en' => $this->request->getPost('kategori_produk_en'),
             'produk_utama' => $this->request->getPost('produk_utama'),

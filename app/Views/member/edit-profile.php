@@ -256,8 +256,7 @@
                 <!-- Image Preview -->
                 <img id="profileImage"
                     src="<?= base_url('img/' . ($member['foto_profil'] ?? 'default.jpg')); ?>"
-                    alt="Foto Profil"
-                    style="max-width: 150px; max-height: 150px; object-fit: cover;">
+                    alt="Foto Profil">
             </div>
 
             <!-- Upload Button -->
