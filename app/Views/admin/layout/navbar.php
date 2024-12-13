@@ -203,7 +203,7 @@
                                         (current_url() == base_url('admin-meta')) ? 'active' : ((current_url() == base_url('admin-search-meta')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-meta')) === 0) ? 'active' : ''))
                                         ?>" href="<?= base_url('admin-meta') ?>">
                         <span class="nav-icon">
-                            <i class="fa-solid fa-eject"></i>
+                            <i class="fas fa-file-alt"></i>
                         </span>
                         <span class="nav-link-text">Meta</span>
                     </a>
@@ -234,7 +234,7 @@
                                         (current_url() == base_url('admin-manfaat-join')) ? 'active' : ((current_url() == base_url('admin-search-manfaat-join')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-manfaat-join')) === 0) ? 'active' : ''))
                                         ?>" href="<?= base_url('admin-manfaat-join') ?>">
                         <span class="nav-icon">
-                            <i class="fa-solid fa-sign-in-alt"></i>
+                            <i class="fa-solid fa-gift"></i>
                         </span>
                         <span class="nav-link-text">Manfaat Join</span>
                     </a>
@@ -245,7 +245,7 @@
                                         (current_url() == base_url('admin-slider')) ? 'active' : ((current_url() == base_url('admin-search-slider')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-slider')) === 0) ? 'active' : ''))
                                         ?>" href="<?= base_url('admin-slider') ?>">
                         <span class="nav-icon">
-                            <i class="fa-solid fa-sliders-h"></i>
+                            <i class="fa-solid fa-image"></i>
                         </span>
                         <span class="nav-link-text">Slider</span>
                     </a>
@@ -256,7 +256,7 @@
                                         (current_url() == base_url('admin-web-profile')) ? 'active' : ((current_url() == base_url('admin-search-web-profile')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-web-profile')) === 0) ? 'active' : ''))
                                         ?>" href="<?= base_url('admin-web-profile') ?>">
                         <span class="nav-icon">
-                            <i class="fa-solid fa-id-card"></i>
+                            <i class="fa-solid fa-star"></i>
                         </span>
                         <span class="nav-link-text">Web Profile</span>
                     </a>
@@ -267,7 +267,7 @@
                                         (current_url() == base_url('admin-tentang-kami')) ? 'active' : ((current_url() == base_url('admin-search-tentang-kami')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-tentang-kami')) === 0) ? 'active' : ''))
                                         ?>" href="<?= base_url('admin-tentang-kami') ?>">
                         <span class="nav-icon">
-                            <i class="fa-solid fa-address-card"></i>
+                            <i class="fa-solid fa-city"></i>
                         </span>
                         <span class="nav-link-text">Tentang Kami</span>
                     </a>
