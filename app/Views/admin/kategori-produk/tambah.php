@@ -24,13 +24,13 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Kategori Produk Indonesia</label>
-                                <input type="text" class="form-control" name="nama_kategori_produk" placeholder="Masukkan Kategori Produk" required>
+                                <label class="form-label">Kategori Produk ID</label>
+                                <input type="text" class="form-control" name="nama_kategori_produk" placeholder="Masukkan Kategori Produk ID" required>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Kategori Produk English</label>
-                                <input type="text" class="form-control" name="nama_kategori_produk_en" placeholder="Masukkan Kategori Produk" required>
+                                <label class="form-label">Kategori Produk EN</label>
+                                <input type="text" class="form-control" name="nama_kategori_produk_en" placeholder="Masukkan Kategori Produk EN" required>
                             </div>
 
                             <div class="mb-3">
