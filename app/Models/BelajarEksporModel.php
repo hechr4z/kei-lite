@@ -37,7 +37,60 @@ class BelajarEksporModel extends Model
             ->join('kategori_belajar_ekspor', 'kategori_belajar_ekspor.id_kategori_belajar_ekspor = belajar_ekspor.id_kategori_belajar_ekspor')
             ->findAll();
     }
-    
+
+    public function getByCategoryWithPagination($id_kategori_belajar_ekspor, $perPage, $page)
+    {
+        return $this->select('belajar_ekspor.*, kategori_belajar_ekspor.nama_kategori, kategori_belajar_ekspor.nama_kategori_en')
+            ->join('kategori_belajar_ekspor', 'kategori_belajar_ekspor.id_kategori_belajar_ekspor = belajar_ekspor.id_kategori_belajar_ekspor')
+            ->where('belajar_ekspor.id_kategori_belajar_ekspor', $id_kategori_belajar_ekspor)
+            ->paginate($perPage, 'default', $page);
+    }
+
+    public function getAllWithCategoryAndPagination($perPage, $page)
+    {
+        return $this->select('belajar_ekspor.*, kategori_belajar_ekspor.nama_kategori, kategori_belajar_ekspor.nama_kategori_en')
+            ->join('kategori_belajar_ekspor', 'kategori_belajar_ekspor.id_kategori_belajar_ekspor = belajar_ekspor.id_kategori_belajar_ekspor')
+            ->paginate($perPage, 'default', $page);
+    }
+
+    public function getSearchAllWithCategory($keyword)
+    {
+        return $this->select('belajar_ekspor.*, kategori_belajar_ekspor.nama_kategori, kategori_belajar_ekspor.nama_kategori_en')
+            ->join('kategori_belajar_ekspor', 'kategori_belajar_ekspor.id_kategori_belajar_ekspor = belajar_ekspor.id_kategori_belajar_ekspor')
+            ->like('judul_belajar_ekspor', $keyword)
+            ->orLike('judul_belajar_ekspor_en', $keyword)
+            ->orLike('deskripsi_belajar_ekspor', $keyword)
+            ->orLike('deskripsi_belajar_ekspor_en', $keyword)
+            ->findAll();
+    }
+
+    public function getSearchAllWithCategoryAndPagination($keyword, $perPage, $page)
+    {
+        return $this->select('belajar_ekspor.*, kategori_belajar_ekspor.nama_kategori, kategori_belajar_ekspor.nama_kategori_en')
+            ->join('kategori_belajar_ekspor', 'kategori_belajar_ekspor.id_kategori_belajar_ekspor = belajar_ekspor.id_kategori_belajar_ekspor')
+            ->like('judul_belajar_ekspor', $keyword)
+            ->orLike('judul_belajar_ekspor_en', $keyword)
+            ->orLike('deskripsi_belajar_ekspor', $keyword)
+            ->orLike('deskripsi_belajar_ekspor_en', $keyword)
+            ->paginate($perPage, 'default', $page);
+    }
+
+    public function getByCategory($id_kategori_belajar_ekspor)
+    {
+        return $this->select('belajar_ekspor.*, kategori_belajar_ekspor.nama_kategori, kategori_belajar_ekspor.nama_kategori_en')
+            ->join('kategori_belajar_ekspor', 'kategori_belajar_ekspor.id_kategori_belajar_ekspor = belajar_ekspor.id_kategori_belajar_ekspor')
+            ->where('belajar_ekspor.id_kategori_belajar_ekspor', $id_kategori_belajar_ekspor)
+            ->findAll();
+    }
+
+    public function getSpecificByCategoryWithPagination($id_kategori_belajar_ekspor, $perPage, $page)
+    {
+        return $this->select('belajar_ekspor.*, kategori_belajar_ekspor.nama_kategori, kategori_belajar_ekspor.nama_kategori_en')
+            ->join('kategori_belajar_ekspor', 'kategori_belajar_ekspor.id_kategori_belajar_ekspor = belajar_ekspor.id_kategori_belajar_ekspor')
+            ->where('belajar_ekspor.id_kategori_belajar_ekspor', $id_kategori_belajar_ekspor)
+            ->paginate($perPage, 'default', $page);
+    }
+
     public function getFreeCategory()
     {
         return $this->select('belajar_ekspor.*, kategori_belajar_ekspor.nama_kategori, kategori_belajar_ekspor.nama_kategori_en')
@@ -57,13 +110,13 @@ class BelajarEksporModel extends Model
             ->findAll();
     }
 
-    public function getByCategory($id_kategori)
-    {
-        return $this->select('belajar_ekspor.*, kategori_belajar_ekspor.nama_kategori')
-            ->join('kategori_belajar_ekspor', 'belajar_ekspor.id_kategori_belajar_ekspor = kategori_belajar_ekspor.id_kategori_belajar_ekspor')
-            ->where('belajar_ekspor.id_kategori_belajar_ekspor', $id_kategori)
-            ->findAll();
-    }
+    // public function getByCategory($id_kategori)
+    // {
+    //     return $this->select('belajar_ekspor.*, kategori_belajar_ekspor.nama_kategori')
+    //         ->join('kategori_belajar_ekspor', 'belajar_ekspor.id_kategori_belajar_ekspor = kategori_belajar_ekspor.id_kategori_belajar_ekspor')
+    //         ->where('belajar_ekspor.id_kategori_belajar_ekspor', $id_kategori)
+    //         ->findAll();
+    // }
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

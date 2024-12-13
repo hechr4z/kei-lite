@@ -69,16 +69,31 @@
                 </li> -->
 
                 <li class="nav-item">
-                    <a class="nav-link <?= (current_url() == base_url('admin-belajar-ekspor')) ? 'active' : '' ?>" href="<?= base_url('admin-belajar-ekspor') ?>">
+                    <a class="nav-link <?=
+                                        (current_url() == base_url('admin-kategori-induk')) ? 'active' : ((current_url() == base_url('admin-search-kategori-induk')) ? 'active' : ((current_url() == base_url('admin-kategori-induk-tambah')) ? 'active' : ((strpos(current_url(), base_url('admin-kategori-induk-edit')) === 0) ? 'active' : '')))
+                                        ?>" href="<?= base_url('admin-kategori-induk') ?>">
                         <span class="nav-icon">
-                            <i class="fa-solid fa-book"></i>
+                            <i class="fa-solid fa-list"></i>
                         </span>
-                        <span class="nav-link-text">Materi Ekspor</span>
+                        <span class="nav-link-text">Kategori Induk</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link <?= (current_url() == base_url('admin-kategori-belajar-ekspor')) ? 'active' : '' ?>" href="<?= base_url('admin-kategori-belajar-ekspor') ?>">
+                    <a class="nav-link <?=
+                                        (current_url() == base_url('admin-kategori-produk')) ? 'active' : ((current_url() == base_url('admin-search-kategori-produk')) ? 'active' : ((current_url() == base_url('admin-kategori-produk-tambah')) ? 'active' : ((strpos(current_url(), base_url('admin-kategori-produk-edit')) === 0) ? 'active' : '')))
+                                        ?>" href="<?= base_url('admin-kategori-produk') ?>">
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-list"></i>
+                        </span>
+                        <span class="nav-link-text">Kategori Produk</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link <?=
+                                        (current_url() == base_url('admin-kategori-belajar-ekspor')) ? 'active' : ((current_url() == base_url('admin-kategori-belajar-ekspor')) ? 'active' : ((current_url() == base_url('admin-kategori-belajar-ekspor-tambah')) ? 'active' : ((strpos(current_url(), base_url('admin-kategori-belajar-ekspor-ubah')) === 0) ? 'active' : '')))
+                                        ?>" href="<?= base_url('admin-kategori-belajar-ekspor') ?>">
                         <span class="nav-icon">
                             <i class="fa-solid fa-list"></i>
                         </span>
@@ -87,20 +102,35 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link <?= (current_url() == base_url('admin-video-tutorial')) ? 'active' : '' ?>" href="<?= base_url('admin-video-tutorial') ?>">
-                        <span class="nav-icon">
-                            <i class="fa-solid fa-video"></i>
-                        </span>
-                        <span class="nav-link-text">Video Tutorial</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link <?= (current_url() == base_url('admin-kategori-video-tutorial')) ? 'active' : '' ?>" href="<?= base_url('admin-kategori-video-tutorial') ?>">
+                    <a class="nav-link <?=
+                                        (current_url() == base_url('admin-kategori-video-tutorial')) ? 'active' : ((current_url() == base_url('admin-search-video-tutorial')) ? 'active' : ((current_url() == base_url('admin-kategori-video-tutorial-tambah')) ? 'active' : ((strpos(current_url(), base_url('admin-kategori-video-tutorial-ubah')) === 0) ? 'active' : '')))
+                                        ?>" href="<?= base_url('admin-kategori-video-tutorial') ?>">
                         <span class="nav-icon">
                             <i class="fa-solid fa-list"></i>
                         </span>
                         <span class="nav-link-text">Kategori Video Tutorial</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link <?=
+                                        (current_url() == base_url('admin-belajar-ekspor')) ? 'active' : ((current_url() == base_url('admin-belajar-ekspor-search')) ? 'active' : ((current_url() == base_url('admin-belajar-ekspor-tambah')) ? 'active' : ((strpos(current_url(), base_url('admin-belajar-ekspor-ubah')) === 0) ? 'active' : '')))
+                                        ?>" href="<?= base_url('admin-belajar-ekspor') ?>">
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-calculator"></i>
+                        </span>
+                        <span class="nav-link-text">Materi Ekspor</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link <?=
+                                        (current_url() == base_url('admin-video-tutorial')) ? 'active' : ((current_url() == base_url('admin-search-video-tutorial')) ? 'active' : ((current_url() == base_url('admin-video-tutorial-tambah')) ? 'active' : ((strpos(current_url(), base_url('admin-video-tutorial-ubah')) === 0) ? 'active' : '')))
+                                        ?>" href="<?= base_url('admin-video-tutorial') ?>">
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-video"></i>
+                        </span>
+                        <span class="nav-link-text">Video Tutorial</span>
                     </a>
                 </li>
 
@@ -168,6 +198,17 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link <?=
+                                        (current_url() == base_url('admin-meta')) ? 'active' : ((current_url() == base_url('admin-search-meta')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-meta')) === 0) ? 'active' : ''))
+                                        ?>" href="<?= base_url('admin-meta') ?>">
+                        <span class="nav-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </span>
+                        <span class="nav-link-text">Meta</span>
+                    </a>
+                </li>
+
                 <!-- <li class="nav-item">
                     <a class="nav-link <?= (current_url() == base_url('admin-website-audit') || current_url() == base_url('admin-search-website-audit') || (strpos(current_url(), base_url('admin-process-website-audit')) === 0)) ? 'active' : '' ?>" href="<?= base_url('admin-website-audit') ?>">
                         <span class="nav-icon">
@@ -178,7 +219,9 @@
                 </li> -->
 
                 <li class="nav-item">
-                    <a class="nav-link <?= (current_url() == base_url('admin-pengumuman')) ? 'active' : '' ?>" href="<?= base_url('admin-pengumuman') ?>">
+                    <a class="nav-link <?=
+                                        (current_url() == base_url('admin-pengumuman')) ? 'active' : ((current_url() == base_url('admin-search-pengumuman')) ? 'active' : ((current_url() == base_url('admin-add-pengumuman')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-pengumuman')) === 0) ? 'active' : '')))
+                                        ?>" href="<?= base_url('admin-pengumuman') ?>">
                         <span class="nav-icon">
                             <i class="fa-solid fa-bullhorn"></i>
                         </span>
@@ -187,7 +230,9 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link <?= (current_url() == base_url('admin-manfaat-join')) ? 'active' : '' ?>" href="<?= base_url('admin-manfaat-join') ?>">
+                    <a class="nav-link <?=
+                                        (current_url() == base_url('admin-manfaat-join')) ? 'active' : ((current_url() == base_url('admin-search-manfaat-join')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-manfaat-join')) === 0) ? 'active' : ''))
+                                        ?>" href="<?= base_url('admin-manfaat-join') ?>">
                         <span class="nav-icon">
                             <i class="fa-solid fa-gift"></i>
                         </span>
@@ -196,7 +241,9 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link <?= (current_url() == base_url('admin-slider')) ? 'active' : '' ?>" href="<?= base_url('admin-slider') ?>">
+                    <a class="nav-link <?=
+                                        (current_url() == base_url('admin-slider')) ? 'active' : ((current_url() == base_url('admin-search-slider')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-slider')) === 0) ? 'active' : ''))
+                                        ?>" href="<?= base_url('admin-slider') ?>">
                         <span class="nav-icon">
                             <i class="fa-solid fa-image"></i>
                         </span>
@@ -205,7 +252,9 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link <?= (current_url() == base_url('admin-web-profile')) ? 'active' : '' ?>" href="<?= base_url('admin-web-profile') ?>">
+                    <a class="nav-link <?=
+                                        (current_url() == base_url('admin-web-profile')) ? 'active' : ((current_url() == base_url('admin-search-web-profile')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-web-profile')) === 0) ? 'active' : ''))
+                                        ?>" href="<?= base_url('admin-web-profile') ?>">
                         <span class="nav-icon">
                             <i class="fa-solid fa-star"></i>
                         </span>
@@ -214,7 +263,9 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link <?= (current_url() == base_url('admin-tentang-kami')) ? 'active' : '' ?>" href="<?= base_url('admin-tentang-kami') ?>">
+                    <a class="nav-link <?=
+                                        (current_url() == base_url('admin-tentang-kami')) ? 'active' : ((current_url() == base_url('admin-search-tentang-kami')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-tentang-kami')) === 0) ? 'active' : ''))
+                                        ?>" href="<?= base_url('admin-tentang-kami') ?>">
                         <span class="nav-icon">
                             <i class="fa-solid fa-city"></i>
                         </span>

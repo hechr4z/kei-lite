@@ -232,24 +232,29 @@ class KomunitasEkspor extends BaseController
         // Mengambil semua kategori
         $data['kategori_belajar_ekspor'] = $kategoriBelajarEksporModel->findAll();
 
+        $perPage = 9; // Number of items per page
+        $page = $this->request->getVar('page') ?? 1; // Get the current page number
+
         if ($slug) {
             // Jika slug kategori dipilih, ambil data sesuai kategori
             $kategori = $kategoriBelajarEksporModel->where('slug', $slug)->first();
             if (!$kategori) {
                 return redirect()->to('/')->with('error', 'Kategori tidak ditemukan');
             }
-            // Mengambil data berdasarkan kategori
-            $data['belajar_ekspor'] = $belajarEksporModel->getByCategory($kategori['id_kategori_belajar_ekspor']);
+            // Mengambil data berdasarkan kategori dengan pagination
+            $data['belajar_ekspor'] = $belajarEksporModel->getByCategoryWithPagination($kategori['id_kategori_belajar_ekspor'], $perPage, $page);
 
             // Mengirimkan data kategori yang dipilih ke view
             $data['active_category'] = $kategori['id_kategori_belajar_ekspor'];
         } else {
-            // Jika tidak ada slug, tampilkan semua data
-            $data['belajar_ekspor'] = $belajarEksporModel->getAllWithCategory();
+            // Jika tidak ada slug, tampilkan semua data dengan pagination
+            $data['belajar_ekspor'] = $belajarEksporModel->getAllWithCategoryAndPagination($perPage, $page);
 
             // Tidak ada kategori yang aktif
             $data['active_category'] = null;
         }
+
+        $data['pager'] = $belajarEksporModel->pager; // Get the pager instance
 
         return view('belajar-ekspor/belajar_ekspor', $data);
     }
@@ -281,12 +286,11 @@ class KomunitasEkspor extends BaseController
         // Mengambil semua kategori untuk ditampilkan di sidebar/filter
         $data['kategori_belajar_ekspor'] = $kategoriBelajarEksporModel->findAll();
 
+        $perPage = 9; // Number of items per page
+        $page = $this->request->getVar('page') ?? 1; // Get the current page number
+
         // Query pencarian: mencari berdasarkan judul, tags, atau deskripsi
-        $hasilPencarian = $belajarEksporModel->like('judul_belajar_ekspor', $keyword)
-            ->orLike('judul_belajar_ekspor_en', $keyword)
-            ->orLike('deskripsi_belajar_ekspor', $keyword)
-            ->orLike('deskripsi_belajar_ekspor_en', $keyword)
-            ->getAllWithCategory(); // Pastikan method ini mengembalikan data dengan kategori
+        $hasilPencarian = $belajarEksporModel->getSearchAllWithCategoryAndPagination($keyword, $perPage, $page);
 
         // Jika ada hasil pencarian
         if (count($hasilPencarian) > 0) {
@@ -302,6 +306,8 @@ class KomunitasEkspor extends BaseController
         $data['active_category'] = null;
 
         // Render view hasil pencarian
+        $data['pager'] = $belajarEksporModel->pager; // Get the pager instance
+
         return view('belajar-ekspor/belajar_ekspor_search', $data);
     }
 
@@ -330,14 +336,19 @@ class KomunitasEkspor extends BaseController
             return redirect()->to('/')->with('error', 'Kategori tidak ditemukan');
         }
 
+        $perPage = 9; // Number of items per page
+        $page = $this->request->getVar('page') ?? 1; // Get the current page number
+
         // Mengambil data belajar ekspor yang terkait dengan kategori yang dipilih
-        $data['belajar_ekspor'] = $belajarEksporModel->getByCategory($kategori['id_kategori_belajar_ekspor']);
+        $data['belajar_ekspor'] = $belajarEksporModel->getSpecificByCategoryWithPagination($kategori['id_kategori_belajar_ekspor'], $perPage, $page);
 
         // Mengambil semua kategori untuk menu dropdown
         $data['kategori_belajar_ekspor'] = $kategoriBelajarEksporModel->findAll();
 
         // Mengirim data kategori yang dipilih untuk ditampilkan di view
         $data['active_category'] = $kategori['id_kategori_belajar_ekspor'];
+
+        $data['pager'] = $belajarEksporModel->pager; // Get the pager instance
 
         return view('belajar-ekspor/belajar_ekspor', $data);
     }
@@ -490,9 +501,12 @@ class KomunitasEkspor extends BaseController
             return redirect()->to("$lang/$correctulr/$correctulr2/$correctSlug");
         }
 
+        $perPage = 9; // Number of items per page
+        $page = $this->request->getVar('page') ?? 1; // Get the current page number
+
         // Jika kategori ditemukan, ambil video yang sesuai
         if ($kategori) {
-            $videos = $vidioModel->getVideosByKategori($slug);
+            $videos = $vidioModel->getVideosByKategoriWithPagination($slug, $perPage, $page);
         } else {
             $videos = [];
         }
@@ -505,6 +519,8 @@ class KomunitasEkspor extends BaseController
             'lang' => $lang,
             'meta' => $meta,
         ];
+
+        $data['pager'] = $vidioModel->pager; // Get the pager instance
 
         return view('video-tutorial/video_selengkapnya', $data);
     }
@@ -575,6 +591,7 @@ class KomunitasEkspor extends BaseController
         $tahun_berdiri = $this->request->getPost('tahun_berdiri');
         $alamat_perusahaan = $this->request->getPost('alamat_perusahaan');
         $produk_utama = $this->request->getPost('produk_utama');
+        $kategori_produk = $this->request->getPost('kategori_produk');
         $alamat_website = $this->request->getPost('alamat_website');
         $pic = $this->request->getPost('pic');
         $nomor_pic = $this->request->getPost('nomor_pic');
@@ -605,6 +622,7 @@ class KomunitasEkspor extends BaseController
             "Tahun Didirikan: $tahun_berdiri\n\n" .
             "Alamat Perusahaan: $alamat_perusahaan\n\n" .
             "Produk Utama: $produk_utama\n\n" .
+            "Kategori Produk: $kategori_produk\n\n" .
             "Alamat Website: $alamat_website\n\n" .
             "Nama PIC: $pic\n\n" .
             "Nomor HP PIC: $nomor_pic\n\n" .
@@ -1177,6 +1195,18 @@ class KomunitasEkspor extends BaseController
         $sertifikat = $model_sertifikat->where('id_member', $user_id)->findAll();
         $produk = $model_produk->where('id_member', $user_id)->findAll();
 
+        $model_kategori_induk = new KategoriInduk();
+        $kategori_induk = $model_kategori_induk->findAll();
+        $data['kategori_induk'] = $kategori_induk;
+
+        $model_kategori_produk = new KategoriProduk();
+        $kategori_produk = $model_kategori_produk->findAll();
+        $kategori_produk_terkelompok = [];
+        foreach ($kategori_produk as $produk) {
+            $kategori_produk_terkelompok[$produk['id_kategori_induk']][] = $produk;
+        }
+        $data['kategori_produk_terkelompok'] = $kategori_produk_terkelompok;
+
         $data['member'] = $member;
         $data['sertifikat'] = $sertifikat;
         $data['produk'] = $produk;
@@ -1288,53 +1318,69 @@ class KomunitasEkspor extends BaseController
     {
         $session = session();
         $user_id = $session->get('user_id');
-
         $model_member = new Member();
 
         $fields = [
             'nama_perusahaan',
             'deskripsi_perusahaan',
             'deskripsi_perusahaan_en',
+            'alamat_perusahaan',
+            'alamat_website',
+            'tahun_dibentuk',
+            'kategori_produk',
+            'kategori_produk_en',
             'produk_utama',
             'produk_utama_en',
             'pic',
             'pic_phone',
         ];
 
-        // Initialize validation rules without individual error messages
-        $validationRules = array_fill_keys($fields, [
-            'rules' => 'required'
-        ]);
+        // Initialize validation rules with error messages
+        $validationRules = [
+            'nama_perusahaan' => 'required',
+            'deskripsi_perusahaan' => 'required',
+            'deskripsi_perusahaan_en' => 'required',
+            'alamat_perusahaan' => 'required',
+            'alamat_website' => 'required',
+            'tahun_dibentuk' => 'required',
+            'kategori_produk' => 'required',
+            'kategori_produk_en' => 'required',
+            'produk_utama' => 'required',
+            'produk_utama_en' => 'required',
+            'pic' => 'required',
+            'pic_phone' => 'required',
+        ];
 
-        // Perform validation
         if (!$this->validate($validationRules)) {
             // Get all validation errors
             $errors = $this->validator->getErrors();
 
-            // Count the number of missing fields
-            $missingCount = count($errors);
-
-            // Set the custom error message with the missing count
-            $generalErrorMessage = "Ada $missingCount Input Yang Masih Belum Diisi!";
-
-            // Redirect back with the input and only the general error message
-            return redirect()->back()->withInput()->with('errors', ['general' => $generalErrorMessage]);
+            // Redirect back with errors and old input
+            return redirect()->back()->withInput()->with('errors', $errors);
         }
 
+        // Prepare data for update
         $data = [
             'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
             'deskripsi_perusahaan' => $this->request->getPost('deskripsi_perusahaan'),
             'deskripsi_perusahaan_en' => $this->request->getPost('deskripsi_perusahaan_en'),
+            'alamat_perusahaan' => $this->request->getPost('alamat_perusahaan'),
+            'alamat_website' => $this->request->getPost('alamat_website'),
+            'tahun_dibentuk' => $this->request->getPost('tahun_dibentuk'),
+            'kategori_produk' => $this->request->getPost('kategori_produk'),
+            'kategori_produk_en' => $this->request->getPost('kategori_produk_en'),
             'produk_utama' => $this->request->getPost('produk_utama'),
             'produk_utama_en' => $this->request->getPost('produk_utama_en'),
             'pic' => $this->request->getPost('pic'),
             'pic_phone' => $this->request->getPost('pic_phone'),
         ];
 
+        // Update member's profile
         $model_member->update($user_id, $data);
 
         return redirect()->to('/edit-profile');
     }
+
 
     // public function add_sertifikat()
     // {
@@ -2967,10 +3013,17 @@ class KomunitasEkspor extends BaseController
 
         $belajarEksporModel = new BelajarEksporModel();
 
+        $perPage = 9; // Number of items per page
+        $page = $this->request->getVar('page') ?? 1; // Get the current page number
+
         // Query untuk mendapatkan data
-        $belajarEkspor = $belajarEksporModel->getFreeCategory();
+        $belajarEkspor = $belajarEksporModel->getAllWithCategoryAndPagination($perPage, $page);
 
         $data['belajar_ekspor'] = $belajarEkspor;
+
+
+
+        $data['pager'] = $belajarEksporModel->pager; // Get the pager instance
 
         return view('member/belajar-ekspor/belajar_ekspor', $data);
     }
@@ -3522,7 +3575,19 @@ class KomunitasEkspor extends BaseController
 
     public function admin_add_member()
     {
-        return view('admin/member/add');
+        $model_kategori_induk = new KategoriInduk();
+        $kategori_induk = $model_kategori_induk->findAll();
+        $data['kategori_induk'] = $kategori_induk;
+
+        $model_kategori_produk = new KategoriProduk();
+        $kategori_produk = $model_kategori_produk->findAll();
+        $kategori_produk_terkelompok = [];
+        foreach ($kategori_produk as $produk) {
+            $kategori_produk_terkelompok[$produk['id_kategori_induk']][] = $produk;
+        }
+        $data['kategori_produk_terkelompok'] = $kategori_produk_terkelompok;
+
+        return view('admin/member/add', $data);
     }
 
     public function admin_create_member()
@@ -3542,13 +3607,13 @@ class KomunitasEkspor extends BaseController
             $fotoProfil->move(ROOTPATH . 'public/img', $namaFile);
         }
 
-        $role = $this->request->getPost('role');
+        // $role = $this->request->getPost('role');
 
-        if ($role == 'premium') {
-            $status_premium = 'pending';
-        } else {
-            $status_premium = null;
-        }
+        // if ($role == 'premium') {
+        //     $status_premium = 'pending';
+        // } else {
+        //     $status_premium = null;
+        // }
 
         $tahun_dibentuk = $this->request->getPost('tahun_dibentuk');
 
@@ -3557,8 +3622,8 @@ class KomunitasEkspor extends BaseController
         }
 
         $data = [
-            'role' => $role,
-            'status_premium' => $status_premium,
+            'role' => 'member',
+            // 'status_premium' => $status_premium,
             'username' => $this->request->getPost('username_referral'),
             'password' => password_hash($password, PASSWORD_DEFAULT),
             'foto_profil' => $namaFile,
@@ -3567,13 +3632,15 @@ class KomunitasEkspor extends BaseController
             'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
             'deskripsi_perusahaan' => $this->request->getPost('deskripsi_perusahaan'),
             'deskripsi_perusahaan_en' => $this->request->getPost('deskripsi_perusahaan_en'),
-            'tipe_bisnis' => $this->request->getPost('tipe_bisnis'),
-            'tipe_bisnis_en' => $this->request->getPost('tipe_bisnis_en'),
+            // 'tipe_bisnis' => $this->request->getPost('tipe_bisnis'),
+            // 'tipe_bisnis_en' => $this->request->getPost('tipe_bisnis_en'),
             'produk_utama' => $this->request->getPost('produk_utama'),
             'produk_utama_en' => $this->request->getPost('produk_utama_en'),
+            'alamat_perusahaan' => $this->request->getPost('alamat_perusahaan'),
+            'alamat_website' => $this->request->getPost('alamat_website'),
             'tahun_dibentuk' => $tahun_dibentuk,
-            'skala_bisnis' => $this->request->getPost('skala_bisnis'),
-            'skala_bisnis_en' => $this->request->getPost('skala_bisnis_en'),
+            // 'skala_bisnis' => $this->request->getPost('skala_bisnis'),
+            // 'skala_bisnis_en' => $this->request->getPost('skala_bisnis_en'),
             'email' => $this->request->getPost('email'),
             'pic' => $this->request->getPost('pic'),
             'pic_phone' => $this->request->getPost('pic_phone'),
@@ -3600,6 +3667,17 @@ class KomunitasEkspor extends BaseController
     public function admin_edit_member($id)
     {
         $model_member = new Member();
+        $model_kategori_induk = new KategoriInduk();
+        $kategori_induk = $model_kategori_induk->findAll();
+        $data['kategori_induk'] = $kategori_induk;
+
+        $model_kategori_produk = new KategoriProduk();
+        $kategori_produk = $model_kategori_produk->findAll();
+        $kategori_produk_terkelompok = [];
+        foreach ($kategori_produk as $produk) {
+            $kategori_produk_terkelompok[$produk['id_kategori_induk']][] = $produk;
+        }
+        $data['kategori_produk_terkelompok'] = $kategori_produk_terkelompok;
 
         $member = $model_member->whereIn('role', ['member', 'premium'])->find($id);
 
@@ -3641,21 +3719,23 @@ class KomunitasEkspor extends BaseController
 
         // Populate the remaining fields for data array
         $data = array_merge($data, [
-            'role' => $this->request->getPost('role'),
-            'status_premium' => $this->request->getPost('status_premium'),
+            'role' => 'member',
+            // 'status_premium' => $this->request->getPost('status_premium'),
             'username' => $this->request->getPost('username_referral'),
             'kode_referral' => $this->request->getPost('username_referral'),
             'popular_point' => $this->request->getPost('popular_point'),
             'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
             'deskripsi_perusahaan' => $this->request->getPost('deskripsi_perusahaan'),
             'deskripsi_perusahaan_en' => $this->request->getPost('deskripsi_perusahaan_en'),
-            'tipe_bisnis' => $this->request->getPost('tipe_bisnis'),
-            'tipe_bisnis_en' => $this->request->getPost('tipe_bisnis_en'),
+            // 'tipe_bisnis' => $this->request->getPost('tipe_bisnis'),
+            // 'tipe_bisnis_en' => $this->request->getPost('tipe_bisnis_en'),
             'produk_utama' => $this->request->getPost('produk_utama'),
             'produk_utama_en' => $this->request->getPost('produk_utama_en'),
+            'alamat_perusahaan' => $this->request->getPost('alamat_perusahaan'),
+            'alamat_website' => $this->request->getPost('alamat_website'),
             'tahun_dibentuk' => $this->request->getPost('tahun_dibentuk'),
-            'skala_bisnis' => $this->request->getPost('skala_bisnis'),
-            'skala_bisnis_en' => $this->request->getPost('skala_bisnis_en'),
+            // 'skala_bisnis' => $this->request->getPost('skala_bisnis'),
+            // 'skala_bisnis_en' => $this->request->getPost('skala_bisnis_en'),
             'email' => $this->request->getPost('email'),
             'pic' => $this->request->getPost('pic'),
             'pic_phone' => $this->request->getPost('pic_phone'),
@@ -5925,5 +6005,225 @@ class KomunitasEkspor extends BaseController
         $data['webprofile'] = $webprofile;
 
         return view('premium/kelayakan-investasi/kelayakan-investasi', $data);
+    }
+
+    // Kategori Induk
+    public function admin_kategori_induk()
+    {
+        $model_kategori_induk = new KategoriInduk();
+
+        $perPage = 10;
+        $page = $this->request->getVar('page') ?? 1;
+
+        $kategori_induk = $model_kategori_induk->paginate($perPage);
+
+        $data['kategori_induk'] = $kategori_induk;
+        $data['pager'] = $model_kategori_induk->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+
+        return view('admin/kategori-induk/index', $data);
+    }
+
+    public function admin_kategori_induk_create()
+    {
+        return view('admin/kategori-induk/tambah');
+    }
+
+    public function admin_kategori_induk_store()
+    {
+        $model_kategori_induk = new KategoriInduk();
+
+        $data = [
+            'nama_kategori_induk' => $this->request->getPost('nama_kategori_induk'),
+            'nama_kategori_induk_en' => $this->request->getPost('nama_kategori_induk_en'),
+        ];
+
+        $model_kategori_induk->insert($data);
+
+        return redirect()->to('admin-kategori-induk');
+    }
+
+    public function admin_kategori_induk_edit($id)
+    {
+        $model_kategori_induk = new KategoriInduk();
+
+        $kategori_induk = $model_kategori_induk->find($id);
+
+        $data['kategori_induk'] = $kategori_induk;
+
+        return view('admin/kategori-induk/edit', $data);
+    }
+
+    public function admin_kategori_induk_update($id)
+    {
+        $model_kategori_induk = new KategoriInduk();
+
+        $data = [
+            'nama_kategori_induk' => $this->request->getPost('nama_kategori_induk'),
+            'nama_kategori_induk_en' => $this->request->getPost('nama_kategori_induk_en'),
+        ];
+
+        $model_kategori_induk->update($id, $data);
+
+        return redirect()->to('admin-kategori-induk');
+    }
+
+    public function admin_kategori_induk_destroy($id)
+    {
+        $model_kategori_induk = new KategoriInduk();
+
+        $model_kategori_induk->delete($id);
+
+        return redirect()->to('admin-kategori-induk');
+    }
+
+    // Kategori Produk
+    public function admin_kategori_produk()
+    {
+        $model_kategori_produk = new KategoriProduk();
+
+        $perPage = 10;
+        $page = $this->request->getVar('page') ?? 1;
+
+        $kategori_produk = $model_kategori_produk
+            ->select('kategori_produk.*, kategori_induk.nama_kategori_induk AS kategori_induk')
+            ->join('kategori_induk', 'kategori_induk.id_kategori_induk = kategori_produk.id_kategori_induk', 'left')
+            ->paginate($perPage);
+
+        $data['kategori_produk'] = $kategori_produk;
+        $data['pager'] = $model_kategori_produk->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+
+        return view('admin/kategori-produk/index', $data);
+    }
+
+    public function admin_kategori_produk_create()
+    {
+        $model_kategori_induk = new KategoriInduk();
+        $model_kategori_produk = new KategoriProduk();
+
+        $kategori_induk = $model_kategori_induk->findAll();
+        $kategori_produk = $model_kategori_produk->findAll();
+
+        $data['kategori_induk'] = $kategori_induk;
+        $data['kategori_produk'] = $kategori_produk;
+
+        return view('admin/kategori-produk/tambah', $data);
+    }
+
+    public function admin_kategori_produk_store()
+    {
+        $model_kategori_produk = new KategoriProduk();
+
+        $data = [
+            'id_kategori_induk' => $this->request->getPost('id_kategori_induk'),
+            'nama_kategori_produk' => $this->request->getPost('nama_kategori_produk'),
+            'nama_kategori_produk_en' => $this->request->getPost('nama_kategori_produk_en'),
+        ];
+
+        $model_kategori_produk->insert($data);
+
+        return redirect()->to('admin-kategori-produk');
+    }
+
+    public function admin_kategori_produk_edit($id)
+    {
+        $model_kategori_induk = new KategoriInduk();
+        $model_kategori_produk = new KategoriProduk();
+
+        $kategori_induk = $model_kategori_induk->findAll();
+        $kategori_produk = $model_kategori_produk->find($id);
+
+        $data['kategori_induk'] = $kategori_induk;
+        $data['kategori_produk'] = $kategori_produk;
+
+        return view('admin/kategori-produk/edit', $data);
+    }
+
+    public function admin_kategori_produk_update($id)
+    {
+        $model_kategori_produk = new KategoriProduk();
+
+        $data = [
+            'id_kategori_induk' => $this->request->getPost('id_kategori_induk'),
+            'nama_kategori_produk' => $this->request->getPost('nama_kategori_produk'),
+            'nama_kategori_produk_en' => $this->request->getPost('nama_kategori_produk_en'),
+        ];
+
+        $model_kategori_produk->update($id, $data);
+
+        return redirect()->to('admin-kategori-produk');
+    }
+
+    public function admin_kategori_produk_destroy($id)
+    {
+        $model_kategori_produk = new KategoriProduk();
+
+        $model_kategori_produk->delete($id);
+
+        return redirect()->to('admin-kategori-produk');
+    }
+
+    // Meta
+    public function admin_meta()
+    {
+        $model_meta = new Meta();
+
+        $meta = $model_meta->findAll();
+
+        $data['meta'] = $meta;
+
+        return view('admin/meta/index', $data);
+    }
+
+    public function admin_edit_meta()
+    {
+        $model_meta = new Meta();
+
+        $meta = $model_meta->first();
+
+        $data['meta'] = $meta;
+
+        return view('admin/meta/edit', $data);
+    }
+
+    public function admin_update_meta()
+    {
+        $model_meta = new Meta();
+
+        $meta = $model_meta->first();
+
+        $data = [
+            'meta_title_beranda' => $this->request->getPost('meta_title_beranda'),
+            'meta_title_beranda_en' => $this->request->getPost('meta_title_beranda_en'),
+            'meta_description_beranda' => $this->request->getPost('meta_description_beranda'),
+            'meta_description_beranda_en' => $this->request->getPost('meta_description_beranda_en'),
+            'meta_title_tentang' => $this->request->getPost('meta_title_tentang'),
+            'meta_title_tentang_en' => $this->request->getPost('meta_title_tentang_en'),
+            'meta_description_tentang' => $this->request->getPost('meta_description_tentang'),
+            'meta_description_tentang_en' => $this->request->getPost('meta_description_tentang_en'),
+            'meta_title_materi' => $this->request->getPost('meta_title_materi'),
+            'meta_title_materi_en' => $this->request->getPost('meta_title_materi_en'),
+            'meta_description_materi' => $this->request->getPost('meta_description_materi'),
+            'meta_description_materi_en' => $this->request->getPost('meta_description_materi_en'),
+            'meta_title_tutorial' => $this->request->getPost('meta_title_tutorial'),
+            'meta_title_tutorial_en' => $this->request->getPost('meta_title_tutorial_en'),
+            'meta_description_tutorial' => $this->request->getPost('meta_description_tutorial'),
+            'meta_description_tutorial_en' => $this->request->getPost('meta_description_tutorial_en'),
+            'meta_title_member' => $this->request->getPost('meta_title_member'),
+            'meta_title_member_en' => $this->request->getPost('meta_title_member_en'),
+            'meta_description_member' => $this->request->getPost('meta_description_member'),
+            'meta_description_member_en' => $this->request->getPost('meta_description_member_en'),
+            'meta_title_daftar' => $this->request->getPost('meta_title_daftar'),
+            'meta_title_daftar_en' => $this->request->getPost('meta_title_daftar_en'),
+            'meta_description_daftar' => $this->request->getPost('meta_description_daftar'),
+            'meta_description_daftar_en' => $this->request->getPost('meta_description_daftar_en'),
+        ];
+
+        $model_meta->update($meta['id_meta'], $data);
+
+        return redirect()->to('admin-meta');
     }
 }

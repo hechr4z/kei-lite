@@ -12,7 +12,7 @@
                         <form action="<?= base_url('admin-create-member') ?>" method="post"
                             enctype="multipart/form-data">
 
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label class="form-label">Jenis Member<span style="color: red;">*</span></label>
                                 <div class="form-check d-flex align-items-start">
                                     <input class="form-check-input" type="radio" name="role" id="memberPremium"
@@ -28,7 +28,7 @@
                                         Member Free
                                     </label>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="mb-3">
                                 <label class="form-label">Username & Kode Referral<span style="color: red;">*</span></label>
@@ -48,9 +48,9 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Foto Profil</label>
+                                <label class="form-label">Logo Perusahaan<span style="color: red;">*</span></label>
                                 <input type="file" class="form-control" name="foto_profil" id="foto_profil"
-                                    onchange="previewImage()">
+                                    onchange="previewImage()" required>
                                 <img id="preview" src="https://via.placeholder.com/100" alt="Foto Member"
                                     class="img-thumbnail mt-2" style="max-width: 100px;">
                             </div>
@@ -62,18 +62,38 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Deskripsi Perusahaan</label>
+                                <label class="form-label">Deskripsi Perusahaan ID<span style="color: red;">*</span></label>
                                 <textarea class="form-control" name="deskripsi_perusahaan" style="height: 120px;"
-                                    placeholder="Masukkan Deskripsi Perusahaan"></textarea>
+                                    placeholder="Masukkan Deskripsi Perusahaan ID" required></textarea>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Deskripsi Perusahaan En</label>
+                                <label class="form-label">Deskripsi Perusahaan EN<span style="color: red;">*</span></label>
                                 <textarea class="form-control" name="deskripsi_perusahaan_en" style="height: 120px;"
-                                    placeholder="Masukkan Deskripsi Perusahaan Versi Bahasa Inggris"></textarea>
+                                    placeholder="Masukkan Deskripsi Perusahaan EN" required></textarea>
                             </div>
 
                             <div class="mb-3">
+                                <label class="form-label">Alamat Perusahaan<span style="color: red;">*</span></label>
+                                <textarea class="form-control" name="alamat_perusahaan" style="height: 120px;"
+                                    placeholder="Masukkan Alamat Perusahaan" required></textarea>
+                            </div>
+
+                            <!-- Tahun Berdiri Perusahaan -->
+                            <div class="mb-3">
+                                <label for="tahun_dibentuk"><span class="form-label">Tahun Didirkan<span style="color: red;">*</span></span></label>
+                                <select id="tahun_dibentuk" name="tahun_dibentuk" class="form-control" required>
+                                    <option value="" disabled selected>-- Pilih Tahun --</option>
+                                    <?php
+                                    $currentYear = date('Y');
+                                    for ($year = $currentYear; $year >= 1900; $year--) {
+                                        echo "<option value=\"$year\"" . (old('tahun_dibentuk') == $year ? ' selected' : '') . ">$year</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
+                            <!-- <div class="mb-3">
                                 <label class="form-label">Tipe Bisnis</label>
                                 <input type="text" class="form-control" name="tipe_bisnis"
                                     placeholder="Masukkan Tipe Bisnis">
@@ -83,26 +103,61 @@
                                 <label class="form-label">Tipe Bisnis En</label>
                                 <input type="text" class="form-control" name="tipe_bisnis_en"
                                     placeholder="Masukkan Tipe Bisnis Versi Bahasa Inggris">
+                            </div> -->
+
+                            <div class="mb-3">
+                                <label for="kategori_produk" class="form-label">Kategori Produk ID<span style="color: red;">*</span></label>
+                                <select id="kategori_produk" name="kategori_produk" class="form-control" required>
+                                    <option value="" disabled selected>-- Pilih Kategori Produk ID --</option>
+                                    <?php foreach ($kategori_induk as $item): ?>
+                                        <optgroup label='<?= $item['nama_kategori_induk'] ?>'>
+                                            <?php if (!empty($kategori_produk_terkelompok[$item['id_kategori_induk']])): ?>
+                                                <?php foreach ($kategori_produk_terkelompok[$item['id_kategori_induk']] as $produk): ?>
+                                                    <option value="<?= $produk['nama_kategori_produk'] ?>">
+                                                        <?= $produk['nama_kategori_produk'] ?>
+                                                    </option>
+                                                <?php endforeach; ?>
+                                            <?php endif; ?>
+                                        </optgroup>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Produk Utama</label>
-                                <input type="text" class="form-control" name="produk_utama"
-                                    placeholder="Masukkan Produk Utama">
+                                <label for="kategori_produk" class="form-label">Kategori Produk EN<span style="color: red;">*</span></label>
+                                <select id="kategori_produk" name="kategori_produk_en" class="form-control" required>
+                                    <option value="" disabled selected>-- Pilih Kategori Produk EN --</option>
+                                    <?php foreach ($kategori_induk as $item): ?>
+                                        <optgroup label='<?= $item['nama_kategori_induk_en'] ?>'>
+                                            <?php if (!empty($kategori_produk_terkelompok[$item['id_kategori_induk']])): ?>
+                                                <?php foreach ($kategori_produk_terkelompok[$item['id_kategori_induk']] as $produk): ?>
+                                                    <option value="<?= $produk['nama_kategori_produk_en'] ?>">
+                                                        <?= $produk['nama_kategori_produk_en'] ?>
+                                                    </option>
+                                                <?php endforeach; ?>
+                                            <?php endif; ?>
+                                        </optgroup>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Produk Utama En</label>
-                                <input type="text" class="form-control" name="produk_utama_en"
-                                    placeholder="Masukkan Produk Utama Versi Bahasa Inggris">
+                                <label class="form-label">Produk Utama ID<span style="color: red;">*</span></label>
+                                <textarea class="form-control" name="produk_utama" style="height: 120px;" placeholder="Masukkan Produk Utama ID" required></textarea>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Tahun Dibentuk</label>
-                                <input type="text" class="form-control" name="tahun_dibentuk" placeholder="Masukkan Tahun Dibentuk">
+                                <label class="form-label">Produk Utama EN<span style="color: red;">*</span></label>
+                                <textarea class="form-control" name="produk_utama_en" style="height: 120px;" placeholder="Masukkan Produk Utama EN" required></textarea>
                             </div>
 
                             <div class="mb-3">
+                                <label class="form-label">Alamat Website<span style="color: red;">*</span></label>
+                                <textarea class="form-control" name="alamat_website" style="height: 120px;" placeholder="Masukkan Alamat Website" required></textarea>
+                            </div>
+
+
+                            <!-- <div class="mb-3">
                                 <label for="skala_bisnis" class="form-label">Skala Bisnis</label>
                                 <select class="form-control" id="skala_bisnis" name="skala_bisnis">
                                     <option value="">Pilih Skala Bisnis</option>
@@ -120,7 +175,7 @@
                                     <option value="Medium">Medium</option>
                                     <option value="Large">Large</option>
                                 </select>
-                            </div>
+                            </div> -->
 
                             <div class="mb-3">
                                 <label class="form-label">Email<span style="color: red;">*</span></label>
@@ -138,7 +193,7 @@
                                     placeholder="Masukkan PIC Phone" required>
                             </div>
 
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label class="form-label">Kategori Produk</label>
                                 <select class="form-control" id="kategori_produk" name="kategori_produk">
                                     <option value="">Pilih Kategori Produk</option>
@@ -201,7 +256,7 @@
                                     <option value="Sports Equipment">Sports Equipment</option>
                                     <option value="Fashion and Accessories">Fashion and Accessories</option>
                                 </select>
-                            </div>
+                            </div> -->
 
                             <div class="mb-3">
                                 <label class="form-label">Latitude<span style="color: red;">*</span></label>
@@ -210,8 +265,7 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Longitude<span style="color: red;">*</span></label>
-                                <input type="text" class="form-control" name="longitude"
-                                    placeholder="Masukkan Longitude" required>
+                                <input type="text" class="form-control" name="longitude" placeholder="Masukkan Longitude" required>
                             </div>
 
                             <div class="mb-3">

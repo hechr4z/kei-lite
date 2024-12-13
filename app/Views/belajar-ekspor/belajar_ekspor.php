@@ -430,6 +430,9 @@ $this->setData([
                     </div>
                 </div>
             <?php endforeach; ?>
+            <div class="mt-5">
+                <?= $pager->links('default', 'bootstrap_pagination') ?>
+            </div>
         <?php else: ?>
             <div class="col-12">
                 <div class="alert alert-info text-center" role="alert">
@@ -437,9 +440,6 @@ $this->setData([
                 </div>
             </div>
         <?php endif; ?>
-    </div>
-    <div class="lebih mt-5" style="display: flex; justify-content: center;">
-        <a href="#" class="btn btn-custom mt-auto" style="min-width: 50px; text-align: center;"><?= lang('Blog.seeMore') ?> </a>
     </div>
 </section>
 

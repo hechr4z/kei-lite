@@ -12,7 +12,7 @@
                         <form action="<?= base_url('admin-update-member/' . $member['id_member']) ?>" method="post"
                             enctype="multipart/form-data">
 
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label class="form-label">Jenis Member</label>
                                 <div class="form-check d-flex align-items-start">
                                     <input class="form-check-input" type="radio" name="role" id="memberPremium"
@@ -28,9 +28,9 @@
                                         Member Free
                                     </label>
                                 </div>
-                            </div>
+                            </div> -->
 
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label class="form-label">Status Premium</label>
                                 <div class="form-check d-flex align-items-start">
                                     <input class="form-check-input" type="radio" name="status_premium" id="verified"
@@ -46,19 +46,17 @@
                                         Pending
                                     </label>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="mb-3">
                                 <label class="form-label">Username & Kode Referral</label>
-                                <input type="text" class="form-control" value="<?= $member['username'] ?>"
-                                    name="username_referral" placeholder="Masukkan Username & Kode Referral">
+                                <input type="text" class="form-control" value="<?= $member['username'] ?>" name="username_referral" placeholder="Masukkan Username & Kode Referral">
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Password</label>
                                 <div class="input-group">
-                                    <input type="password" class="form-control" id="password" name="password"
-                                        placeholder="Masukkan Password">
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Password">
                                     <button type="button" class="btn btn-outline-secondary" id="togglePassword">
                                         <i class="fa fa-eye"></i>
                                     </button>
@@ -78,29 +76,80 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Popular Point</label>
-                                <input type="text" class="form-control" value="<?= $member['popular_point'] ?>"
-                                    name="popular_point" placeholder="Masukkan Popular Point">
+                                <input type="text" class="form-control" value="<?= $member['popular_point'] ?>" name="popular_point" placeholder="Masukkan Popular Point">
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Nama Perusahaan</label>
-                                <input type="text" class="form-control" value="<?= $member['nama_perusahaan'] ?>"
-                                    name="nama_perusahaan" placeholder="Masukkan Nama Perusahaan">
+                                <input type="text" class="form-control" value="<?= $member['nama_perusahaan'] ?>" name="nama_perusahaan" placeholder="Masukkan Nama Perusahaan">
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Deskripsi Perusahaan</label>
+                                <label class="form-label">Deskripsi Perusahaan ID</label>
                                 <textarea class="form-control" name="deskripsi_perusahaan" style="height: 120px;"
-                                    placeholder="Masukkan Deskripsi Perusahaan"><?= $member['deskripsi_perusahaan'] ?></textarea>
+                                    placeholder="Masukkan Deskripsi Perusahaan ID"><?= $member['deskripsi_perusahaan'] ?></textarea>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Deskripsi Perusahaan En</label>
-                                <textarea class="form-control" name="deskripsi_perusahaan_en" style="height: 120px;"
-                                    placeholder="Masukkan Deskripsi Perusahaan Versi Bahasa Inggris"><?= $member['deskripsi_perusahaan_en'] ?></textarea>
+                                <label class="form-label">Deskripsi Perusahaan EN</label>
+                                <textarea class="form-control" name="deskripsi_perusahaan_en" style="height: 120px;" placeholder="Masukkan Deskripsi Perusahaan EN"><?= $member['deskripsi_perusahaan_en'] ?></textarea>
                             </div>
 
                             <div class="mb-3">
+                                <label class="form-label">Alamat Perusahaan</label>
+                                <textarea class="form-control" name="alamat_perusahaan" style="height: 120px;" placeholder="Masukkan Alamat Perusahaan"><?= $member['alamat_perusahaan'] ?></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="tahun_dibentuk"><span class="form-label">Tahun Didirkan</span></label>
+                                <select id="tahun_dibentuk" name="tahun_dibentuk" class="form-control" required>
+                                    <option value="" disabled <?= empty($member['tahun_dibentuk']) ? 'selected' : '' ?>>-- Pilih Tahun --</option>
+                                    <?php
+                                    $currentYear = date('Y');
+                                    for ($year = $currentYear; $year >= 1900; $year--) {
+                                        echo "<option value=\"$year\"" . ($member['tahun_dibentuk'] == $year ? ' selected' : '') . ">$year</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="kategori_produk" class="form-label">Kategori Produk ID</label>
+                                <select id="kategori_produk" name="kategori_produk" class="form-control" required>
+                                    <option value="" disabled <?= empty($member['kategori_produk']) ? 'selected' : '' ?>>-- Pilih Kategori Produk ID --</option>
+                                    <?php foreach ($kategori_induk as $item): ?>
+                                        <optgroup label='<?= $item['nama_kategori_induk'] ?>'>
+                                            <?php if (!empty($kategori_produk_terkelompok[$item['id_kategori_induk']])): ?>
+                                                <?php foreach ($kategori_produk_terkelompok[$item['id_kategori_induk']] as $produk): ?>
+                                                    <option value="<?= $produk['nama_kategori_produk'] ?>" <?= $member['kategori_produk'] == $produk['nama_kategori_produk'] ? 'selected' : '' ?>>
+                                                        <?= $produk['nama_kategori_produk'] ?>
+                                                    </option>
+                                                <?php endforeach; ?>
+                                            <?php endif; ?>
+                                        </optgroup>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="kategori_produk" class="form-label">Kategori Produk EN</label>
+                                <select id="kategori_produk" name="kategori_produk_en" class="form-control" required>
+                                    <option value="" disabled <?= empty($member['kategori_produk_en']) ? 'selected' : '' ?>>-- Pilih Kategori Produk EN --</option>
+                                    <?php foreach ($kategori_induk as $item): ?>
+                                        <optgroup label='<?= $item['nama_kategori_induk_en'] ?>'>
+                                            <?php if (!empty($kategori_produk_terkelompok[$item['id_kategori_induk']])): ?>
+                                                <?php foreach ($kategori_produk_terkelompok[$item['id_kategori_induk']] as $produk): ?>
+                                                    <option value="<?= $produk['nama_kategori_produk_en'] ?>" <?= $member['kategori_produk_en'] == $produk['nama_kategori_produk_en'] ? 'selected' : '' ?>>
+                                                        <?= $produk['nama_kategori_produk_en'] ?>
+                                                    </option>
+                                                <?php endforeach; ?>
+                                            <?php endif; ?>
+                                        </optgroup>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+
+                            <!-- <div class="mb-3">
                                 <label class="form-label">Tipe Bisnis</label>
                                 <input type="text" class="form-control" value="<?= $member['tipe_bisnis'] ?>"
                                     name="tipe_bisnis" placeholder="Masukkan Tipe Bisnis">
@@ -110,27 +159,24 @@
                                 <label class="form-label">Tipe Bisnis En</label>
                                 <input type="text" class="form-control" value="<?= $member['tipe_bisnis_en'] ?>"
                                     name="tipe_bisnis_en" placeholder="Masukkan Tipe Bisnis Versi Bahasa Inggris">
+                            </div> -->
+
+                            <div class="mb-3">
+                                <label class="form-label">Produk Utama ID</label>
+                                <textarea class="form-control" name="produk_utama" style="height: 120px;" placeholder="Masukkan Produk Utama ID" required><?= $member['produk_utama'] ?></textarea>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Produk Utama</label>
-                                <input type="text" class="form-control" value="<?= $member['produk_utama'] ?>"
-                                    name="produk_utama" placeholder="Masukkan Produk Utama">
+                                <label class="form-label">Produk Utama EN</label>
+                                <textarea class="form-control" name="produk_utama_en" style="height: 120px;" placeholder="Masukkan Produk Utama EN" required><?= $member['produk_utama_en'] ?></textarea>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Produk Utama En</label>
-                                <input type="text" class="form-control" value="<?= $member['produk_utama_en'] ?>"
-                                    name="produk_utama_en" placeholder="Masukkan Produk Utama Versi Bahasa Inggris">
+                                <label class="form-label">Alamat Website</label>
+                                <textarea class="form-control" name="alamat_website" style="height: 120px;" placeholder="Masukkan Alamat Website"><?= $member['alamat_website'] ?></textarea>
                             </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">Tahun Dibentuk</label>
-                                <input type="text" class="form-control" value="<?= $member['tahun_dibentuk'] ?>"
-                                    name="tahun_dibentuk" placeholder="Masukkan Tahun Dibentuk">
-                            </div>
-
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label class="form-label">Skala Bisnis</label>
                                 <select class="form-control" id="skala_bisnis" name="skala_bisnis">
                                     <option value="" disabled <?= ($member['skala_bisnis'] == null) ? 'selected' : '' ?>>Pilih Skala Bisnis</option>
@@ -148,27 +194,24 @@
                                     <option value="Medium" <?= ($member['skala_bisnis_en'] == 'Medium') ? 'selected' : '' ?>>Medium</option>
                                     <option value="Large" <?= ($member['skala_bisnis_en'] == 'Large') ? 'selected' : '' ?>>Large</option>
                                 </select>
-                            </div>
+                            </div> -->
 
                             <div class="mb-3">
                                 <label class="form-label">Email</label>
-                                <input type="email" class="form-control" value="<?= $member['email'] ?>" name="email"
-                                    placeholder="Masukkan Email">
+                                <input type="email" class="form-control" value="<?= $member['email'] ?>" name="email" placeholder="Masukkan Email">
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">PIC</label>
-                                <input type="text" class="form-control" value="<?= $member['pic'] ?>" name="pic"
-                                    placeholder="Masukkan PIC">
+                                <input type="text" class="form-control" value="<?= $member['pic'] ?>" name="pic" placeholder="Masukkan PIC">
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">PIC Phone</label>
-                                <input type="text" class="form-control" value="<?= $member['pic_phone'] ?>"
-                                    name="pic_phone" placeholder="Masukkan PIC Phone">
+                                <input type="text" class="form-control" value="<?= $member['pic_phone'] ?>" name="pic_phone" placeholder="Masukkan PIC Phone">
                             </div>
 
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label class="form-label">Kategori Produk</label>
                                 <select class="form-control" id="kategori_produk" name="kategori_produk">
                                     <option value="" disabled <?= ($member['kategori_produk'] == null) ? 'selected' : '' ?>>Pilih Kategori Produk</option>
@@ -230,18 +273,16 @@
                                     <option value="Sports Equipment" <?= ($member['kategori_produk_en'] == 'Sports Equipment') ? 'selected' : '' ?>>Sports Equipment</option>
                                     <option value="Fashion and Accessories" <?= ($member['kategori_produk_en'] == 'Fashion and Accessories') ? 'selected' : '' ?>>Fashion and Accessories</option>
                                 </select>
-                            </div>
+                            </div> -->
 
                             <div class="mb-3">
                                 <label class="form-label">Latitude</label>
-                                <input type="text" class="form-control" value="<?= $member['latitude'] ?>"
-                                    name="latitude" placeholder="Masukkan Latitude">
+                                <input type="text" class="form-control" value="<?= $member['latitude'] ?>" name="latitude" placeholder="Masukkan Latitude">
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Longitude</label>
-                                <input type="text" class="form-control" value="<?= $member['longitude'] ?>"
-                                    name="longitude" placeholder="Masukkan Longitude">
+                                <input type="text" class="form-control" value="<?= $member['longitude'] ?>" name="longitude" placeholder="Masukkan Longitude">
                             </div>
 
                             <div class="mb-3">

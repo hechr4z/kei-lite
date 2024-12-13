@@ -353,7 +353,6 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
     $routes->post('/admin-update-pengumuman/(:num)', 'KomunitasEkspor::admin_update_pengumuman/$1');
     $routes->get('/admin-delete-pengumuman/(:num)', 'KomunitasEkspor::admin_delete_pengumuman/$1');
 
-
     // Admin - Manfaat Join
     $routes->get('/admin-manfaat-join', 'KomunitasEkspor::admin_manfaat_join');
     $routes->get('/admin-edit-manfaat-join/(:num)', 'KomunitasEkspor::admin_edit_manfaat_join/$1');
@@ -374,4 +373,25 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
     $routes->get('/admin-tentang-kami', 'KomunitasEkspor::admin_tentang_kami');
     $routes->get('/admin-edit-tentang-kami/(:num)', 'KomunitasEkspor::edit_admin_tentang_kami/$1');
     $routes->post('/admin-update-tentang-kami/(:num)', 'KomunitasEkspor::update_admin_tentang_kami/$1');
+
+    // Kategori Induk
+    $routes->get('/admin-kategori-induk', 'KomunitasEkspor::admin_kategori_induk');
+    $routes->get('/admin-kategori-induk-tambah', 'KomunitasEkspor::admin_kategori_induk_create');
+    $routes->post('/admin-kategori-induk-store', 'KomunitasEkspor::admin_kategori_induk_store/$1');
+    $routes->get('/admin-kategori-induk-edit/(:num)', 'KomunitasEkspor::admin_kategori_induk_edit/$1');
+    $routes->post('/admin-kategori-induk-update/(:num)', 'KomunitasEkspor::admin_kategori_induk_update/$1');
+    $routes->get('/admin-kategori-induk-delete/(:num)', 'KomunitasEkspor::admin_kategori_induk_destroy/$1');
+
+    // Kategori Produk
+    $routes->get('/admin-kategori-produk', 'KomunitasEkspor::admin_kategori_produk');
+    $routes->get('/admin-kategori-produk-tambah', 'KomunitasEkspor::admin_kategori_produk_create');
+    $routes->post('/admin-kategori-produk-store', 'KomunitasEkspor::admin_kategori_produk_store/$1');
+    $routes->get('/admin-kategori-produk-edit/(:num)', 'KomunitasEkspor::admin_kategori_produk_edit/$1');
+    $routes->post('/admin-kategori-produk-update/(:num)', 'KomunitasEkspor::admin_kategori_produk_update/$1');
+    $routes->get('/admin-kategori-produk-delete/(:num)', 'KomunitasEkspor::admin_kategori_produk_destroy/$1');
+
+    // Meta
+    $routes->get('/admin-meta', 'KomunitasEkspor::admin_meta');
+    $routes->get('/admin-edit-meta', 'KomunitasEkspor::admin_edit_meta');
+    $routes->post('/admin-update-meta', 'KomunitasEkspor::admin_update_meta');
 });
