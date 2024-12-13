@@ -707,8 +707,7 @@ $this->setData([
                 <div class="border-top1 ms-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
             </div>
         </div>
-        <h1 class="text-center" data-en="WHO WE ARE" data-id="SIAPA KAMI"><b><?= lang('Blog.topMemberTitle'); ?><span
-                    style="color: #03AADE;"> <?= lang('Blog.spotlightTitle'); ?></span></b></h1>
+        <h1 class="text-center" data-en="WHO WE ARE" data-id="SIAPA KAMI"><b><?= lang('Blog.topMemberTitle'); ?><span style="color: #03AADE;"> <?= lang('Blog.spotlightTitle'); ?></span></b></h1>
     </div>
     <div class="card-member container mt-5">
         <?php if (empty($top4_member)): ?>
