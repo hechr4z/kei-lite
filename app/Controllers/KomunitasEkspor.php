@@ -3013,10 +3013,17 @@ class KomunitasEkspor extends BaseController
 
         $belajarEksporModel = new BelajarEksporModel();
 
+        $perPage = 9; // Number of items per page
+        $page = $this->request->getVar('page') ?? 1; // Get the current page number
+
         // Query untuk mendapatkan data
-        $belajarEkspor = $belajarEksporModel->getFreeCategory();
+        $belajarEkspor = $belajarEksporModel->getAllWithCategoryAndPagination($perPage, $page);
 
         $data['belajar_ekspor'] = $belajarEkspor;
+
+
+
+        $data['pager'] = $belajarEksporModel->pager; // Get the pager instance
 
         return view('member/belajar-ekspor/belajar_ekspor', $data);
     }

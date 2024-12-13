@@ -363,6 +363,9 @@
                     </div>
                 </div>
             <?php endforeach; ?>
+            <div class="mt-5">
+                <?= $pager->links('default', 'bootstrap_pagination') ?>
+            </div>
         <?php else: ?>
             <div class="col-12">
                 <div class="alert alert-info text-center" role="alert">
@@ -370,12 +373,9 @@
                 </div>
             </div>
         <?php endif; ?>
-
     </div>
 </section>
-<div class="container" style="text-align: center;" onclick="showSweetAlertBE()">
-    <a href="#" class="btn btn-custom" style="text-align: center;">Lihat Semua Materi</a>
-</div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
