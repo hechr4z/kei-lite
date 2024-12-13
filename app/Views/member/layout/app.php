@@ -475,11 +475,6 @@
                             Tentang Kami
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('/pengumuman') ?>">
-                            Pengumuman
-                        </a>
-                    </li>
                     <div id="navbarNavDarkDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
@@ -504,6 +499,16 @@
                             </li>
                         </ul>
                     </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url('member-data-member') ?>">
+                            Data Member
+                        </a>
+                    </li>
+                    <li class="nav-item" onclick="showSweetAlertDB()">
+                        <a class="nav-link" href="#">
+                            Data Buyers
+                        </a>
+                    </li>
                     <div id="navbarNavDarkDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
@@ -522,28 +527,13 @@
                                             Marketing Progress Monitoring
                                         </a>
                                     </li>
-                                    <li onclick="showSweetAlertAW()">
-                                        <a class="dropdown-item nav-link" href="#">
-                                            Website Audit
-                                        </a>
-                                    </li>
-                                    <li onclick="showSweetAlertKI()">
-                                        <a class="dropdown-item nav-link" href="#">
-                                            Kelayakan Investasi
-                                        </a>
-                                    </li>
                                 </ul>
                             </li>
                         </ul>
                     </div>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('member-data-member') ?>">
-                            Data Member
-                        </a>
-                    </li>
-                    <li class="nav-item" onclick="showSweetAlertDB()">
-                        <a class="nav-link" href="#">
-                            Data Buyers
+                        <a class="nav-link" href="<?= base_url('/pengumuman') ?>">
+                            Pengumuman
                         </a>
                     </li>
                     <li class="nav-item">
@@ -640,11 +630,12 @@
                         <h5 class="mt-4"><b>Menu</b></h5>
                         <div class="list-unstyled pt-2">
                             <p><a href="<?= base_url('beranda') ?>" class="footer-link">Beranda</a></p>
-                            <p><a href="<?= base_url('pengumuman') ?>" class="footer-link">Pengumuman</a></p>
-                            <p><a href="<?= base_url('member-belajar-ekspor') ?>" class="footer-link">Belajar Ekspor</a></p>
+                            <p><a href="<?= base_url('beranda') ?>" class="footer-link">Tentang Kami</a></p>
+                            <p><a href="<?= base_url('member-belajar-ekspor') ?>" class="footer-link">Materi Ekspor</a></p>
                             <p><a href="<?= base_url('member-video-tutorial') ?>" class="footer-link">Video Tutorial</a></p>
                             <p><a href="<?= base_url('member-data-member') ?>" class="footer-link">Data Member</a></p>
                             <p onclick="showSweetAlertDB()"><a href="#" class="footer-link">Data Buyers</a></p>
+                            <p><a href="<?= base_url('pengumuman') ?>" class="footer-link">Pengumuman</a></p>
                             <p><a href="<?= base_url('edit-profile') ?>" class="footer-link">Edit Profile</a></p>
                         </div>
                     </div>
@@ -659,16 +650,6 @@
                             <p>
                                 <a href="<?= base_url('mpm') ?>" class="footer-link">
                                     Marketing Progress Monitoring
-                                </a>
-                            </p>
-                            <p onclick="showSweetAlertAW()">
-                                <a href="#" class="footer-link">
-                                    Website Audit
-                                </a>
-                            </p>
-                            <p onclick="showSweetAlertKI()">
-                                <a href="#" class="footer-link">
-                                    Kelayakan Investasi
                                 </a>
                             </p>
                         </div>
@@ -697,40 +678,6 @@
                 navbar.classList.remove('scrolled');
             }
         });
-
-        function showSweetAlertAW() {
-            Swal.fire({
-                title: "Mau Buka Aplikasi Audit Website?",
-                text: "Yuk Daftar Member Premium Dulu",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Daftar",
-                cancelButtonText: "Nanti"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.open("<?= base_url('/daftar-premium') ?>", "_blank");
-                } else {
-                    Swal.fire("Oke, Jangan Lupa Daftar!");
-                }
-            });
-        }
-
-        function showSweetAlertKI() {
-            Swal.fire({
-                title: "Mau Buka Aplikasi Kelayakan Investasi?",
-                text: "Yuk Daftar Member Premium Dulu",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Daftar",
-                cancelButtonText: "Nanti"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.open("<?= base_url('/daftar-premium') ?>", "_blank");
-                } else {
-                    Swal.fire("Oke, Jangan Lupa Daftar!");
-                }
-            });
-        }
 
         function showSweetAlertDB() {
             Swal.fire({
