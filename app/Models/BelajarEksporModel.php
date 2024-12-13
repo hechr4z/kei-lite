@@ -31,12 +31,12 @@ class BelajarEksporModel extends Model
     ];
 
 
-    // public function getAllWithCategory()
-    // {
-    //     return $this->select('belajar_ekspor.*, kategori_belajar_ekspor.nama_kategori, kategori_belajar_ekspor.nama_kategori_en')
-    //         ->join('kategori_belajar_ekspor', 'kategori_belajar_ekspor.id_kategori_belajar_ekspor = belajar_ekspor.id_kategori_belajar_ekspor')
-    //         ->findAll();
-    // }
+    public function getAllWithCategory()
+    {
+        return $this->select('belajar_ekspor.*, kategori_belajar_ekspor.nama_kategori, kategori_belajar_ekspor.nama_kategori_en')
+            ->join('kategori_belajar_ekspor', 'kategori_belajar_ekspor.id_kategori_belajar_ekspor = belajar_ekspor.id_kategori_belajar_ekspor')
+            ->findAll();
+    }
 
     public function getByCategoryWithPagination($id_kategori_belajar_ekspor, $perPage, $page)
     {
