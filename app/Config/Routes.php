@@ -353,7 +353,6 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
     $routes->post('/admin-update-pengumuman/(:num)', 'KomunitasEkspor::admin_update_pengumuman/$1');
     $routes->get('/admin-delete-pengumuman/(:num)', 'KomunitasEkspor::admin_delete_pengumuman/$1');
 
-
     // Admin - Manfaat Join
     $routes->get('/admin-manfaat-join', 'KomunitasEkspor::admin_manfaat_join');
     $routes->get('/admin-edit-manfaat-join/(:num)', 'KomunitasEkspor::admin_edit_manfaat_join/$1');
@@ -393,4 +392,6 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
 
     // Meta
     $routes->get('/admin-meta', 'KomunitasEkspor::admin_meta');
+    $routes->get('/admin-edit-meta', 'KomunitasEkspor::admin_edit_meta');
+    $routes->post('/admin-update-meta', 'KomunitasEkspor::admin_update_meta');
 });
