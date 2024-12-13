@@ -6012,9 +6012,15 @@ class KomunitasEkspor extends BaseController
     {
         $model_kategori_induk = new KategoriInduk();
 
-        $kategori_induk = $model_kategori_induk->findAll();
+        $perPage = 10;
+        $page = $this->request->getVar('page') ?? 1;
+
+        $kategori_induk = $model_kategori_induk->paginate($perPage);
 
         $data['kategori_induk'] = $kategori_induk;
+        $data['pager'] = $model_kategori_induk->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
 
         return view('admin/kategori-induk/index', $data);
     }
@@ -6077,9 +6083,18 @@ class KomunitasEkspor extends BaseController
     {
         $model_kategori_produk = new KategoriProduk();
 
-        $kategori_produk = $model_kategori_produk->findAll();
+        $perPage = 10;
+        $page = $this->request->getVar('page') ?? 1;
+
+        $kategori_produk = $model_kategori_produk
+            ->select('kategori_produk.*, kategori_induk.nama_kategori_induk AS kategori_induk')
+            ->join('kategori_induk', 'kategori_induk.id_kategori_induk = kategori_produk.id_kategori_induk', 'left')
+            ->paginate($perPage);
 
         $data['kategori_produk'] = $kategori_produk;
+        $data['pager'] = $model_kategori_produk->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
 
         return view('admin/kategori-produk/index', $data);
     }
@@ -6161,5 +6176,54 @@ class KomunitasEkspor extends BaseController
         $data['meta'] = $meta;
 
         return view('admin/meta/index', $data);
+    }
+
+    public function admin_edit_meta()
+    {
+        $model_meta = new Meta();
+
+        $meta = $model_meta->first();
+
+        $data['meta'] = $meta;
+
+        return view('admin/meta/edit', $data);
+    }
+
+    public function admin_update_meta()
+    {
+        $model_meta = new Meta();
+
+        $meta = $model_meta->first();
+
+        $data = [
+            'meta_title_beranda' => $this->request->getPost('meta_title_beranda'),
+            'meta_title_beranda_en' => $this->request->getPost('meta_title_beranda_en'),
+            'meta_description_beranda' => $this->request->getPost('meta_description_beranda'),
+            'meta_description_beranda_en' => $this->request->getPost('meta_description_beranda_en'),
+            'meta_title_tentang' => $this->request->getPost('meta_title_tentang'),
+            'meta_title_tentang_en' => $this->request->getPost('meta_title_tentang_en'),
+            'meta_description_tentang' => $this->request->getPost('meta_description_tentang'),
+            'meta_description_tentang_en' => $this->request->getPost('meta_description_tentang_en'),
+            'meta_title_materi' => $this->request->getPost('meta_title_materi'),
+            'meta_title_materi_en' => $this->request->getPost('meta_title_materi_en'),
+            'meta_description_materi' => $this->request->getPost('meta_description_materi'),
+            'meta_description_materi_en' => $this->request->getPost('meta_description_materi_en'),
+            'meta_title_tutorial' => $this->request->getPost('meta_title_tutorial'),
+            'meta_title_tutorial_en' => $this->request->getPost('meta_title_tutorial_en'),
+            'meta_description_tutorial' => $this->request->getPost('meta_description_tutorial'),
+            'meta_description_tutorial_en' => $this->request->getPost('meta_description_tutorial_en'),
+            'meta_title_member' => $this->request->getPost('meta_title_member'),
+            'meta_title_member_en' => $this->request->getPost('meta_title_member_en'),
+            'meta_description_member' => $this->request->getPost('meta_description_member'),
+            'meta_description_member_en' => $this->request->getPost('meta_description_member_en'),
+            'meta_title_daftar' => $this->request->getPost('meta_title_daftar'),
+            'meta_title_daftar_en' => $this->request->getPost('meta_title_daftar_en'),
+            'meta_description_daftar' => $this->request->getPost('meta_description_daftar'),
+            'meta_description_daftar_en' => $this->request->getPost('meta_description_daftar_en'),
+        ];
+
+        $model_meta->update($meta['id_meta'], $data);
+
+        return redirect()->to('admin-meta');
     }
 }
