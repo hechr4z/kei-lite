@@ -18,18 +18,18 @@
                                 <select id="kategori_induk" class="form-control" name="id_kategori_induk" required>
                                     <option value="" disabled hidden selected>-- Pilih Kategori Induk --</option>
                                     <?php foreach ($kategori_induk as $induk) : ?>
-                                        <option value="<?= $induk['id_kategori_induk']; ?>"><?= $induk['nama_kategori_induk']; ?></option>
+                                        <option value="<?= $induk['id_kategori_induk']; ?>" <?= ($induk['id_kategori_induk'] == $kategori_produk['id_kategori_induk']) ? 'selected' : '' ?>><?= $induk['nama_kategori_induk']; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Kategori Produk Indonesia</label>
+                                <label class="form-label">Kategori Produk ID</label>
                                 <input type="text" class="form-control" name="nama_kategori_produk" value="<?= esc($kategori_produk['nama_kategori_produk']); ?>" required>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Kategori produk English</label>
+                                <label class="form-label">Kategori produk EN</label>
                                 <input type="text" class="form-control" name="nama_kategori_produk_en" value="<?= esc($kategori_produk['nama_kategori_produk_en']); ?>" required>
                             </div>
 
