@@ -13,13 +13,13 @@
                             <?= csrf_field(); ?>
 
                             <div class="mb-3">
-                                <label class="form-label">Kategori Induk Indonesia</label>
-                                <input type="text" class="form-control" name="nama_kategori_induk" placeholder="Masukkan Kategori Induk" required>
+                                <label class="form-label">Kategori Induk ID</label>
+                                <input type="text" class="form-control" name="nama_kategori_induk" placeholder="Masukkan Kategori Induk ID" required>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Kategori Induk English</label>
-                                <input type="text" class="form-control" name="nama_kategori_induk_en" placeholder="Masukkan Kategori Induk" required>
+                                <label class="form-label">Kategori Induk EN</label>
+                                <input type="text" class="form-control" name="nama_kategori_induk_en" placeholder="Masukkan Kategori Induk EN" required>
                             </div>
 
                             <div class="mb-3">
