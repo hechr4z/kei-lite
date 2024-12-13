@@ -106,6 +106,9 @@
             </div>
         <?php endif; ?>
     </div>
+    <div class="mt-2">
+        <?= $pager->links('default', 'bootstrap_pagination') ?>
+    </div>
 </div>
 
 <!-- Back Button -->
