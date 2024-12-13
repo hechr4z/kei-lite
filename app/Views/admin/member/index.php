@@ -220,22 +220,22 @@
                                         <th class="text-center align-middle">Logo Perusahaan</th>
                                         <th class="text-center align-middle">Popular Point</th>
                                         <th class="text-center align-middle col-fixed">Nama Perusahaan</th>
-                                        <th class="text-center align-middle col-fixed">Deskripsi Perusahaan</th>
-                                        <th class="text-center align-middle col-fixed">Deskripsi Perusahaan En</th>
+                                        <th class="text-center align-middle col-fixed">Deskripsi Perusahaan ID</th>
+                                        <th class="text-center align-middle col-fixed">Deskripsi Perusahaan EN</th>
                                         <th class="text-center align-middle col-fixed">Alamat Perusahaan</th>
                                         <th class="text-center align-middle">Tahun Dibentuk</th>
-                                        <th class="text-center align-middle">Kategori Produk</th>
-                                        <th class="text-center align-middle">Kategori Produk En</th>
+                                        <th class="text-center align-middle">Kategori Produk ID</th>
+                                        <th class="text-center align-middle">Kategori Produk EN</th>
                                         <!-- <th class="text-center align-middle col-fixed">Tipe Bisnis</th>
                                         <th class="text-center align-middle col-fixed">Tipe Bisnis En</th> -->
-                                        <th class="text-center align-middle col-fixed">Produk Utama</th>
-                                        <th class="text-center align-middle col-fixed">Produk Utama En</th>
+                                        <th class="text-center align-middle col-fixed">Produk Utama ID</th>
+                                        <th class="text-center align-middle col-fixed">Produk Utama EN</th>
                                         <th class="text-center align-middle col-fixed">Alamat Website</th>
                                         <!-- <th class="text-center align-middle">Skala Bisnis</th>
                                         <th class="text-center align-middle">Skala Bisnis En</th> -->
-                                        <th class="text-center align-middle">Email</th>
-                                        <th class="text-center align-middle">PIC</th>
-                                        <th class="text-center align-middle">PIC Phone</th>
+                                        <th class="text-center align-middle">Email PIC</th>
+                                        <th class="text-center align-middle">Nama PIC</th>
+                                        <th class="text-center align-middle">Nomor HP PIC</th>
                                         <th class="text-center align-middle">Latitude</th>
                                         <th class="text-center align-middle">Longitude</th>
                                         <th class="text-center align-middle">Aksi</th>
@@ -244,7 +244,7 @@
                                 <?php if (empty($member)): ?>
                                     <tbody>
                                         <tr>
-                                            <td colspan="24" class="text-center">Masih belum ada Data Member.</td>
+                                            <td colspan="21" class="text-center">Masih belum ada Data Member.</td>
                                         </tr>
                                     </tbody>
                             </table>
