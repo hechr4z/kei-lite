@@ -13,12 +13,12 @@
                             <?= csrf_field(); ?>
 
                             <div class="mb-3">
-                                <label class="form-label">Kategori induk Indonesia</label>
+                                <label class="form-label">Kategori induk ID</label>
                                 <input type="text" class="form-control" name="nama_kategori_induk" value="<?= esc($kategori_induk['nama_kategori_induk']); ?>" required>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Kategori induk English</label>
+                                <label class="form-label">Kategori induk EN</label>
                                 <input type="text" class="form-control" name="nama_kategori_induk_en" value="<?= esc($kategori_induk['nama_kategori_induk_en']); ?>" required>
                             </div>
 
