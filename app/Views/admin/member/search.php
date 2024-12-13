@@ -224,25 +224,27 @@
                                     <tr>
                                         <th class="text-center align-middle">No</th>
                                         <th class="text-center align-middle">Role</th>
-                                        <th class="text-center align-middle">Status Premium</th>
+                                        <!-- <th class="text-center align-middle">Status Premium</th> -->
                                         <th class="text-center align-middle">Username & Kode Referral</th>
-                                        <th class="text-center align-middle">Foto Profil</th>
+                                        <th class="text-center align-middle">Logo Perusahaan</th>
                                         <th class="text-center align-middle">Popular Point</th>
                                         <th class="text-center align-middle col-fixed">Nama Perusahaan</th>
-                                        <th class="text-center align-middle col-fixed">Deskripsi Perusahaan</th>
-                                        <th class="text-center align-middle col-fixed">Deskripsi Perusahaan en</th>
-                                        <th class="text-center align-middle col-fixed">Tipe Bisnis</th>
-                                        <th class="text-center align-middle col-fixed">Tipe Bisnis En</th>
-                                        <th class="text-center align-middle col-fixed">Produk Utama</th>
-                                        <th class="text-center align-middle col-fixed">Produk Utama en</th>
+                                        <th class="text-center align-middle col-fixed">Deskripsi Perusahaan ID</th>
+                                        <th class="text-center align-middle col-fixed">Deskripsi Perusahaan EN</th>
+                                        <th class="text-center align-middle col-fixed">Alamat Perusahaan</th>
                                         <th class="text-center align-middle">Tahun Dibentuk</th>
-                                        <th class="text-center align-middle">Skala Bisnis</th>
-                                        <th class="text-center align-middle">Skala Bisnis En</th>
-                                        <th class="text-center align-middle">Email</th>
-                                        <th class="text-center align-middle">PIC</th>
-                                        <th class="text-center align-middle">PIC Phone</th>
-                                        <th class="text-center align-middle">Kategori Produk</th>
-                                        <th class="text-center align-middle">Kategori Produk En</th>
+                                        <th class="text-center align-middle">Kategori Produk ID</th>
+                                        <th class="text-center align-middle">Kategori Produk EN</th>
+                                        <!-- <th class="text-center align-middle col-fixed">Tipe Bisnis</th>
+                                        <th class="text-center align-middle col-fixed">Tipe Bisnis En</th> -->
+                                        <th class="text-center align-middle col-fixed">Produk Utama ID</th>
+                                        <th class="text-center align-middle col-fixed">Produk Utama EN</th>
+                                        <th class="text-center align-middle col-fixed">Alamat Website</th>
+                                        <!-- <th class="text-center align-middle">Skala Bisnis</th>
+                                        <th class="text-center align-middle">Skala Bisnis En</th> -->
+                                        <th class="text-center align-middle">Email PIC</th>
+                                        <th class="text-center align-middle">Nama PIC</th>
+                                        <th class="text-center align-middle">Nomor HP PIC</th>
                                         <th class="text-center align-middle">Latitude</th>
                                         <th class="text-center align-middle">Longitude</th>
                                         <th class="text-center align-middle">Aksi</th>
@@ -251,7 +253,7 @@
                                 <?php if (empty($hasilPencarian)): ?>
                                     <tbody>
                                         <tr>
-                                            <td colspan="24" class="text-center">Tidak ada member yang ditemukan.</td>
+                                            <td colspan="21" class="text-center">Tidak ada member yang ditemukan.</td>
                                         </tr>
                                     </tbody>
                             </table>
@@ -262,7 +264,7 @@
                                     <tr>
                                         <td class="text-center align-middle"><?= $start++ ?></td>
                                         <td class="text-center align-middle"><?= $item['role'] ?></td>
-                                        <td class="text-center align-middle"><?= $item['status_premium'] ?></td>
+                                        <!-- <td class="text-center align-middle"><?= $item['status_premium'] ?></td> -->
                                         <td class="text-center align-middle"><?= $item['username'] ?></td>
                                         <?php if (empty($item['foto_profil'])): ?>
                                             <td class="align-middle"><img src="https://via.placeholder.com/100" class="img-thumbnail"></td>
@@ -288,7 +290,11 @@
                                                 <?= $item['deskripsi_perusahaan_en'] ?>
                                             </div>
                                         </td>
-                                        <td class="text-center align-middle col-fixed">
+                                        <td class="text-center align-middle"><?= $item['alamat_perusahaan'] ?></td>
+                                        <td class="text-center align-middle"><?= $item['tahun_dibentuk'] ?></td>
+                                        <td class="text-center align-middle"><?= $item['kategori_produk'] ?></td>
+                                        <td class="text-center align-middle"><?= $item['kategori_produk_en'] ?></td>
+                                        <!-- <td class="text-center align-middle col-fixed">
                                             <div class="text-truncate-multiline" data-bs-toggle="tooltip"
                                                 title="<?= $item['tipe_bisnis'] ?>">
                                                 <?= $item['tipe_bisnis'] ?>
@@ -299,7 +305,7 @@
                                                 title="<?= $item['tipe_bisnis_en'] ?>">
                                                 <?= $item['tipe_bisnis_en'] ?>
                                             </div>
-                                        </td>
+                                        </td> -->
                                         <td class="text-center align-middle col-fixed">
                                             <div class="text-truncate-multiline" data-bs-toggle="tooltip"
                                                 title="<?= $item['produk_utama'] ?>">
@@ -312,14 +318,13 @@
                                                 <?= $item['produk_utama_en'] ?>
                                             </div>
                                         </td>
-                                        <td class="text-center align-middle"><?= $item['tahun_dibentuk'] ?></td>
-                                        <td class="text-center align-middle"><?= $item['skala_bisnis'] ?></td>
-                                        <td class="text-center align-middle"><?= $item['skala_bisnis_en'] ?></td>
+                                        <td class="text-center align-middle"><?= $item['alamat_website'] ?></td>
+                                        <!-- <td class="text-center align-middle"><?= $item['skala_bisnis'] ?></td>
+                                        <td class="text-center align-middle"><?= $item['skala_bisnis_en'] ?></td> -->
                                         <td class="text-center align-middle"><?= $item['email'] ?></td>
                                         <td class="text-center align-middle"><?= $item['pic'] ?></td>
                                         <td class="text-center align-middle"><?= $item['pic_phone'] ?></td>
-                                        <td class="text-center align-middle"><?= $item['kategori_produk'] ?></td>
-                                        <td class="text-center align-middle"><?= $item['kategori_produk_en'] ?></td>
+
                                         <td class="text-center align-middle"><?= $item['latitude'] ?></td>
                                         <td class="text-center align-middle"><?= $item['longitude'] ?></td>
                                         <td class="text-center align-middle">
