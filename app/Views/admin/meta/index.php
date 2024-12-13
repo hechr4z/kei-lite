@@ -199,11 +199,6 @@
                     </label>
                 </form>
             </div> -->
-
-            <div class="col-auto">
-                <a href="<?= base_url('admin-add-meta') ?>" class="btn text-white" style="background-color: #03AADE;">
-                    + Tambah Data Meta</a>
-            </div>
         </div>
         <div class="tab-content" id="orders-table-tab-content">
             <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
@@ -214,37 +209,37 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center align-middle">No</th>
-                                        <th class="text-center align-middle">Meta Title Beranda</th>
-                                        <th class="text-center align-middle">Meta Title Beranda (EN)</th>
-                                        <th class="text-center align-middle">Meta Description Beranda</th>
-                                        <th class="text-center align-middle">Meta Description Beranda (EN)</th>
-                                        <th class="text-center align-middle">Meta Title Tentang</th>
-                                        <th class="text-center align-middle">Meta Title Tentang (EN)</th>
-                                        <th class="text-center align-middle">Meta Description Tentang</th>
-                                        <th class="text-center align-middle">Meta Description Tentang (EN)</th>
-                                        <th class="text-center align-middle">Meta Title Materi</th>
-                                        <th class="text-center align-middle">Meta Title Materi (EN)</th>
-                                        <th class="text-center align-middle">Meta Description Materi</th>
-                                        <th class="text-center align-middle">Meta Description Materi (EN)</th>
-                                        <th class="text-center align-middle">Meta Title Tutorial</th>
-                                        <th class="text-center align-middle">Meta Title Tutorial (EN)</th>
-                                        <th class="text-center align-middle">Meta Description Tutorial</th>
-                                        <th class="text-center align-middle">Meta Description Tutorial (EN)</th>
-                                        <th class="text-center align-middle">Meta Title Member</th>
-                                        <th class="text-center align-middle">Meta Title Member (EN)</th>
-                                        <th class="text-center align-middle">Meta Description Member</th>
-                                        <th class="text-center align-middle">Meta Description Member (EN)</th>
-                                        <th class="text-center align-middle">Meta Title Daftar</th>
-                                        <th class="text-center align-middle">Meta Title Daftar (EN)</th>
-                                        <th class="text-center align-middle">Meta Description Daftar</th>
-                                        <th class="text-center align-middle">Meta Description Daftar (EN)</th>
+                                        <th class="text-center align-middle">Meta Title Beranda ID</th>
+                                        <th class="text-center align-middle">Meta Title Beranda EN</th>
+                                        <th class="text-center align-middle">Meta Description Beranda ID</th>
+                                        <th class="text-center align-middle">Meta Description Beranda EN</th>
+                                        <th class="text-center align-middle">Meta Title Tentang ID</th>
+                                        <th class="text-center align-middle">Meta Title Tentang EN</th>
+                                        <th class="text-center align-middle">Meta Description Tentang ID</th>
+                                        <th class="text-center align-middle">Meta Description Tentang EN</th>
+                                        <th class="text-center align-middle">Meta Title Materi ID</th>
+                                        <th class="text-center align-middle">Meta Title Materi EN</th>
+                                        <th class="text-center align-middle">Meta Description Materi ID</th>
+                                        <th class="text-center align-middle">Meta Description Materi EN</th>
+                                        <th class="text-center align-middle">Meta Title Tutorial ID</th>
+                                        <th class="text-center align-middle">Meta Title Tutorial EN</th>
+                                        <th class="text-center align-middle">Meta Description Tutorial ID</th>
+                                        <th class="text-center align-middle">Meta Description Tutorial EN</th>
+                                        <th class="text-center align-middle">Meta Title Member ID</th>
+                                        <th class="text-center align-middle">Meta Title Member EN</th>
+                                        <th class="text-center align-middle">Meta Description Member ID</th>
+                                        <th class="text-center align-middle">Meta Description Member EN</th>
+                                        <th class="text-center align-middle">Meta Title Daftar ID</th>
+                                        <th class="text-center align-middle">Meta Title Daftar EN</th>
+                                        <th class="text-center align-middle">Meta Description Daftar ID</th>
+                                        <th class="text-center align-middle">Meta Description Daftar EN</th>
                                         <th class="text-center align-middle">Aksi</th>
                                     </tr>
                                 </thead>
                                 <?php if (empty($meta)): ?>
                                     <tbody>
                                         <tr>
-                                            <td colspan="24" class="text-center">Masih belum ada Data Meta.</td>
+                                            <td colspan="26" class="text-center">Masih belum ada Data Meta.</td>
                                         </tr>
                                     </tbody>
                             </table>
@@ -280,12 +275,7 @@
                                         <td class="text-center align-middle"><?= $item['meta_description_daftar_en'] ?></td>
                                         <td class="text-center align-middle">
                                             <div class="d-flex justify-content-center align-items-center">
-                                                <a href="<?= base_url('admin-delete-meta/' . $item['id_meta']) ?>"
-                                                    class="btn btn-sm text-white me-2"
-                                                    style="background-color: #F2BF02;">Hapus</a>
-                                                <a href="<?= base_url('admin-edit-meta/' . $item['id_meta']) ?>"
-                                                    class="btn btn-sm text-white"
-                                                    style="background-color: #03AADE;">Ubah</a>
+                                                <a href="<?= base_url('admin-edit-meta') ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">Ubah</a>
                                             </div>
                                         </td>
                                     </tr>
