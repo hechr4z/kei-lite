@@ -3241,33 +3241,38 @@ class KomunitasEkspor extends BaseController
     public function member_video_tutorial($slug = null)
     {
         $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
         $vidioModel = new VidioTutorialModel();
         $kategoriModel = new KategoriVidioModel();
-
-        // Mengambil data profil web
-        $webprofile = $model_webprofile->findAll();
 
         // Mengambil semua kategori
         $kategori = $kategoriModel->findAll();
 
-        // Mengambil 3 video terlama
-        $video = $vidioModel
-            ->orderBy('created_at', 'ASC') // Urutkan berdasarkan tanggal pembuatan (terlama)
-            ->limit(3)                     // Batasi hanya 3 data
-            ->getAllVideos();
+        $vidio = [];
 
-        // Menyiapkan data untuk dikirimkan ke view
-        $data = [
-            'webprofile' => $webprofile,
-            'video_tutorial' => $video, // Hanya 3 video terlama
-            'kategori_vidio' => $kategori,
-            'selected_category' => $slug,
-        ];
+        if ($slug) {
+            // Jika ada slug kategori, ambil video berdasarkan kategori dan batasi hanya 3
+            $vidio = $vidioModel->getLimitedVideosByKategori($slug, 3);
+        } else {
+            // Jika tidak ada kategori, ambil 3 video dari setiap kategori
+            foreach ($kategori as $kat) {
+                $vidio[$kat['nama_kategori_video']] = $vidioModel->getLimitedVideosByKategori($kat['slug'], 3);
+            }
+        }
+
+        // Mengirimkan data ke view
+        $data['video_tutorial'] = $vidio;
+        $data['kategori_vidio'] = $kategori;
+        $data['selected_category'] = $slug;
 
         return view('member/video-tutorial/video_tutorial', $data);
     }
 
-    public function premium_video_selengkapnya($slug)
+    public function member_video_selengkapnya($slug)
     {
         $model_webprofile = new WebProfile();
 
@@ -3279,9 +3284,12 @@ class KomunitasEkspor extends BaseController
         // Ambil data kategori berdasarkan slug
         $kategori = $kategoriModel->where('slug', $slug)->first();
 
+        $perPage = 9; // Number of items per page
+        $page = $this->request->getVar('page') ?? 1; // Get the current page number
+
         // Jika kategori ditemukan, ambil video yang sesuai
         if ($kategori) {
-            $videos = $vidioModel->getVideosByKategori($slug);
+            $videos = $vidioModel->getVideosByKategoriWithPagination($slug, $perPage, $page);
         } else {
             $videos = [];
         }
@@ -3293,7 +3301,9 @@ class KomunitasEkspor extends BaseController
             'webprofile' => $webprofile,
         ];
 
-        return view('premium/video-tutorial/video_selengkapnya', $data);
+        $data['pager'] = $vidioModel->pager; // Get the pager instance
+
+        return view('member/video-tutorial/video_selengkapnya', $data);
     }
 
     public function member_video_tutorial_detail($slug)
