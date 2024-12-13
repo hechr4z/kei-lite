@@ -48,9 +48,9 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Logo Perusahaan</label>
+                                <label class="form-label">Logo Perusahaan<span style="color: red;">*</span></label>
                                 <input type="file" class="form-control" name="foto_profil" id="foto_profil"
-                                    onchange="previewImage()">
+                                    onchange="previewImage()" required>
                                 <img id="preview" src="https://via.placeholder.com/100" alt="Foto Member"
                                     class="img-thumbnail mt-2" style="max-width: 100px;">
                             </div>
@@ -62,26 +62,26 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Deskripsi Perusahaan</label>
+                                <label class="form-label">Deskripsi Perusahaan ID<span style="color: red;">*</span></label>
                                 <textarea class="form-control" name="deskripsi_perusahaan" style="height: 120px;"
-                                    placeholder="Masukkan Deskripsi Perusahaan"></textarea>
+                                    placeholder="Masukkan Deskripsi Perusahaan ID" required></textarea>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Deskripsi Perusahaan En</label>
+                                <label class="form-label">Deskripsi Perusahaan EN<span style="color: red;">*</span></label>
                                 <textarea class="form-control" name="deskripsi_perusahaan_en" style="height: 120px;"
-                                    placeholder="Masukkan Deskripsi Perusahaan Versi Bahasa Inggris"></textarea>
+                                    placeholder="Masukkan Deskripsi Perusahaan EN" required></textarea>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Alamat Perusahaan</label>
+                                <label class="form-label">Alamat Perusahaan<span style="color: red;">*</span></label>
                                 <textarea class="form-control" name="alamat_perusahaan" style="height: 120px;"
-                                    placeholder="Masukkan Alamat Perusahaan"></textarea>
+                                    placeholder="Masukkan Alamat Perusahaan" required></textarea>
                             </div>
 
                             <!-- Tahun Berdiri Perusahaan -->
                             <div class="mb-3">
-                                <label for="tahun_dibentuk"><span class="form-label">Tahun Didirkan</span></label>
+                                <label for="tahun_dibentuk"><span class="form-label">Tahun Didirkan<span style="color: red;">*</span></span></label>
                                 <select id="tahun_dibentuk" name="tahun_dibentuk" class="form-control" required>
                                     <option value="" disabled selected>-- Pilih Tahun --</option>
                                     <?php
@@ -106,9 +106,9 @@
                             </div> -->
 
                             <div class="mb-3">
-                                <label for="kategori_produk" class="form-label">Kategori Produk Indonesia</label>
+                                <label for="kategori_produk" class="form-label">Kategori Produk ID<span style="color: red;">*</span></label>
                                 <select id="kategori_produk" name="kategori_produk" class="form-control" required>
-                                    <option value="" disabled selected>-- Pilih Kategori Produk --</option>
+                                    <option value="" disabled selected>-- Pilih Kategori Produk ID --</option>
                                     <?php foreach ($kategori_induk as $item): ?>
                                         <optgroup label='<?= $item['nama_kategori_induk'] ?>'>
                                             <?php if (!empty($kategori_produk_terkelompok[$item['id_kategori_induk']])): ?>
@@ -124,9 +124,9 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="kategori_produk" class="form-label">Kategori Produk English</label>
+                                <label for="kategori_produk" class="form-label">Kategori Produk EN<span style="color: red;">*</span></label>
                                 <select id="kategori_produk" name="kategori_produk_en" class="form-control" required>
-                                    <option value="" disabled selected>-- Pilih Kategori Produk --</option>
+                                    <option value="" disabled selected>-- Pilih Kategori Produk EN --</option>
                                     <?php foreach ($kategori_induk as $item): ?>
                                         <optgroup label='<?= $item['nama_kategori_induk_en'] ?>'>
                                             <?php if (!empty($kategori_produk_terkelompok[$item['id_kategori_induk']])): ?>
@@ -142,27 +142,18 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Produk Utama</label>
-                                <input type="text" class="form-control" name="produk_utama"
-                                    placeholder="Masukkan Produk Utama">
+                                <label class="form-label">Produk Utama ID<span style="color: red;">*</span></label>
+                                <textarea class="form-control" name="produk_utama" style="height: 120px;" placeholder="Masukkan Produk Utama ID" required></textarea>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Produk Utama</label>
-                                <textarea class="form-control" name="produk_utama" style="height: 120px;"
-                                    placeholder="Masukkan Produk Utama"></textarea>
+                                <label class="form-label">Produk Utama EN<span style="color: red;">*</span></label>
+                                <textarea class="form-control" name="produk_utama_en" style="height: 120px;" placeholder="Masukkan Produk Utama EN" required></textarea>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Produk Utama En</label>
-                                <input type="text" class="form-control" name="produk_utama_en"
-                                    placeholder="Masukkan Produk Utama Versi Bahasa Inggris">
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">Alamat Website</label>
-                                <textarea class="form-control" name="alamat_website" style="height: 120px;"
-                                    placeholder="Masukkan Alamat Website"></textarea>
+                                <label class="form-label">Alamat Website<span style="color: red;">*</span></label>
+                                <textarea class="form-control" name="alamat_website" style="height: 120px;" placeholder="Masukkan Alamat Website" required></textarea>
                             </div>
 
 
@@ -274,8 +265,7 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Longitude<span style="color: red;">*</span></label>
-                                <input type="text" class="form-control" name="longitude"
-                                    placeholder="Masukkan Longitude" required>
+                                <input type="text" class="form-control" name="longitude" placeholder="Masukkan Longitude" required>
                             </div>
 
                             <div class="mb-3">
