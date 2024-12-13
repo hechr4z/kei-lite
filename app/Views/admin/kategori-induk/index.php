@@ -66,32 +66,40 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center" valign="middle">No</th>
-                                        <th class="text-center" valign="middle">Kategori Induk Indonesia</th>
-                                        <th class="text-center" valign="middle">Kategori Induk English</th>
+                                        <th class="text-center" valign="middle">Kategori Induk ID</th>
+                                        <th class="text-center" valign="middle">Kategori Induk EN</th>
                                         <th class="text-center" valign="middle">Aksi</th>
                                     </tr>
                                 </thead>
-
-
-
-                                <tbody>
-                                    <?php $no = 1; ?>
-                                    <?php foreach ($kategori_induk as $item): ?>
+                                <?php if (empty($kategori_induk)): ?>
+                                    <tbody>
                                         <tr>
-                                            <td class="text-center" valign="middle"><?= $no++; ?></td>
-                                            <td class="text-center" valign="middle"><?= $item['nama_kategori_induk']; ?></td>
-                                            <td class="text-center" valign="middle"><?= $item['nama_kategori_induk_en']; ?></td>
-                                            <td class="text-center align-middle">
-                                                <div class="d-flex justify-content-center align-items-center">
-                                                    <a href="<?= base_url('/admin-kategori-induk-delete/' . $item['id_kategori_induk']) ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">Hapus</a>
-                                                    <a href="<?= base_url('/admin-kategori-induk-edit/' . $item['id_kategori_induk']) ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">Ubah</a>
-                                                </div>
-                                            </td>
+                                            <td colspan="4" class="text-center">Masih belum ada Data Kategori Induk.</td>
                                         </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
+                                    </tbody>
                             </table>
-
+                        <?php else: ?>
+                            <tbody>
+                                <?php $start = ($page - 1) * $perPage + 1; ?>
+                                <?php foreach ($kategori_induk as $item): ?>
+                                    <tr>
+                                        <td class="text-center" valign="middle"><?= $start++; ?></td>
+                                        <td class="text-center" valign="middle"><?= $item['nama_kategori_induk']; ?></td>
+                                        <td class="text-center" valign="middle"><?= $item['nama_kategori_induk_en']; ?></td>
+                                        <td class="text-center align-middle">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <a href="<?= base_url('/admin-kategori-induk-delete/' . $item['id_kategori_induk']) ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">Hapus</a>
+                                                <a href="<?= base_url('/admin-kategori-induk-edit/' . $item['id_kategori_induk']) ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">Ubah</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                            </table>
+                            <div class="mt-2">
+                                <?= $pager->links('default', 'bootstrap_pagination') ?>
+                            </div>
+                        <?php endif; ?>
                         </div><!--//table-responsive-->
                     </div><!--//app-card-body-->
                 </div><!--//app-card-->
