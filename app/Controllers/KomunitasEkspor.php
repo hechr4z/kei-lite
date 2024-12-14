@@ -53,9 +53,9 @@ class KomunitasEkspor extends BaseController
         $model_manfaatjoin = new ManfaatJoin();
 
         $slider = $model_slider->findAll();
-        $member = $model_member->whereIn('role', ['member', 'premium'])->findAll();
+        $member = $model_member->where('role', 'member')->findAll();
         $top4_member = $model_member
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'member')
             ->orderBy('popular_point', 'DESC')
             ->limit(4)
             ->findAll();
@@ -89,9 +89,9 @@ class KomunitasEkspor extends BaseController
         $model_manfaatjoin = new ManfaatJoin();
 
         $slider = $model_slider->findAll();
-        $member = $model_member->whereIn('role', ['member', 'premium'])->findAll();
+        $member = $model_member->where('role', 'member')->findAll();
         $top4_member = $model_member
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'member')
             ->orderBy('popular_point', 'DESC')
             ->limit(4)
             ->findAll();
@@ -191,9 +191,9 @@ class KomunitasEkspor extends BaseController
         $model_manfaatjoin = new ManfaatJoin();
 
         $slider = $model_slider->findAll();
-        $member = $model_member->whereIn('role', ['member', 'premium'])->findAll();
+        $member = $model_member->where('role', 'member')->findAll();
         $top4_member = $model_member
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'member')
             ->orderBy('popular_point', 'DESC')
             ->limit(4)
             ->findAll();
@@ -858,7 +858,7 @@ class KomunitasEkspor extends BaseController
 
         // Fetch members with pagination
         $members = $model_member
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'member')
             ->orderBy('popular_point', 'DESC')
             ->paginate($perPage);
 
@@ -915,7 +915,7 @@ class KomunitasEkspor extends BaseController
 
         // Cari member berdasarkan username, karena slug dibuat dari username
         $member = $model_member
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'member')
             ->where('username', url_title($slug, '-', true))
             ->first();
 
@@ -935,7 +935,7 @@ class KomunitasEkspor extends BaseController
 
         // Top 3 popular members
         $members = $model_member
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'member')
             ->orderBy('popular_point', 'DESC')
             ->findAll(); // Tambahkan findAll() untuk mengambil data
 
@@ -984,8 +984,7 @@ class KomunitasEkspor extends BaseController
 
         // Fetch members with pagination
         $members = $model_member
-            ->where('role', 'premium')
-            ->where('status_premium', 'verified')
+            ->where('role', 'member')
             ->orderBy('popular_point', 'DESC')
             ->paginate($perPage);
 
@@ -1017,8 +1016,7 @@ class KomunitasEkspor extends BaseController
 
         // Cari member berdasarkan username, karena slug dibuat dari username
         $member = $model_member
-            ->where('role', 'premium')
-            ->where('status_premium', 'verified')
+            ->where('role', 'member')
             ->where('username', url_title($slug, '-', true))
             ->first();
 
@@ -1038,8 +1036,7 @@ class KomunitasEkspor extends BaseController
 
         // Top 3 popular members
         $members = $model_member
-            ->where('role', 'premium')
-            ->where('status_premium', 'verified')
+            ->where('role', 'member')
             ->orderBy('popular_point', 'DESC')
             ->findAll(); // Tambahkan findAll() untuk mengambil data
 
@@ -2969,39 +2966,31 @@ class KomunitasEkspor extends BaseController
         return redirect()->to('/');
     }
 
-    // public function member_data_buyers()
-    // {
-    //     $session = session();
-    //     $user_id = $session->get('user_id');
+    public function member_data_buyers()
+    {
+        $model_webprofile = new WebProfile();
 
-    //     $model_webprofile = new WebProfile();
+        $webprofile = $model_webprofile->findAll();
 
-    //     $webprofile = $model_webprofile->findAll();
+        $data['webprofile'] = $webprofile;
 
-    //     $data['webprofile'] = $webprofile;
+        $model_buyers = new Buyers();
 
-    //     $model_produk = new Produk();
-    //     $model_buyers = new Buyers();
+        $perPage = 10;
+        $page = $this->request->getVar('page') ?? 1;
 
-    //     $produk = $model_produk->where('id_member', $user_id)->findColumn('hs_code');
+        $buyers = $model_buyers
+            ->orderBy('verif_date', 'DESC')
+            ->paginate($perPage);
 
-    //     $perPage = 10;
-    //     $page = $this->request->getVar('page') ?? 1;
+        // Prepare data to pass to the view
+        $data['buyers'] = $buyers;
+        $data['pager'] = $model_buyers->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
 
-    //     // If there are hs_codes, find buyers with matching hs_codes
-    //     $buyers = [];
-    //     if ($produk) {
-    //         $buyers = $model_buyers->whereIn('hs_code', $produk)->paginate($perPage);
-    //     }
-
-    //     // Prepare data to pass to the view
-    //     $data['buyers'] = $buyers;
-    //     $data['pager'] = $model_buyers->pager;
-    //     $data['page'] = $page;
-    //     $data['perPage'] = $perPage;
-
-    //     return view('member/data-buyers/index', $data);
-    // }
+        return view('member/data-buyers/index', $data);
+    }
 
     public function member_belajar_ekspor($slug = null)
     {
@@ -3468,7 +3457,7 @@ class KomunitasEkspor extends BaseController
         $kategoribelajarekspor = $model_kategoribelajarekspor->countAll();
         $kategorivideo = $model_kategorivideo->countAll();
         $manfaatjoin = $model_manfaatjoin->countAll();
-        $member = $model_member->whereIn('role', ['member', 'premium'])->countAllResults();
+        $member = $model_member->where('role', 'member')->countAllResults();
         $mpm = $model_mpm->countAll();
         $pengumuman = $model_pengumuman->countAll();
         $produk = $model_produk->countAll();
@@ -3512,7 +3501,7 @@ class KomunitasEkspor extends BaseController
         $page = $this->request->getVar('page') ?? 1;
 
         $member = $model_member
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'member')
             ->orderBy('tanggal_verifikasi', 'DESC')
             ->paginate($perPage);
 
@@ -3539,7 +3528,7 @@ class KomunitasEkspor extends BaseController
 
         // Query pencarian: mencari berdasarkan judul, tags, atau deskripsi
         $hasilPencarian = $model_member
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'member')
             ->groupStart()
             ->like('role', $keyword)
             ->orLike('status_premium', $keyword)
@@ -3689,7 +3678,7 @@ class KomunitasEkspor extends BaseController
         }
         $data['kategori_produk_terkelompok'] = $kategori_produk_terkelompok;
 
-        $member = $model_member->whereIn('role', ['member', 'premium'])->find($id);
+        $member = $model_member->where('role', 'member')->find($id);
 
         $data['member'] = $member;
 
@@ -3765,7 +3754,7 @@ class KomunitasEkspor extends BaseController
     {
         $model_member = new Member();
 
-        $member = $model_member->whereIn('role', ['member', 'premium'])->find($id);
+        $member = $model_member->where('role', 'member')->find($id);
 
         if ($member['foto_profil'] && file_exists(ROOTPATH . 'public/img/' . $member['foto_profil'])) {
             unlink(ROOTPATH . 'public/img/' . $member['foto_profil']);
@@ -3906,7 +3895,7 @@ class KomunitasEkspor extends BaseController
         $produk = $model_produk
             ->select('produk.*, member.username AS username_member')
             ->join('member', 'member.id_member = produk.id_member', 'left')
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'member')
             ->paginate($perPage);
 
         $data['produk'] = $produk;
@@ -3944,7 +3933,7 @@ class KomunitasEkspor extends BaseController
             ->orLike('produk.kapasitas_produksi_bln', $keyword)
             ->orLike('member.username', $keyword) // Pencarian di `username` dari `member`
             ->groupEnd() // Mengakhiri grup kondisi
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'member')
             ->paginate($perPage);
 
         // Jika ada hasil pencarian
@@ -3961,7 +3950,7 @@ class KomunitasEkspor extends BaseController
     {
         $model_member = new Member();
 
-        $member = $model_member->whereIn('role', ['member', 'premium'])->select('id_member, username')->findAll();
+        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
 
         $data['member'] = $member;
 
@@ -3975,7 +3964,7 @@ class KomunitasEkspor extends BaseController
 
         $id_member = $this->request->getPost('id_member');
 
-        $memberData = $model_member->where('id_member', $id_member)->whereIn('role', ['member', 'premium'])->first();
+        $memberData = $model_member->where('id_member', $id_member)->where('role', 'member')->first();
 
         if (!$memberData) {
             return redirect()->to('/admin-produk')->withInput()->with('errors', ['ID Member tidak valid atau bukan seorang member']);
@@ -4013,7 +4002,7 @@ class KomunitasEkspor extends BaseController
 
         $produk = $model_produk->find($id);
 
-        $member = $model_member->whereIn('role', ['member', 'premium'])->select('id_member, username')->findAll();
+        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
 
         $data['produk'] = $produk;
         $data['member'] = $member;
@@ -4028,7 +4017,7 @@ class KomunitasEkspor extends BaseController
 
         $id_member = $this->request->getPost('id_member');
 
-        $memberData = $model_member->where('id_member', $id_member)->whereIn('role', ['member', 'premium'])->first();
+        $memberData = $model_member->where('id_member', $id_member)->where('role', 'member')->first();
 
         if (!$memberData) {
             return redirect()->to('/admin-produk')->withInput()->with('errors', ['ID Member tidak valid atau bukan seorang member']);
@@ -4098,7 +4087,7 @@ class KomunitasEkspor extends BaseController
         $sertifikat = $model_sertifikat
             ->select('sertifikat.*, member.username AS username_member')
             ->join('member', 'member.id_member = sertifikat.id_member', 'left')
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'member')
             ->paginate($perPage);
 
         $data['sertifikat'] = $sertifikat;
@@ -4132,7 +4121,7 @@ class KomunitasEkspor extends BaseController
             ->orLike('sertifikat.sertifikat', $keyword)
             ->orLike('member.username', $keyword) // Pencarian di `username` dari `member`
             ->groupEnd() // Mengakhiri grup kondisi
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'member')
             ->paginate($perPage);
 
         // Jika ada hasil pencarian
@@ -4149,7 +4138,7 @@ class KomunitasEkspor extends BaseController
     {
         $model_member = new Member();
 
-        $member = $model_member->whereIn('role', ['member', 'premium'])->select('id_member, username')->findAll();
+        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
 
         $data['member'] = $member;
 
@@ -4163,7 +4152,7 @@ class KomunitasEkspor extends BaseController
 
         $id_member = $this->request->getPost('id_member');
 
-        $memberData = $model_member->where('id_member', $id_member)->whereIn('role', ['member', 'premium'])->first();
+        $memberData = $model_member->where('id_member', $id_member)->where('role', 'member')->first();
 
         if (!$memberData) {
             return redirect()->to('/admin-sertifikat')->withInput()->with('errors', ['ID Member tidak valid atau bukan seorang member']);
@@ -4197,7 +4186,7 @@ class KomunitasEkspor extends BaseController
 
         $sertifikat = $model_sertifikat->find($id);
 
-        $member = $model_member->whereIn('role', ['member', 'premium'])->select('id_member, username')->findAll();
+        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
 
         $data['sertifikat'] = $sertifikat;
         $data['member'] = $member;
@@ -4212,7 +4201,7 @@ class KomunitasEkspor extends BaseController
 
         $id_member = $this->request->getPost('id_member');
 
-        $memberData = $model_member->where('id_member', $id_member)->whereIn('role', ['member', 'premium'])->first();
+        $memberData = $model_member->where('id_member', $id_member)->where('role', 'member')->first();
 
         if (!$memberData) {
             return redirect()->to('/admin-sertifikat')->withInput()->with('errors', ['ID Member tidak valid atau bukan seorang member']);
@@ -4699,7 +4688,7 @@ class KomunitasEkspor extends BaseController
         $exwork = $model_exwork
             ->select('exwork.*, member.username AS username_member')
             ->join('member', 'member.id_member = exwork.id_member', 'left')
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'member')
             ->paginate($perPage);
 
         $data['exwork'] = $exwork;
@@ -4731,7 +4720,7 @@ class KomunitasEkspor extends BaseController
             ->like('exwork.komponen_exwork', $keyword) // Pencarian di `komponen_exwork`
             ->orLike('member.username', $keyword) // Pencarian di `username` dari `member`
             ->groupEnd() // Mengakhiri grup kondisi
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'member')
             ->paginate($perPage);
 
         // Jika ada hasil pencarian
@@ -4748,7 +4737,7 @@ class KomunitasEkspor extends BaseController
     {
         $model_member = new Member();
 
-        $member = $model_member->whereIn('role', ['member', 'premium'])->select('id_member, username')->findAll();
+        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
 
         $data['member'] = $member;
 
@@ -4762,7 +4751,7 @@ class KomunitasEkspor extends BaseController
 
         $id_member = $this->request->getPost('id_member');
 
-        $memberData = $model_member->where('id_member', $id_member)->whereIn('role', ['member', 'premium'])->first();
+        $memberData = $model_member->where('id_member', $id_member)->where('role', 'member')->first();
 
         if (!$memberData) {
             return redirect()->to('/admin-exwork')->withInput()->with('errors', ['ID Member tidak valid atau bukan seorang member']);
@@ -4785,7 +4774,7 @@ class KomunitasEkspor extends BaseController
 
         $exwork = $model_exwork->find($id);
 
-        $member = $model_member->whereIn('role', ['member', 'premium'])->select('id_member, username')->findAll();
+        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
 
         $data['exwork'] = $exwork;
         $data['member'] = $member;
@@ -4800,7 +4789,7 @@ class KomunitasEkspor extends BaseController
 
         $id_member = $this->request->getPost('id_member');
 
-        $memberData = $model_member->where('id_member', $id_member)->whereIn('role', ['member', 'premium'])->first();
+        $memberData = $model_member->where('id_member', $id_member)->where('role', 'member')->first();
 
         if (!$memberData) {
             return redirect()->to('/admin-exwork')->withInput()->with('errors', ['ID Member tidak valid atau bukan seorang member']);
@@ -4837,7 +4826,7 @@ class KomunitasEkspor extends BaseController
         $fob = $model_fob
             ->select('fob.*, member.username AS username_member')
             ->join('member', 'member.id_member = fob.id_member', 'left')
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'member')
             ->paginate($perPage);
 
         $data['fob'] = $fob;
@@ -4869,7 +4858,7 @@ class KomunitasEkspor extends BaseController
             ->like('fob.komponen_fob', $keyword) // Pencarian di `komponen_fob`
             ->orLike('member.username', $keyword) // Pencarian di `username` dari `member`
             ->groupEnd() // Mengakhiri grup kondisi
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'member')
             ->paginate($perPage);
 
         // Jika ada hasil pencarian
@@ -4886,7 +4875,7 @@ class KomunitasEkspor extends BaseController
     {
         $model_member = new Member();
 
-        $member = $model_member->whereIn('role', ['member', 'premium'])->select('id_member, username')->findAll();
+        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
 
         $data['member'] = $member;
 
@@ -4900,7 +4889,7 @@ class KomunitasEkspor extends BaseController
 
         $id_member = $this->request->getPost('id_member');
 
-        $memberData = $model_member->where('id_member', $id_member)->whereIn('role', ['member', 'premium'])->first();
+        $memberData = $model_member->where('id_member', $id_member)->where('role', 'member')->first();
 
         if (!$memberData) {
             return redirect()->to('/admin-fob')->withInput()->with('errors', ['ID Member tidak valid atau bukan seorang member']);
@@ -4923,7 +4912,7 @@ class KomunitasEkspor extends BaseController
 
         $fob = $model_fob->find($id);
 
-        $member = $model_member->whereIn('role', ['member', 'premium'])->select('id_member, username')->findAll();
+        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
 
         $data['fob'] = $fob;
         $data['member'] = $member;
@@ -4938,7 +4927,7 @@ class KomunitasEkspor extends BaseController
 
         $id_member = $this->request->getPost('id_member');
 
-        $memberData = $model_member->where('id_member', $id_member)->whereIn('role', ['member', 'premium'])->first();
+        $memberData = $model_member->where('id_member', $id_member)->where('role', 'member')->first();
 
         if (!$memberData) {
             return redirect()->to('/admin-fob')->withInput()->with('errors', ['ID Member tidak valid atau bukan seorang member']);
@@ -4975,7 +4964,7 @@ class KomunitasEkspor extends BaseController
         $cfr = $model_cfr
             ->select('cfr.*, member.username AS username_member')
             ->join('member', 'member.id_member = cfr.id_member', 'left')
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'member')
             ->paginate($perPage);
 
         $data['cfr'] = $cfr;
@@ -5007,7 +4996,7 @@ class KomunitasEkspor extends BaseController
             ->like('cfr.komponen_cfr', $keyword) // Pencarian di `komponen_cfr`
             ->orLike('member.username', $keyword) // Pencarian di `username` dari `member`
             ->groupEnd() // Mengakhiri grup kondisi
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'member')
             ->paginate($perPage);
 
         // Jika ada hasil pencarian
@@ -5024,7 +5013,7 @@ class KomunitasEkspor extends BaseController
     {
         $model_member = new Member();
 
-        $member = $model_member->whereIn('role', ['member', 'premium'])->select('id_member, username')->findAll();
+        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
 
         $data['member'] = $member;
 
@@ -5038,7 +5027,7 @@ class KomunitasEkspor extends BaseController
 
         $id_member = $this->request->getPost('id_member');
 
-        $memberData = $model_member->where('id_member', $id_member)->whereIn('role', ['member', 'premium'])->first();
+        $memberData = $model_member->where('id_member', $id_member)->where('role', 'member')->first();
 
         if (!$memberData) {
             return redirect()->to('/admin-cfr')->withInput()->with('errors', ['ID Member tidak valid atau bukan seorang member']);
@@ -5061,7 +5050,7 @@ class KomunitasEkspor extends BaseController
 
         $cfr = $model_cfr->find($id);
 
-        $member = $model_member->whereIn('role', ['member', 'premium'])->select('id_member, username')->findAll();
+        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
 
         $data['cfr'] = $cfr;
         $data['member'] = $member;
@@ -5076,7 +5065,7 @@ class KomunitasEkspor extends BaseController
 
         $id_member = $this->request->getPost('id_member');
 
-        $memberData = $model_member->where('id_member', $id_member)->whereIn('role', ['member', 'premium'])->first();
+        $memberData = $model_member->where('id_member', $id_member)->where('role', 'member')->first();
 
         if (!$memberData) {
             return redirect()->to('/admin-cfr')->withInput()->with('errors', ['ID Member tidak valid atau bukan seorang member']);
@@ -5113,7 +5102,7 @@ class KomunitasEkspor extends BaseController
         $cif = $model_cif
             ->select('cif.*, member.username AS username_member')
             ->join('member', 'member.id_member = cif.id_member', 'left')
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'member')
             ->paginate($perPage);
 
         $data['cif'] = $cif;
@@ -5145,7 +5134,7 @@ class KomunitasEkspor extends BaseController
             ->like('cif.komponen_cif', $keyword) // Pencarian di `komponen_cif`
             ->orLike('member.username', $keyword) // Pencarian di `username` dari `member`
             ->groupEnd() // Mengakhiri grup kondisi
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'member')
             ->paginate($perPage);
 
         // Jika ada hasil pencarian
@@ -5162,7 +5151,7 @@ class KomunitasEkspor extends BaseController
     {
         $model_member = new Member();
 
-        $member = $model_member->whereIn('role', ['member', 'premium'])->select('id_member, username')->findAll();
+        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
 
         $data['member'] = $member;
 
@@ -5176,7 +5165,7 @@ class KomunitasEkspor extends BaseController
 
         $id_member = $this->request->getPost('id_member');
 
-        $memberData = $model_member->where('id_member', $id_member)->whereIn('role', ['member', 'premium'])->first();
+        $memberData = $model_member->where('id_member', $id_member)->where('role', 'member')->first();
 
         if (!$memberData) {
             return redirect()->to('/admin-cif')->withInput()->with('errors', ['ID Member tidak valid atau bukan seorang member']);
@@ -5199,7 +5188,7 @@ class KomunitasEkspor extends BaseController
 
         $cif = $model_cif->find($id);
 
-        $member = $model_member->whereIn('role', ['member', 'premium'])->select('id_member, username')->findAll();
+        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
 
         $data['cif'] = $cif;
         $data['member'] = $member;
@@ -5214,7 +5203,7 @@ class KomunitasEkspor extends BaseController
 
         $id_member = $this->request->getPost('id_member');
 
-        $memberData = $model_member->where('id_member', $id_member)->whereIn('role', ['member', 'premium'])->first();
+        $memberData = $model_member->where('id_member', $id_member)->where('role', 'member')->first();
 
         if (!$memberData) {
             return redirect()->to('/admin-cif')->withInput()->with('errors', ['ID Member tidak valid atau bukan seorang member']);
@@ -5251,7 +5240,7 @@ class KomunitasEkspor extends BaseController
         $satuan = $model_satuan
             ->select('satuan.*, member.username AS username_member')
             ->join('member', 'member.id_member = satuan.id_member', 'left')
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'member')
             ->paginate($perPage);
 
         $data['satuan'] = $satuan;
@@ -5283,7 +5272,7 @@ class KomunitasEkspor extends BaseController
             ->like('satuan.satuan', $keyword) // Pencarian di `satuan`
             ->orLike('member.username', $keyword) // Pencarian di `username` dari `member`
             ->groupEnd() // Mengakhiri grup kondisi
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'member')
             ->paginate($perPage);
 
         // Jika ada hasil pencarian
@@ -5303,7 +5292,7 @@ class KomunitasEkspor extends BaseController
 
         $satuan = $model_satuan->find($id);
 
-        $member = $model_member->whereIn('role', ['member', 'premium'])->select('id_member, username')->findAll();
+        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
 
         $data['satuan'] = $satuan;
         $data['member'] = $member;
@@ -5336,7 +5325,7 @@ class KomunitasEkspor extends BaseController
         $mpm = $model_mpm
             ->select('mpm.*, member.username AS username_member')
             ->join('member', 'member.id_member = mpm.id_member', 'left')
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'member')
             ->paginate($perPage);
 
         $bulanIndonesia = [
@@ -5432,7 +5421,7 @@ class KomunitasEkspor extends BaseController
             ->orLike('mpm.progres', $keyword)
             ->orLike('member.username', $keyword)
             ->groupEnd()
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'member')
             ->paginate($perPage);
 
         // Indonesian months for formatting
@@ -5486,7 +5475,7 @@ class KomunitasEkspor extends BaseController
         $website_audit = $model_website_audit
             ->select('website_audit.*, member.username AS username_member')
             ->join('member', 'member.id_member = website_audit.id_member', 'left')
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'member')
             ->paginate($perPage);
 
         $data['website_audit'] = $website_audit;
@@ -5539,7 +5528,7 @@ class KomunitasEkspor extends BaseController
             ->orLike('website_audit.status_verifikasi', $mappedKeyword) // Use mappedKeyword here
             ->orLike('member.username', $keyword) // Pencarian di `username` dari `member`
             ->groupEnd() // Mengakhiri grup kondisi
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'member')
             ->paginate($perPage);
 
         // Jika ada hasil pencarian
@@ -5559,7 +5548,7 @@ class KomunitasEkspor extends BaseController
 
         $webaudit = $model_webaudit->find($id);
 
-        $member = $model_member->whereIn('role', ['member', 'premium'])->select('id_member, username')->findAll();
+        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
 
         $data['webaudit'] = $webaudit;
         $data['member'] = $member;
