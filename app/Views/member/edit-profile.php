@@ -254,8 +254,7 @@
 
             <div class="text-center mb-3 shadow lingkaran">
                 <!-- Image Preview -->
-                <img id="profileImage"
-                    src="<?= base_url('img/' . ($member['foto_profil'] ?? 'default.jpg')); ?>"
+                <img id="profileImage" src="<?= base_url('img/' . ($member['foto_profil'] ?? 'default.jpg')); ?>"
                     alt="Foto Profil">
             </div>
 
@@ -269,19 +268,21 @@
                 </div>
 
                 <!-- Hidden File Input -->
-                <input type="file" id="fileInput" name="foto_profil" accept="image/*" style="display: none;" onchange="previewImage(event)">
+                <input type="file" id="fileInput" name="foto_profil" accept="image/*" style="display: none;"
+                    onchange="previewImage(event)">
             </div>
 
             <!-- Submit Button -->
             <div class="text-center mb-3">
-                <button type="submit" class="btn btn-custom" style="width: 100px; background-color: #03AADE; color: #fff;">Submit</button>
+                <button type="submit" class="btn btn-custom"
+                    style="width: 100px; background-color: #03AADE; color: #fff;">Submit</button>
             </div>
         </form>
 
         <h4 class="text-center mt-1"><?= $member['username'] ?></h4>
-        <?php if (session()->get('errors')) : ?>
+        <?php if (session()->get('errors')): ?>
             <div class="alert alert-danger">
-                <?php foreach (session()->get('errors') as $error) : ?>
+                <?php foreach (session()->get('errors') as $error): ?>
                     <p><?= esc($error) ?></p>
                 <?php endforeach ?>
             </div>
@@ -289,10 +290,13 @@
         <!-- Tabs Navigation -->
         <ul class="nav nav-tabs justify-content-center gap-3 mt-3" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active custom-tab" id="informasi-tab" data-bs-toggle="tab" data-bs-target="#informasi" type="button" role="tab" aria-controls="informasi" aria-selected="true">Informasi Akun</button>
+                <button class="nav-link active custom-tab" id="informasi-tab" data-bs-toggle="tab"
+                    data-bs-target="#informasi" type="button" role="tab" aria-controls="informasi"
+                    aria-selected="true">Informasi Akun</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link custom-tab" id="profil-tab" data-bs-toggle="tab" data-bs-target="#profil" type="button" role="tab" aria-controls="profil" aria-selected="false">Profil Perusahaan</button>
+                <button class="nav-link custom-tab" id="profil-tab" data-bs-toggle="tab" data-bs-target="#profil"
+                    type="button" role="tab" aria-controls="profil" aria-selected="false">Profil Perusahaan</button>
             </li>
         </ul>
 
@@ -303,13 +307,10 @@
                 <h5 class="mb-4">Informasi Akun</h5>
                 <form action="<?= base_url('/ubah-informasi-akun'); ?>" method="POST" enctype="multipart/form-data">
                     <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="email" name="email" value="<?= $member['email'] ?>" placeholder="Masukkan Email">
-                        </div>
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-12 mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="text" class="form-control" id="password" name="password" placeholder="Masukkan Password">
+                            <input type="text" class="form-control" id="password" name="password"
+                                placeholder="Masukkan Password">
                         </div>
                         <button type="submit" class="btn btn-custom" style="background-color: #03AADE;">Submit</button>
                     </div>
@@ -323,42 +324,61 @@
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <label for="nama_perusahaan" class="form-label">Nama Perusahaan</label>
-                            <input type="text" class="form-control <?= isset($errors['nama_perusahaan']) ? 'is-invalid' : '' ?>" id="nama_perusahaan" name="nama_perusahaan" value="<?= old('nama_perusahaan', $member['nama_perusahaan']) ?>" placeholder="Masukkan Nama Perusahaan" required>
+                            <input type="text"
+                                class="form-control <?= isset($errors['nama_perusahaan']) ? 'is-invalid' : '' ?>"
+                                id="nama_perusahaan" name="nama_perusahaan"
+                                value="<?= old('nama_perusahaan', $member['nama_perusahaan']) ?>"
+                                placeholder="Masukkan Nama Perusahaan" required>
                             <?php if (isset($errors['nama_perusahaan'])): ?>
                                 <div class="invalid-feedback"><?= $errors['nama_perusahaan'] ?></div>
                             <?php endif; ?>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="deskripsi_perusahaan" class="form-label">Deskripsi Perusahaan</label>
-                            <textarea class="form-control <?= isset($errors['deskripsi_perusahaan']) ? 'is-invalid' : '' ?>" id="deskripsi_perusahaan" name="deskripsi_perusahaan" placeholder="Masukkan Deskripsi Perusahaan" required><?= old('deskripsi_perusahaan', $member['deskripsi_perusahaan']) ?></textarea>
+                            <label for="deskripsi_perusahaan" class="form-label">Deskripsi Perusahaan ID</label>
+                            <textarea
+                                class="form-control <?= isset($errors['deskripsi_perusahaan']) ? 'is-invalid' : '' ?>"
+                                id="deskripsi_perusahaan" name="deskripsi_perusahaan"
+                                placeholder="Masukkan Deskripsi Perusahaan"
+                                required><?= old('deskripsi_perusahaan', $member['deskripsi_perusahaan']) ?></textarea>
                             <?php if (isset($errors['deskripsi_perusahaan'])): ?>
                                 <div class="invalid-feedback"><?= $errors['deskripsi_perusahaan'] ?></div>
                             <?php endif; ?>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="deskripsi_perusahaan_en" class="form-label">Deskripsi Perusahaan (Inggris)</label>
-                            <textarea class="form-control <?= isset($errors['deskripsi_perusahaan_en']) ? 'is-invalid' : '' ?>" id="deskripsi_perusahaan_en" name="deskripsi_perusahaan_en" placeholder="Masukkan Deskripsi Perusahaan (Inggris)" required><?= old('deskripsi_perusahaan_en', $member['deskripsi_perusahaan_en']) ?></textarea>
+                            <label for="deskripsi_perusahaan_en" class="form-label">Deskripsi Perusahaan EN</label>
+                            <textarea
+                                class="form-control <?= isset($errors['deskripsi_perusahaan_en']) ? 'is-invalid' : '' ?>"
+                                id="deskripsi_perusahaan_en" name="deskripsi_perusahaan_en"
+                                placeholder="Masukkan Deskripsi Perusahaan (Inggris)"
+                                required><?= old('deskripsi_perusahaan_en', $member['deskripsi_perusahaan_en']) ?></textarea>
                             <?php if (isset($errors['deskripsi_perusahaan_en'])): ?>
                                 <div class="invalid-feedback"><?= $errors['deskripsi_perusahaan_en'] ?></div>
                             <?php endif; ?>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="alamat_perusahaan" class="form-label">Alamat Perusahaan</label>
-                            <textarea class="form-control <?= isset($errors['alamat_perusahaan']) ? 'is-invalid' : '' ?>" id="alamat_perusahaan" name="alamat_perusahaan" placeholder="Masukkan Alamat Perusahaan" required><?= old('alamat_perusahaan', $member['alamat_perusahaan']) ?></textarea>
+                            <textarea
+                                class="form-control <?= isset($errors['alamat_perusahaan']) ? 'is-invalid' : '' ?>"
+                                id="alamat_perusahaan" name="alamat_perusahaan" placeholder="Masukkan Alamat Perusahaan"
+                                required><?= old('alamat_perusahaan', $member['alamat_perusahaan']) ?></textarea>
                             <?php if (isset($errors['alamat_perusahaan'])): ?>
                                 <div class="invalid-feedback"><?= $errors['alamat_perusahaan'] ?></div>
                             <?php endif; ?>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="alamat_website" class="form-label">Alamat Website</label>
-                            <textarea class="form-control <?= isset($errors['alamat_website']) ? 'is-invalid' : '' ?>" id="alamat_website" name="alamat_website" placeholder="Masukkan Alamat Website" required><?= old('alamat_website', $member['alamat_website']) ?></textarea>
+                            <textarea class="form-control <?= isset($errors['alamat_website']) ? 'is-invalid' : '' ?>"
+                                id="alamat_website" name="alamat_website" placeholder="Masukkan Alamat Website"
+                                required><?= old('alamat_website', $member['alamat_website']) ?></textarea>
                             <?php if (isset($errors['alamat_website'])): ?>
                                 <div class="invalid-feedback"><?= $errors['alamat_website'] ?></div>
                             <?php endif; ?>
                         </div>
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-12 mb-3">
                             <label for="tahun_berdiri" class="form-label">Tahun Dibentuk</label>
-                            <select id="tahun_berdiri" name="tahun_dibentuk" class="form-control <?= isset($errors['tahun_dibentuk']) ? 'is-invalid' : '' ?>" required>
+                            <select id="tahun_berdiri" name="tahun_dibentuk"
+                                class="form-control <?= isset($errors['tahun_dibentuk']) ? 'is-invalid' : '' ?>"
+                                required>
                                 <option value="" disabled selected>-- Pilih Tahun Dibentuk --</option>
                                 <?php
                                 $currentYear = date('Y');
@@ -374,15 +394,16 @@
                             <?php endif; ?>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="kategori_produk" class="form-label">Kategori Produk Indonesia</label>
-                            <select id="kategori_produk" name="kategori_produk" class="form-control <?= isset($errors['kategori_produk']) ? 'is-invalid' : '' ?>" required>
+                            <label for="kategori_produk" class="form-label">Kategori Produk ID</label>
+                            <select id="kategori_produk" name="kategori_produk"
+                                class="form-control <?= isset($errors['kategori_produk']) ? 'is-invalid' : '' ?>"
+                                required>
                                 <option value="" disabled selected>-- Pilih Kategori Produk --</option>
                                 <?php foreach ($kategori_induk as $item): ?>
                                     <optgroup label='<?= $item['nama_kategori_induk'] ?>'>
                                         <?php if (!empty($kategori_produk_terkelompok[$item['id_kategori_induk']])): ?>
                                             <?php foreach ($kategori_produk_terkelompok[$item['id_kategori_induk']] as $produk): ?>
-                                                <option value="<?= $produk['nama_kategori_produk'] ?>"
-                                                    <?= old('kategori_produk', $member['kategori_produk']) == $produk['nama_kategori_produk'] ? 'selected' : '' ?>>
+                                                <option value="<?= $produk['nama_kategori_produk'] ?>" <?= old('kategori_produk', $member['kategori_produk']) == $produk['nama_kategori_produk'] ? 'selected' : '' ?>>
                                                     <?= $produk['nama_kategori_produk'] ?>
                                                 </option>
                                             <?php endforeach; ?>
@@ -396,8 +417,10 @@
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label for="kategori_produk_en" class="form-label">Kategori Produk English</label>
-                            <select id="kategori_produk_en" name="kategori_produk_en" class="form-control <?= isset($errors['kategori_produk_en']) ? 'is-invalid' : '' ?>" required>
+                            <label for="kategori_produk_en" class="form-label">Kategori Produk EN</label>
+                            <select id="kategori_produk_en" name="kategori_produk_en"
+                                class="form-control <?= isset($errors['kategori_produk_en']) ? 'is-invalid' : '' ?>"
+                                required>
                                 <option value="" disabled selected>-- Pilih Kategori Produk --</option>
                                 <?php foreach ($kategori_induk as $item): ?>
                                     <optgroup label='<?= $item['nama_kategori_induk_en'] ?>'>
@@ -417,32 +440,47 @@
                             <?php endif; ?>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="produk_utama" class="form-label">Produk Utama</label>
-                            <textarea class="form-control <?= isset($errors['produk_utama']) ? 'is-invalid' : '' ?>" id="produk_utama" name="produk_utama" placeholder="Masukkan Produk Utama" required><?= old('produk_utama', $member['produk_utama']) ?></textarea>
+                            <label for="produk_utama" class="form-label">Produk Utama ID</label>
+                            <textarea class="form-control <?= isset($errors['produk_utama']) ? 'is-invalid' : '' ?>"
+                                id="produk_utama" name="produk_utama" placeholder="Masukkan Produk Utama"
+                                required><?= old('produk_utama', $member['produk_utama']) ?></textarea>
                             <?php if (isset($errors['produk_utama'])): ?>
                                 <div class="invalid-feedback"><?= $errors['produk_utama'] ?></div>
                             <?php endif; ?>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="produk_utama_en" class="form-label">Produk Utama (Inggris)</label>
-                            <textarea class="form-control <?= isset($errors['produk_utama_en']) ? 'is-invalid' : '' ?>" id="produk_utama_en" name="produk_utama_en" placeholder="Masukkan Produk Utama (Inggris)" required><?= old('produk_utama_en', $member['produk_utama_en']) ?></textarea>
+                            <label for="produk_utama_en" class="form-label">Produk Utama EN</label>
+                            <textarea class="form-control <?= isset($errors['produk_utama_en']) ? 'is-invalid' : '' ?>"
+                                id="produk_utama_en" name="produk_utama_en"
+                                placeholder="Masukkan Produk Utama (Inggris)"
+                                required><?= old('produk_utama_en', $member['produk_utama_en']) ?></textarea>
                             <?php if (isset($errors['produk_utama_en'])): ?>
                                 <div class="invalid-feedback"><?= $errors['produk_utama_en'] ?></div>
                             <?php endif; ?>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="pic" class="form-label">PIC</label>
-                            <input type="text" class="form-control <?= isset($errors['pic']) ? 'is-invalid' : '' ?>" id="pic" name="pic" value="<?= old('pic', $member['pic']) ?>" placeholder="Masukkan PIC" required>
+                            <label for="pic" class="form-label">Nama PIC</label>
+                            <input type="text" class="form-control <?= isset($errors['pic']) ? 'is-invalid' : '' ?>"
+                                id="pic" name="pic" value="<?= old('pic', $member['pic']) ?>" placeholder="Masukkan PIC"
+                                required>
                             <?php if (isset($errors['pic'])): ?>
                                 <div class="invalid-feedback"><?= $errors['pic'] ?></div>
                             <?php endif; ?>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="pic_phone" class="form-label">No.Telp PIC</label>
-                            <input type="text" class="form-control <?= isset($errors['pic_phone']) ? 'is-invalid' : '' ?>" id="pic_phone" name="pic_phone" value="<?= old('pic_phone', $member['pic_phone']) ?>" placeholder="Masukkan No.Telp PIC" required>
+                            <label for="pic_phone" class="form-label">Nomor HP PIC</label>
+                            <input type="text"
+                                class="form-control <?= isset($errors['pic_phone']) ? 'is-invalid' : '' ?>"
+                                id="pic_phone" name="pic_phone" value="<?= old('pic_phone', $member['pic_phone']) ?>"
+                                placeholder="Masukkan No.Telp PIC" required>
                             <?php if (isset($errors['pic_phone'])): ?>
                                 <div class="invalid-feedback"><?= $errors['pic_phone'] ?></div>
                             <?php endif; ?>
+                        </div>
+
+                        <div class="col-md-12 mb-3">
+                            <label for="email" class="form-label">Email PIC</label>
+                            <input type="text" class="form-control" id="email" name="email" value="<?= $member['email'] ?>" placeholder="Masukkan Email">
                         </div>
 
                         <button type="submit" class="btn btn-custom" style="background-color: #03AADE;">Submit</button>
@@ -462,12 +500,10 @@
 
         if (file) {
             const reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 image.src = e.target.result; // Update pratinjau gambar dengan file yang dipilih
             };
             reader.readAsDataURL(file);
         }
     }
-</script>
-
-<?= $this->endSection(); ?>
+</script><?= $this->endSection(); ?>
