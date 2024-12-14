@@ -471,7 +471,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('/member-tentang-kami') ?>">
+                        <a class="nav-link" href="<?= base_url('/tentang-kami') ?>">
                             Tentang Kami
                         </a>
                     </li>
@@ -485,13 +485,13 @@
                                 <ul class="dropdown-menu dropdown-menu-light">
                                     <li>
                                         <a class="dropdown-item nav-link"
-                                            href="<?= base_url('member-belajar-ekspor') ?>">
-                                            Belajar Ekspor
+                                            href="<?= base_url('materi-ekspor') ?>">
+                                            Materi Ekspor
                                         </a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item nav-link"
-                                            href="<?= base_url('member-video-tutorial') ?>">
+                                            href="<?= base_url('video-tutorial') ?>">
                                             Video Tutorial
                                         </a>
                                     </li>
@@ -500,12 +500,12 @@
                         </ul>
                     </div>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('member-data-member') ?>">
+                        <a class="nav-link" href="<?= base_url('data-member') ?>">
                             Data Member
                         </a>
                     </li>
-                    <li class="nav-item" onclick="showSweetAlertDB()">
-                        <a class="nav-link" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url('data-buyers') ?>">
                             Data Buyers
                         </a>
                     </li>
@@ -630,11 +630,11 @@
                         <h5 class="mt-4"><b>Menu</b></h5>
                         <div class="list-unstyled pt-2">
                             <p><a href="<?= base_url('beranda') ?>" class="footer-link">Beranda</a></p>
-                            <p><a href="<?= base_url('beranda') ?>" class="footer-link">Tentang Kami</a></p>
-                            <p><a href="<?= base_url('member-belajar-ekspor') ?>" class="footer-link">Materi Ekspor</a></p>
-                            <p><a href="<?= base_url('member-video-tutorial') ?>" class="footer-link">Video Tutorial</a></p>
-                            <p><a href="<?= base_url('member-data-member') ?>" class="footer-link">Data Member</a></p>
-                            <p onclick="showSweetAlertDB()"><a href="#" class="footer-link">Data Buyers</a></p>
+                            <p><a href="<?= base_url('tentang-kami') ?>" class="footer-link">Tentang Kami</a></p>
+                            <p><a href="<?= base_url('materi-ekspor') ?>" class="footer-link">Materi Ekspor</a></p>
+                            <p><a href="<?= base_url('video-tutorial') ?>" class="footer-link">Video Tutorial</a></p>
+                            <p><a href="<?= base_url('data-member') ?>" class="footer-link">Data Member</a></p>
+                            <p><a href="<?= base_url('data-buyers') ?>" class="footer-link">Data Buyers</a></p>
                             <p><a href="<?= base_url('pengumuman') ?>" class="footer-link">Pengumuman</a></p>
                             <p><a href="<?= base_url('edit-profile') ?>" class="footer-link">Edit Profile</a></p>
                         </div>
@@ -667,8 +667,6 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script>
         window.addEventListener('scroll', function() {
             var navbar = document.querySelector('.navbar-custom');
@@ -678,28 +676,9 @@
                 navbar.classList.remove('scrolled');
             }
         });
-
-        function showSweetAlertDB() {
-            Swal.fire({
-                title: "Mau Buka Fitur Data Buyers?",
-                text: "Yuk Daftar Member Premium Dulu",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Daftar",
-                cancelButtonText: "Nanti"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.open("<?= base_url('/daftar-premium') ?>", "_blank");
-                } else {
-                    Swal.fire("Oke, Jangan Lupa Daftar!");
-                }
-            });
-        }
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>
