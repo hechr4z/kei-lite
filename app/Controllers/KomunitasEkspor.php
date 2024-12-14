@@ -2979,10 +2979,13 @@ class KomunitasEkspor extends BaseController
     public function member_belajar_ekspor($slug = null)
     {
         $model_webprofile = new WebProfile();
+        $model_kategori = new KategoriBelajarEksporModel();
 
         $webprofile = $model_webprofile->findAll();
+        $kategori = $model_kategori->findAll();
 
         $data['webprofile'] = $webprofile;
+        $data['kategori_belajar_ekspor'] = $kategori;
 
         $belajarEksporModel = new BelajarEksporModel();
 
@@ -2994,7 +2997,66 @@ class KomunitasEkspor extends BaseController
 
         $data['belajar_ekspor'] = $belajarEkspor;
 
+        if ($slug) {
+            // Jika slug kategori dipilih, ambil data sesuai kategori
+            $kategori = $model_kategori->where('slug', $slug)->first();
+            if (!$kategori) {
+                return redirect()->to('/')->with('error', 'Kategori tidak ditemukan');
+            }
+            // Mengambil data berdasarkan kategori
+            $data['belajar_ekspor'] = $belajarEksporModel->getByCategory($kategori['id_kategori_belajar_ekspor']);
 
+            // Mengirimkan data kategori yang dipilih ke view
+            $data['active_category'] = $kategori['id_kategori_belajar_ekspor'];
+        } else {
+            // Jika tidak ada slug, tampilkan semua data
+            $data['belajar_ekspor'] = $belajarEksporModel->getAllWithCategory();
+
+            // Tidak ada kategori yang aktif
+            $data['active_category'] = null;
+        }
+
+        $data['pager'] = $belajarEksporModel->pager; // Get the pager instance
+
+        return view('member/belajar-ekspor/belajar_ekspor', $data);
+    }
+
+    public function member_kategori_belajar_ekspor($slug)
+    {
+        $lang = session()->get('lang') ?? 'id';
+        $data['lang'] = $lang;
+
+        $model_webprofile = new WebProfile();
+        $webprofile = $model_webprofile->findAll();
+        $data['webprofile'] = $webprofile;
+
+        $model_meta = new Meta();
+        $meta = $model_meta
+            ->select('meta_title_materi, meta_title_materi_en, meta_description_materi, meta_description_materi_en')
+            ->first();
+        $data['meta'] = $meta;
+
+        $belajarEksporModel = new BelajarEksporModel();
+        $kategoriBelajarEksporModel = new KategoriBelajarEksporModel();
+
+        // Mengambil kategori berdasarkan slug
+        $kategori = $kategoriBelajarEksporModel->where('slug', $slug)->orWhere('slug_en', $slug)->first();
+        if (!$kategori) {
+            // Jika kategori tidak ditemukan, redirect atau tampilkan error
+            return redirect()->to('/')->with('error', 'Kategori tidak ditemukan');
+        }
+
+        $perPage = 9; // Number of items per page
+        $page = $this->request->getVar('page') ?? 1; // Get the current page number
+
+        // Mengambil data belajar ekspor yang terkait dengan kategori yang dipilih
+        $data['belajar_ekspor'] = $belajarEksporModel->getSpecificByCategoryWithPagination($kategori['id_kategori_belajar_ekspor'], $perPage, $page);
+
+        // Mengambil semua kategori untuk menu dropdown
+        $data['kategori_belajar_ekspor'] = $kategoriBelajarEksporModel->findAll();
+
+        // Mengirim data kategori yang dipilih untuk ditampilkan di view
+        $data['active_category'] = $kategori['id_kategori_belajar_ekspor'];
 
         $data['pager'] = $belajarEksporModel->pager; // Get the pager instance
 

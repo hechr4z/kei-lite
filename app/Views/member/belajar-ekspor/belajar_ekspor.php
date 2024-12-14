@@ -339,41 +339,84 @@
 </div>
 
 <section class="container">
-    <div class="row container g-4 mb-5">
-        <?php if (!empty($belajar_ekspor)): ?>
-            <!-- Menampilkan artikel sesuai kategori -->
-            <?php foreach ($belajar_ekspor as $item): ?>
-                <!-- Card -->
-                <div class="col-md-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="<?= base_url('/img/' . $item['foto_belajar_ekspor']); ?>" class="card-img-top img-fluid" alt="<?= $item['judul_belajar_ekspor']; ?>" style="object-fit: cover; object-position: center; aspect-ratio: 16/9;" loading="lazy">
-                        <div class="card-body d-flex flex-column">
-                            <div class="mb-3 d-flex justify-content-between align-items-center">
-                                <p class="card-text mb-0" style="font-size: 1rem;"><?= date('d F Y', strtotime($item['created_at'])); ?></p>
-                                <span class="badge"><?= $item['nama_kategori']; ?></span>
+    <section class="container">
+        <!-- start filter -->
+        <div class="filter-container">
+            <div class="menu">
+                <div class="item">
+                    <a href="#" class="link text-light">
+                        <span>Filter Kategori</span>
+                        <svg viewBox="0 0 360 360" xml:space="preserve">
+                            <g id="SVGRepo_iconCarrier">
+                                <path
+                                    id="XMLID_225_"
+                                    d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393 c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393 s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"></path>
+                            </g>
+                        </svg>
+                    </a>
+                    <div class="submenu">
+                        <!-- Tampilkan kategori dari database -->
+                        <?php if (!empty($kategori_belajar_ekspor)): ?>
+                            <!-- Tampilkan link ke semua kategori -->
+                            <div class="submenu-item">
+                                <a href="<?= base_url('materi-ekspor'); ?>" class="submenu-link <?= empty($active_category) ? 'active' : ''; ?>">
+                                    Semua Kategori
+                                </a>
                             </div>
-                            <h5 class="card-title" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                                <?= $item['judul_belajar_ekspor']; ?>
-                            </h5>
-                            <p style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                                <?= $item['deskripsi_belajar_ekspor']; ?>
-                            </p>
-                            <a href="<?= base_url('/materi-ekspor-detail/' . $item['slug']); ?>" class="btn btn-custom mt-auto" style="width: 100%; display: block; text-align: center;">Baca Selengkapnya</a>
-                        </div>
+                            <!-- Loop kategori -->
+                            <?php foreach ($kategori_belajar_ekspor as $item): ?>
+                                <div class="submenu-item">
+                                    <a href="<?= base_url('kategori/' . $item['slug']); ?>" class="submenu-link <?= $active_category == $item['id_kategori_belajar_ekspor'] ? 'active' : ''; ?>">
+                                        <?= $item['nama_kategori']; ?>
+                                    </a>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <div class="submenu-item">
+                                <span class="submenu-link">Tidak ada kategori</span>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
-            <?php endforeach; ?>
-            <div class="mt-5">
-                <?= $pager->links('default', 'bootstrap_pagination') ?>
             </div>
-        <?php else: ?>
-            <div class="col-12">
-                <div class="alert alert-info text-center" role="alert">
-                    Belum ada materi untuk ditampilkan di halaman ini.
-                </div>
-            </div>
-        <?php endif; ?>
-    </div>
-</section>
+        </div>
+        <!-- end filter -->
 
-<?= $this->endSection(); ?>
+        <div class="row container g-4 mb-5">
+            <?php if (!empty($belajar_ekspor)): ?>
+                <!-- Menampilkan artikel sesuai kategori -->
+                <?php foreach ($belajar_ekspor as $item): ?>
+                    <!-- Card -->
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="<?= base_url('/img/' . $item['foto_belajar_ekspor']); ?>" class="card-img-top img-fluid" alt="<?= $item['judul_belajar_ekspor']; ?>" style="object-fit: cover; object-position: center; aspect-ratio: 16/9;" loading="lazy">
+                            <div class="card-body d-flex flex-column">
+                                <div class="mb-3 d-flex justify-content-between align-items-center">
+                                    <p class="card-text mb-0" style="font-size: 1rem;"><?= date('d F Y', strtotime($item['created_at'])); ?></p>
+                                    <span class="badge"><?= $item['nama_kategori']; ?></span>
+                                </div>
+                                <h5 class="card-title" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
+                                    <?= $item['judul_belajar_ekspor']; ?>
+                                </h5>
+                                <p style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
+                                    <?= $item['deskripsi_belajar_ekspor']; ?>
+                                </p>
+                                <a href="<?= base_url('/materi-ekspor-detail/' . $item['slug']); ?>" class="btn btn-custom mt-auto" style="width: 100%; display: block; text-align: center;">Baca Selengkapnya</a>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+                <div class="mt-5">
+                    <?= $pager->links('default', 'bootstrap_pagination') ?>
+                </div>
+            <?php else: ?>
+                <div class="col-12">
+                    <div class="alert alert-info text-center" role="alert">
+                        Belum ada materi untuk ditampilkan di halaman ini.
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
+    </section>
+
+    <?= $this->endSection(); ?>
