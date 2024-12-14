@@ -31,6 +31,21 @@
         border-radius: 8px;
     }
 
+    .btn-custom {
+        background-color: #03AADE;
+        text-align: center;
+        color: #ffffff;
+        border: none;
+        margin-top: auto;
+        border-radius: 8px;
+        width: 100%;
+    }
+
+    .btn-custom:hover {
+        background-color: #F2BF02;
+        color: #ffffff;
+    }
+
     .tab-content {
         margin-top: 20px;
     }
@@ -73,7 +88,7 @@
         transform: translateY(-5px) !important;
     }
 
-    .member-img .product-img {
+    .member-img {
         margin: 10px;
         border-radius: 8px;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -81,19 +96,10 @@
         object-fit: cover;
     }
 
-    .btn-custom {
-        background-color: #03AADE;
-        text-align: center;
-        color: #ffffff;
+    .card .btn:hover {
+        background-color: #F2BF02 !important;
+        color: #fff;
         border: none;
-        margin-top: auto;
-        border-radius: 8px;
-        width: 100%;
-    }
-
-    .btn-custom:hover {
-        background-color: #F2BF02;
-        color: #ffffff;
     }
 
     .container {
@@ -124,279 +130,157 @@
             <!-- Badge with Code Referral -->
             <div class="text-center mb-3">
                 <span class="badge badge-lg bg-light text-dark p-2" style="font-size: 18px;">
-                    Kode Refferal: <?= $member['username'] ?>
+                    <?php echo lang('Blog.referralCode') ?><?= $member['username'] ?>
                 </span>
-                <span class="badge badge-lg bg-light text-dark p-2 mt-2" style="font-size: 18px;">
-                    Email: <?= $member['email'] ?>
-                </span>
-            </div>
-
-            <!-- Submit Button -->
-            <div class="text-center mb-3">
-                <a href="#" class="btn btn-custom" style="width: 125px;">
-                    Landing Page
-                </a>
             </div>
 
             <!-- Tabs Navigation -->
             <ul class="nav nav-tabs justify-content-center gap-3 mt-3" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active custom-tab" id="personal-info-tab" data-bs-toggle="tab"
-                        data-bs-target="#personal-info" type="button" role="tab" aria-controls="personal-info"
-                        aria-selected="true">Profil Perusahaan</button>
+                    <button class="nav-link active custom-tab" id="profil-perusahaan-tab" data-bs-toggle="tab"
+                        data-bs-target="#profil-perusahaan" type="button" role="tab" aria-controls=" profil-perusahaan"
+                        aria-selected="true">
+                        <?php echo lang('Blog.companyProfile') ?>
+                    </button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link custom-tab" id="education-job-tab" data-bs-toggle="tab"
-                        data-bs-target="#education-job" type="button" role="tab" aria-controls="education-job"
-                        aria-selected="false">Sertifikat</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link custom-tab" id="certification-tab" data-bs-toggle="tab"
-                        data-bs-target="#certification" type="button" role="tab" aria-controls="certification"
-                        aria-selected="false">Data Produk</button>
+                    <button class="nav-link custom-tab" id="tabPIC-tab" data-bs-toggle="tab"
+                        data-bs-target="#tabPIC" type="button" role="tab" aria-controls=" tabPIC"
+                        aria-selected="false">
+                        <?php echo lang('Blog.tabPIC') ?>
+                    </button>
                 </li>
             </ul>
 
+
             <!-- Tabs Content -->
             <div class="tab-content mt-4" id="myTabContent">
-                <div class="tab-pane fade show active" id="personal-info" role="tabpanel"
-                    aria-labelledby="personal-info-tab">
-                    <h5 class="mb-4">Profil Perusahaan: </h5>
+                <div class="tab-pane fade show active" id="profil-perusahaan" role="tabpanel"
+                    aria-labelledby="profil-perusahaan-tab">
+                    <h5 class=" mb-4"><?php echo lang('Blog.profilPerusahaan') ?></h5>
                     <div class="row">
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-12 mb-3">
                             <div class="card p-3 shadow-sm bg-light">
                                 <i class="fas fa-building fa-lg mb-2"></i>
-                                <p><strong>Nama Perusahaan: </strong>
-                                    <?= $member['nama_perusahaan'] ?></p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="card p-3 shadow-sm bg-light">
-                                <i class="fas fa-industry fa-lg mb-2"></i>
-                                <p><strong>Tipe Bisnis: </strong>
-                                    <?= $member['tipe_bisnis'] ?>
+                                <p>
+                                    <strong>
+                                        <?php echo lang('Blog.companyName') ?>
+                                    </strong>
+                                    <?= $member['nama_perusahaan'] ?>
                                 </p>
                             </div>
                         </div>
                         <div class="col-12 mb-3">
-                            <div class="card p-3 shadow-sm bg-light d-flex flex-column">
+                            <div class=" card p-3 shadow-sm bg-light d-flex flex-column">
                                 <i class="fas fa-file-alt fa-lg mb-2"></i>
-                                <label class="form-label"><strong>Deskripsi Perusahaan: </strong></label>
+                                <label class="form-label">
+                                    <strong>
+                                        <?php echo lang('Blog.companyDesc') ?>
+                                    </strong>
+                                </label>
                                 <p class="mb-0">
-                                    <?= nl2br(htmlspecialchars($member['deskripsi_perusahaan'])) ?>
+                                    <?= nl2br(htmlspecialchars(($lang == 'en') ? $member['deskripsi_perusahaan_en'] : $member['deskripsi_perusahaan'])) ?>
                                 </p>
-
                             </div>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="card p-3 shadow-sm bg-light">
-                                <i class="fas fa-box fa-lg mb-2"></i>
-                                <p><strong>Produk Utama: </strong>
-                                    <?= $member['produk_utama'] ?>
-                                </p>
-
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-12 mb-3">
                             <div class="card p-3 shadow-sm bg-light">
                                 <i class="fas fa-calendar-alt fa-lg mb-2"></i>
-                                <p><strong>Tahun Didirikan: </strong>
-                                    <?= $member['tahun_dibentuk'] ?></p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="card p-3 shadow-sm bg-light">
-                                <i class="fas fa-chart-line fa-lg mb-2"></i>
-                                <p><strong>Skala Bisnis: </strong>
-                                    <?= $member['skala_bisnis'] ?>
+                                <p>
+                                    <strong>
+                                        <?php echo lang('Blog.yearEstablished') ?>
+                                    </strong>
+                                    <?= $member['tahun_dibentuk'] ?>
                                 </p>
                             </div>
                         </div>
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-12 mb-3">
+                            <div class="card p-3 shadow-sm bg-light">
+                                <i class="fas fa-map-marker-alt fa-lg mb-2"></i>
+                                <p>
+                                    <strong>
+                                        <?php echo lang('Blog.companyAddress') ?>
+                                    </strong>
+                                    <?= $member['alamat_perusahaan'] ?>
+                                    <!-- harusnya 'alamat_perusahaan' -->
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <div class="card p-3 shadow-sm bg-light">
+                                <i class="fas fa-box fa-lg mb-2"></i>
+                                <p>
+                                    <strong>
+                                        <?php echo lang('Blog.mainProduct') ?>
+                                    </strong>
+                                    <?= ($lang == 'en') ? $member['produk_utama_en'] : $member['produk_utama'] ?>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
                             <div class="card p-3 shadow-sm bg-light">
                                 <i class="fas fa-leaf fa-lg mb-2"></i>
-                                <p><strong>Kategori Produk: </strong>
-                                    <?= $member['kategori_produk'] ?>
+                                <p>
+                                    <strong>
+                                        <?php echo lang('Blog.productCategory') ?>
+                                    </strong>
+                                    <?= ($lang == 'en') ? $member['kategori_produk_en'] : $member['kategori_produk'] ?>
                                 </p>
                             </div>
                         </div>
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-12 mb-3">
                             <div class="card p-3 shadow-sm bg-light">
-                                <i class="fas fa-user-tie fa-lg mb-2"></i>
-                                <p><strong>PIC: </strong> <?= $member['pic'] ?></p>
+                                <i class="fas fa-globe fa-lg mb-2"></i>
+                                <p>
+                                    <strong>
+                                        <?php echo lang('Blog.websiteAddress') ?>
+                                    </strong>
+                                    <?= $member['alamat_website'] ?>
+                                    <!-- harusnya 'alamat_website' -->
+                                </p>
                             </div>
                         </div>
-                        <div class="col-md-6 mb-3">
+                    </div>
+                </div>
+
+
+                <!-- PIC -->
+                <div class="tab-pane fade" id="tabPIC" role="tabpanel" aria-labelledby="tabPIC-tab">
+                    <h5 class="mb-4"><?php echo lang('Blog.tabPIC') ?></h5>
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <div class="card p-3 shadow-sm bg-light">
+                                <i class="fas fa-user fa-lg mb-2"></i>
+                                <p>
+                                    <strong>
+                                        <?php echo lang('Blog.picName') ?>
+                                    </strong>
+                                    <?= $member['pic'] ?>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <div class="card p-3 shadow-sm bg-light">
+                                <i class="fas fa-envelope fa-lg mb-2"></i>
+                                <p>
+                                    <strong>
+                                        <?php echo lang('Blog.picEmail') ?>
+                                    </strong>
+                                    <?= $member['email'] ?>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
                             <div class="card p-3 shadow-sm bg-light">
                                 <i class="fas fa-phone fa-lg mb-2"></i>
-                                <p><strong>No Telp. PIC: </strong> <?= $member['pic_phone'] ?></p>
+                                <p>
+                                    <strong>
+                                        <?php echo lang('Blog.picPhone') ?>
+                                    </strong>
+                                    <?= $member['pic_phone'] ?>
+                                </p>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Sertifikat -->
-                <div class="tab-pane fade" id="education-job" role="tabpanel" aria-labelledby="education-job-tab">
-                    <h5 class="mb-4">Sertifikat</h5>
-                    <div class="row">
-                        <!-- Sertifikat Pendidikan -->
-                        <?php if (empty($sertifikat)): ?>
-                            <div class="col-md-12">
-                                <div class="alert alert-info text-center" role="alert">
-                                    Masih belum ada Sertifikat
-                                </div>
-                            </div>
-                        <?php else: ?>
-                            <?php foreach ($sertifikat as $item): ?>
-                                <div class="col-md-6 mb-3">
-                                    <div class="card p-3 shadow-sm bg-light">
-                                        <i class="fas fa-file-pdf fa-lg mb-2"></i>
-                                        <p><strong>Nama Sertifikat:</strong>
-                                            <span class="certificate-name">
-                                                <?= $item['nama_sertifikat'] ?>
-                                            </span>
-                                        </p>
-                                        <button class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#certificateModal"
-                                            data-filename="<?= base_url('certificate/' . $item['sertifikat']) ?>" data-nama="<?= $item['nama_sertifikat'] ?>">Lihat</button>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-                    </div>
-                </div>
-
-                <!-- Modal -->
-                <div class="modal fade" id="certificateModal" tabindex="-1" aria-labelledby="certificateModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="certificateModalLabel"></h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <iframe id="certificateFrame" src="" style="width: 100%; height: 500px;"
-                                    frameborder="0"></iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Data Product -->
-                <div class="tab-pane fade" id="certification" role="tabpanel" aria-labelledby="certification-tab">
-                    <h5 class="mb-4">Data Produk</h5>
-                    <div class="row">
-                        <!-- Card Product -->
-                        <?php if (empty($produk)): ?>
-                            <div class="col-md-12">
-                                <div class="alert alert-info text-center" role="alert">
-                                    Masih belum ada Produk
-                                </div>
-                            </div>
-                        <?php else: ?>
-                            <div class="d-flex flex-wrap justify-content-center">
-                                <?php foreach ($produk as $item): ?>
-                                    <a href="#" class="text-decoration-none" style="color: inherit;" data-bs-toggle="modal"
-                                        data-bs-target="#productModal1" data-nama="<?= $item['nama_produk'] ?>" data-namaen="<?= $item['nama_produk_en'] ?>"
-                                        data-deskripsi="<?= $item['deskripsi_produk'] ?>" data-deskripsien="<?= $item['deskripsi_produk_en'] ?>" data-hscode="<?= $item['hs_code'] ?>"
-                                        data-minorder="<?= $item['minimum_order_qty'] ?>"
-                                        data-kapasitas="<?= $item['kapasitas_produksi_bln'] ?>"
-                                        data-foto="<?= base_url('img/' . $item['foto_produk']) ?>">
-                                        <div class="card hover-card mx-4 mb-5 shadow-sm"
-                                            style="width: 18rem; cursor: pointer; transition: transform 0.2s;">
-                                            <img src="<?= base_url('img/' . $item['foto_produk']) ?>"
-                                                class="card-img-top img-fluid product-img" alt="Product Photo"
-                                                style="height: 220px;">
-                                            <div class="card-body text-center">
-                                                <h5 class="card-title"><?= $item['nama_produk'] ?></h5>
-                                                <p class="card-text text-truncate-description" style="text-align: justify;">
-                                                    <?= $item['deskripsi_produk'] ?>
-                                                </p>
-                                                <span class="btn btn-custom mt-auto" style="border-radius: 8px;">Lihat
-                                                    Detail</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                <?php endforeach; ?>
-                            </div>
-                        <?php endif; ?>
-
-                        <!-- Modal for Product Details -->
-                        <div class="modal fade" id="productModal1" tabindex="-1" aria-labelledby="productModalLabel1"
-                            aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="productModalLabel1">Detail Produk</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm">
-                                            <!-- Foto Produk -->
-                                            <div class="mb-4">
-                                                <img id="productImage" src="" class="img-fluid rounded mb-3"
-                                                    alt="Product Photo">
-                                            </div>
-
-                                            <!-- Detail Produk -->
-                                            <h5 class="mb-4 fw-bold">Informasi Produk</h5>
-
-                                            <div class="mb-3">
-                                                <label for="namaProduk" class="form-label fw-bold tex">Nama
-                                                    Produk</label>
-                                                <input type="text" class="form-control" id="namaProduk" value=""
-                                                    disabled placeholder="Belum Ada Nilai">
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <label for="namaProdukEn" class="form-label"><strong>Nama Produk (Inggris)</strong></label>
-                                                <input type="text" class="form-control" id="namaProdukEn" value="" disabled>
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <label for="deskripsiProduk" class="form-label fw-bold">Deskripsi
-                                                    Produk</label>
-                                                <textarea class="form-control" id="deskripsiProduk" rows="4" disabled
-                                                    placeholder="Belum Ada Deskripsi"></textarea>
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <label for="deskripsiProdukEn" class="form-label"><strong>Deskripsi Produk (Inggris)</strong></label>
-                                                <textarea class="form-control" id="deskripsiProdukEn" rows="6" disabled></textarea>
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <label for="hsCode" class="form-label fw-bold">Kode HS</label>
-                                                <input type="text" class="form-control" id="hsCode" value="" disabled
-                                                    placeholder="Belum Ada Nilai">
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <label for="minOrderQty" class="form-label fw-bold">Jumlah Pesanan
-                                                    Minimal</label>
-                                                <input type="number" class="form-control" id="minOrderQty" value=""
-                                                    disabled placeholder="Belum Ada Nilai">
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <label for="kapasitasProduksi" class="form-label fw-bold">Kapasitas
-                                                    Produksi Bulanan</label>
-                                                <input type="number" class="form-control" id="kapasitasProduksi"
-                                                    value="" disabled placeholder="Belum Ada Nilai">
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Tutup</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -406,28 +290,35 @@
     <!-- Member Lainnya Section (Placed outside of the main card) -->
     <div class="col-lg-12 mt-5">
         <div class="section-title">
-            <h4 class="text-uppercase font-weight-bold text-center mb-4">Member Populer</h4>
+            <h4 class=" text-uppercase font-weight-bold text-center mb-4">Member Populer</h4>
         </div>
         <?php if (empty($members)): ?>
-            <div class="col-md-12">
+            <div class="d-flex flex-wrap justify-content-center">
                 <div class="alert alert-info text-center" role="alert">
-                    Masih belum ada Member Lainnya
+                    <?php echo lang('Blog.alertOtherDataMember') ?>
                 </div>
             </div>
         <?php else: ?>
             <div class="d-flex flex-wrap justify-content-center">
                 <?php foreach ($members as $item): ?>
-                    <a href="<?= base_url('/member-detail-member/' . $item['slug']); ?>" class="text-decoration-none" style="color: inherit;">
-                        <div class="card hover-card mx-4 mb-5 shadow-sm" style="width: 18rem; cursor: pointer; transition: transform 0.2s;">
+                    <a href=" <?= base_url('/detail-member/' . $item['slug']); ?>" class="text-decoration-none" style="color: inherit;">
+                        <div class="card hover-card mx-4 mb-5 shadow-sm" style=" width: 18rem; cursor: pointer; transition: transform 0.2s;">
                             <?php if (empty($item['foto_profil'])): ?>
                                 <img src="https://via.placeholder.com/500" class="card-img-top img-fluid member-img" alt="Member Photo" style="height: 220px;">
                             <?php else: ?>
                                 <img src="<?= base_url('img/' . $item['foto_profil']) ?>" class="card-img-top img-fluid member-img" alt="Member Photo" style="height: 220px;">
                             <?php endif; ?>
                             <div class="card-body text-center">
-                                <h5 class="card-title"><?= $item['username'] ?></h5>
-                                <p class="card-text"><?= $item['nama_perusahaan'] ?></p>
-                                <span class="btn btn-custom mt-auto" style="border-radius: 8px;">Lihat Profil</span>
+                                <h5 class="card-title">
+                                    <?= $item['username'] ?>
+                                </h5>
+                                <p class="card-text">
+                                    <?= $item['nama_perusahaan'] ?>
+                                </p>
+                                <span class="btn btn-custom mt-auto" style="border-radius: 8px;">
+                                    <?php echo lang('Blog.btndataMember') ?>
+                                </span>
+
                             </div>
                         </div>
                     </a>
@@ -436,49 +327,5 @@
     </div>
 <?php endif; ?>
 </div>
-</div>
-
-<script>
-    const certificateModal = document.getElementById('certificateModal');
-    certificateModal.addEventListener('show.bs.modal', function(event) {
-        const button = event.relatedTarget;
-        const filename = button.getAttribute('data-filename');
-        const namaSertifikat = button.getAttribute('data-nama');
-
-        const iframe = document.getElementById('certificateFrame');
-        const modalTitle = document.getElementById('certificateModalLabel');
-
-        // Set src iframe ke file sertifikat
-        iframe.src = filename;
-
-        // Set judul modal ke nama sertifikat
-        modalTitle.textContent = namaSertifikat;
-    });
-
-    const productModal = document.getElementById('productModal1');
-    productModal.addEventListener('show.bs.modal', function(event) {
-        const button = event.relatedTarget;
-        const productName = button.getAttribute('data-nama');
-        const productNameEn = button.getAttribute('data-namaen');
-        const productDescription = button.getAttribute('data-deskripsi');
-        const productDescriptionEn = button.getAttribute('data-deskripsien');
-        const productHsCode = button.getAttribute('data-hscode');
-        const productMinOrder = button.getAttribute('data-minorder');
-        const productCapacity = button.getAttribute('data-kapasitas');
-        const productImage = button.getAttribute('data-foto');
-
-        // Update modal content
-        document.getElementById('namaProduk').value = productName;
-        document.getElementById('namaProdukEn').value = productNameEn;
-        document.getElementById('deskripsiProduk').value = productDescription;
-        document.getElementById('deskripsiProdukEn').value = productDescriptionEn;
-        document.getElementById('hsCode').value = productHsCode;
-        document.getElementById('minOrderQty').value = productMinOrder;
-        document.getElementById('kapasitasProduksi').value = productCapacity;
-        document.getElementById('productImage').src = productImage;
-    });
-</script>
-
-
 
 <?= $this->endSection(); ?>
