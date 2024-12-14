@@ -332,7 +332,7 @@
 
 <!-- judul -->
 <div class="artikel-detail-section py-5" style="text-align: center;">
-    <h2 class="text-custom-title">Belajar Ekspor</h2>
+    <h2 class="text-custom-title">Materi Ekspor</h2>
     <p class="text-custom-paragraph mt-2">Tingkatkan bisnis Anda dengan strategi ekspor yang tepat!
         <br>Belajar ekspor sekarang, kuasai pasar global!
     </p>
@@ -358,7 +358,7 @@
                             <p style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
                                 <?= $item['deskripsi_belajar_ekspor']; ?>
                             </p>
-                            <a href="<?= base_url('member-belajar-ekspor-detail/' . $item['slug']); ?>" class="btn btn-custom mt-auto" style="width: 100%; display: block; text-align: center;">Baca Selengkapnya</a>
+                            <a href="<?= base_url('/materi-ekspor-detail/' . $item['slug']); ?>" class="btn btn-custom mt-auto" style="width: 100%; display: block; text-align: center;">Baca Selengkapnya</a>
                         </div>
                     </div>
                 </div>
@@ -375,27 +375,5 @@
         <?php endif; ?>
     </div>
 </section>
-
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<script>
-    function showSweetAlertBE() {
-        Swal.fire({
-            title: "Mau Lihat Semua Materi Belajar Ekspor?",
-            text: "Yuk Daftar Member Premium Dulu",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Daftar",
-            cancelButtonText: "Nanti"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.open("<?= base_url('/daftar-premium') ?>", "_blank");
-            } else {
-                Swal.fire("Oke, Jangan Lupa Daftar!");
-            }
-        });
-    }
-</script>
 
 <?= $this->endSection(); ?>
