@@ -1284,24 +1284,10 @@ class KomunitasEkspor extends BaseController
 
         $model_member = new Member();
 
-        $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
 
-        if ($email != null && $password == null) {
+        if ($password !== null) {
             $data = [
-                'email' => $email,
-            ];
-
-            $model_member->update($user_id, $data);
-        } elseif ($email == null && $password != null) {
-            $data = [
-                'password' => password_hash($password, PASSWORD_DEFAULT),
-            ];
-
-            $model_member->update($user_id, $data);
-        } elseif ($email != null && $password != null) {
-            $data = [
-                'email' => $email,
                 'password' => password_hash($password, PASSWORD_DEFAULT),
             ];
 
@@ -1329,31 +1315,28 @@ class KomunitasEkspor extends BaseController
             'produk_utama',
             'produk_utama_en',
             'pic',
+            'email',
             'pic_phone',
         ];
 
-        // Initialize validation rules with error messages
-        $validationRules = [
-            'nama_perusahaan' => 'required',
-            'deskripsi_perusahaan' => 'required',
-            'deskripsi_perusahaan_en' => 'required',
-            'alamat_perusahaan' => 'required',
-            'alamat_website' => 'required',
-            'tahun_dibentuk' => 'required',
-            'kategori_produk' => 'required',
-            'kategori_produk_en' => 'required',
-            'produk_utama' => 'required',
-            'produk_utama_en' => 'required',
-            'pic' => 'required',
-            'pic_phone' => 'required',
-        ];
+        /// Initialize validation rules without individual error messages
+        $validationRules = array_fill_keys($fields, [
+            'rules' => 'required'
+        ]);
 
+        // Perform validation
         if (!$this->validate($validationRules)) {
             // Get all validation errors
             $errors = $this->validator->getErrors();
 
-            // Redirect back with errors and old input
-            return redirect()->back()->withInput()->with('errors', $errors);
+            // Count the number of missing fields
+            $missingCount = count($errors);
+
+            // Set the custom error message with the missing count
+            $generalErrorMessage = "Ada $missingCount Input Yang Masih Belum Diisi!";
+
+            // Redirect back with the input and only the general error message
+            return redirect()->back()->withInput()->with('errors', ['general' => $generalErrorMessage]);
         }
 
         // Prepare data for update
@@ -1369,6 +1352,7 @@ class KomunitasEkspor extends BaseController
             'produk_utama' => $this->request->getPost('produk_utama'),
             'produk_utama_en' => $this->request->getPost('produk_utama_en'),
             'pic' => $this->request->getPost('pic'),
+            'email' => $this->request->getPost('email'),
             'pic_phone' => $this->request->getPost('pic_phone'),
         ];
 
