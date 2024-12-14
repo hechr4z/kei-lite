@@ -131,9 +131,9 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
 
     // Member - Belajar Ekspor
     $routes->get('/materi-ekspor', 'KomunitasEkspor::member_belajar_ekspor');
-    // $routes->get('member-belajar-ekspor/search', 'KomunitasEkspor::member_search_belajar_ekspor');
+    //$routes->get('member-belajar-ekspor/search', 'KomunitasEkspor::member_search_belajar_ekspor');
     $routes->get('/materi-ekspor-detail/(:segment)', 'KomunitasEkspor::member_belajar_ekspor_detail/$1');
-    // $routes->get('member-kategori/(:any)', 'KomunitasEkspor::member_kategori_belajar_ekspor/$1');
+    $routes->get('kategori/(:any)', 'KomunitasEkspor::member_kategori_belajar_ekspor/$1');
 
     // Member - Video Tutorial
     $routes->get('/video-tutorial', 'KomunitasEkspor::member_video_tutorial');
@@ -212,10 +212,10 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
 //     $routes->get('data-buyers', 'KomunitasEkspor::data_buyers');
 
 //     // Premium - Belajar Ekspor
-//     $routes->get('premium-belajar-ekspor', 'KomunitasEkspor::premium_belajar_ekspor');
+$routes->get('premium-belajar-ekspor', 'KomunitasEkspor::premium_belajar_ekspor');
 //     $routes->get('premium-belajar-ekspor/search', 'KomunitasEkspor::premium_search_belajar_ekspor');
-//     $routes->get('premium-belajar-ekspor-detail/(:segment)', 'KomunitasEkspor::premium_belajar_ekspor_detail/$1');
-//     $routes->get('premium-kategori/(:any)', 'KomunitasEkspor::premium_kategori_belajar_ekspor/$1');
+$routes->get('premium-belajar-ekspor-detail/(:segment)', 'KomunitasEkspor::premium_belajar_ekspor_detail/$1');
+$routes->get('premium-kategori/(:any)', 'KomunitasEkspor::premium_kategori_belajar_ekspor/$1');
 
 //     // Premium - Video Tutorial
 //     $routes->get('/premium-video-tutorial', 'KomunitasEkspor::premium_video_tutorial');
