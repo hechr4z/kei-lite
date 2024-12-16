@@ -30,8 +30,8 @@ return [
     'btnCarousel' => 'Daftar Sekarang',
     // Populer Member Section
     'populerMemberTitle' => 'MEMBER POPULER',
-    'topMemberTitle' => 'SOROTAN ANGGOTA',
-    'spotlightTitle' => 'TERATAS',
+    'topMemberTitle' => 'DAFTAR MEMBER',
+    'spotlightTitle' => 'TERPOPULER',
     'yourPackageTitle' => 'PAKET ANDA',
     'chooseTitle' => 'PILIH PAKET YANG TEPAT',
     'forYouTitle' => 'UNTUK ANDA',
