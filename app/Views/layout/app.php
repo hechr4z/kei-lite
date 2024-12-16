@@ -263,6 +263,36 @@
 
     /* end */
 
+    .whatsapp-float {
+        position: fixed;
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 30px;
+        background-color: #25d366;
+        color: white;
+        /* Warna ikon */
+        border-radius: 50%;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 2px 2px 3px #999;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .whatsapp-float i {
+        color: white;
+        /* Warna ikon tetap putih */
+    }
+
+    .whatsapp-float:hover {
+        background-color: #128c7e;
+        /* Warna latar belakang saat hover */
+        text-decoration: none;
+    }
+
     /* footer hover */
     .footer-link {
         color: #fff;
@@ -698,8 +728,10 @@
                 <!-- Alamat dan Email -->
                 <div class="icon d-flex justify-content-start">
                     <div class=" d-flex align-items-center gap-2 icon-text text-light">
-                        <i class="fas fa-map-marker-alt" style="color: white;"></i>
-                        <p class="mb-0" style="color: white;"><?= $webprofile[0]['lokasi_web'] ?></p>
+                        <i class="fas fa-phone" style="color: white;"></i>
+                        <a href="https://wa.me/<?= $webprofile[0]['nohp_web'] ?>" target="_blank" style="color: white; text-decoration: none;">
+                            <p class="mb-0"><?= $webprofile[0]['nohp_web'] ?></p>
+                        </a>
                     </div>
                     <div class="d-flex align-items-center gap-2 icon-text text-light ms-2">
                         <i class="fas fa-envelope" style="color: white;"></i>
@@ -709,13 +741,13 @@
                 <!-- Ikon Sosial Media dan Garis -->
                 <div class="d-flex align-items-center">
                     <div class="sosmed d-flex gap-2 me-4">
-                        <a href="<?= 'https://' . $webprofile[0]['link_ig_web'] ?>" target="_blank" class="social-link">
+                        <a href="<?= $webprofile[0]['link_ig_web'] ?>" target="_blank" class="social-link">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="<?= 'https://' . $webprofile[0]['link_yt_web'] ?>" target="_blank" class="social-link">
+                        <a href="<?= $webprofile[0]['link_yt_web'] ?>" target="_blank" class="social-link">
                             <i class="fab fa-youtube"></i>
                         </a>
-                        <a href="<?= 'https://' . $webprofile[0]['link_fb_web'] ?>" target="_blank" class="social-link">
+                        <a href="<?= $webprofile[0]['link_fb_web'] ?>" target="_blank" class="social-link">
                             <i class="fab fa-facebook"></i>
                         </a>
                     </div>
@@ -809,6 +841,10 @@
     </div>
     <!-- end content -->
 
+    <a href="https://wa.me/<?= $webprofile[0]['nohp_web'] ?>" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp whatsapp-icon"></i>
+    </a>
+
     <!-- start footer -->
     <footer class="mt-5" style="background-color: #03AADE; color: #fff;">
         <div class="footer py-5">
@@ -820,7 +856,7 @@
                         <p class="mt-4"><?= ($lang == 'en') ? $webprofile[0]['deskripsi_web_en'] : $webprofile[0]['deskripsi_web'] ?></p>
                         <!-- Social Media Icons -->
                         <div class="container2 gap-2 mt-3">
-                            <a href="<?= 'https://' . $webprofile[0]['link_ig_web'] ?>" target="_blank">
+                            <a href="<?= $webprofile[0]['link_ig_web'] ?>" target="_blank">
                                 <button class="Btn instagram">
                                     <svg
                                         class="svgIcon"
@@ -834,7 +870,7 @@
                                 </button>
                             </a>
 
-                            <a href="<?= 'https://' . $webprofile[0]['link_yt_web'] ?>" target="_blank">
+                            <a href="<?= $webprofile[0]['link_yt_web'] ?>" target="_blank">
                                 <button class="Btn youtube">
                                     <svg
                                         class="svgIcon"
@@ -848,7 +884,7 @@
                                 </button>
                             </a>
 
-                            <a href="<?= 'https://' . $webprofile[0]['link_fb_web'] ?>" target="_blank">
+                            <a href="<?= $webprofile[0]['link_fb_web'] ?>" target="_blank">
                                 <button class="Btn facebook">
                                     <svg
                                         class="svgIcon"
@@ -887,7 +923,7 @@
             <p class="text-light" style="text-align: center;"><?= $webprofile[0]['footer_text'] ?></p>
         </div>
     </div>
-    
+
     <script>
         window.addEventListener('scroll', function() {
             var navbar = document.querySelector('.navbar-custom');
@@ -896,6 +932,11 @@
             } else {
                 navbar.classList.remove('scrolled');
             }
+        });
+
+        window.scrollTo({
+            top: targetElement.offsetTop - navbarHeight,
+            behavior: 'smooth'
         });
     </script>
 
