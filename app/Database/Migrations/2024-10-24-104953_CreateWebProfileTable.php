@@ -33,7 +33,7 @@ class CreateWebProfileTable extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
             ],
-            'lokasi_web' => [
+            'nohp_web' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
             ],
@@ -49,6 +49,20 @@ class CreateWebProfileTable extends Migration
             ],
             'link_fb_web' => [
                 'type' => 'TEXT',
+            ],
+            'judul_ajakan' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
+            ],
+            'judul_ajakan_en' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
+            ],
+            'deskripsi_ajakan' => [
+                'type'       => 'TEXT',
+            ],
+            'deskripsi_ajakan_en' => [
+                'type'       => 'TEXT',
             ],
             'footer_text' => [
                 'type'       => 'VARCHAR',
