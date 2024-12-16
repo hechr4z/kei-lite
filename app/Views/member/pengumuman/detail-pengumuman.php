@@ -41,8 +41,7 @@
 <section class="container mt-4">
     <!-- Header Pengumuman -->
     <div class="text-center mt-5">
-        <h2 class="animate__animated animate__fadeInDown">Detail Pengumuman</h2>
-        <p class="animate__animated animate__fadeInUp">Pengumuman yang lebih jelas</p>
+        <h2 class="animate__animated animate__fadeInDown">Pengumuman Untuk Member</h2>
     </div>
 
     <!-- Detail Pengumuman -->
