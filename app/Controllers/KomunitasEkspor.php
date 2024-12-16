@@ -26,6 +26,8 @@ use App\Models\TentangKami;
 use App\Models\KategoriInduk;
 use App\Models\KategoriProduk;
 use App\Models\Meta;
+use App\Models\Fitur;
+use App\Models\Keuntungan;
 use CodeIgniter\I18n\Time;
 use DateTime;
 use Exception;
@@ -51,6 +53,7 @@ class KomunitasEkspor extends BaseController
         $model_slider = new Slider();
         $model_member = new Member();
         $model_manfaatjoin = new ManfaatJoin();
+        $model_fitur = new Fitur();
 
         $slider = $model_slider->findAll();
         $member = $model_member->where('role', 'member')->findAll();
@@ -60,6 +63,8 @@ class KomunitasEkspor extends BaseController
             ->limit(4)
             ->findAll();
         $manfaatjoin = $model_manfaatjoin->findAll();
+        $fitur_visitor = $model_fitur->where('role', 'visitor')->findAll();
+        $fitur_member = $model_fitur->where('role', 'member')->findAll();
 
         foreach ($member as &$item) {
             $item['slug'] = url_title($item['username'], '-', true);
@@ -68,6 +73,8 @@ class KomunitasEkspor extends BaseController
         $data['slider'] = $slider;
         $data['member'] = $member;
         $data['manfaatjoin'] = $manfaatjoin;
+        $data['fitur_visitor'] = $fitur_visitor;
+        $data['fitur_member'] = $fitur_member;
         $data['top4_member'] = $top4_member;
 
         return view('beranda/index', $data);
@@ -87,6 +94,7 @@ class KomunitasEkspor extends BaseController
         $model_slider = new Slider();
         $model_member = new Member();
         $model_manfaatjoin = new ManfaatJoin();
+        $model_fitur = new Fitur();
 
         $slider = $model_slider->findAll();
         $member = $model_member->where('role', 'member')->findAll();
@@ -96,6 +104,8 @@ class KomunitasEkspor extends BaseController
             ->limit(4)
             ->findAll();
         $manfaatjoin = $model_manfaatjoin->findAll();
+        $fitur_visitor = $model_fitur->where('role', 'visitor')->findAll();
+        $fitur_member = $model_fitur->where('role', 'member')->findAll();
 
         foreach ($member as &$item) {
             $item['slug'] = url_title($item['username'], '-', true);
@@ -104,6 +114,8 @@ class KomunitasEkspor extends BaseController
         $data['slider'] = $slider;
         $data['member'] = $member;
         $data['manfaatjoin'] = $manfaatjoin;
+        $data['fitur_visitor'] = $fitur_visitor;
+        $data['fitur_member'] = $fitur_member;
         $data['top4_member'] = $top4_member;
 
         return view('member/beranda/index', $data);
@@ -413,6 +425,10 @@ class KomunitasEkspor extends BaseController
             ->first();
         $data['meta'] = $meta;
 
+        $model_keuntungan = new Keuntungan();
+        $keuntungan = $model_keuntungan->findAll();
+        $data['keuntungan'] = $keuntungan;
+
         $lang = session()->get('lang') ?? 'id';
         $data['lang'] = $lang;
 
@@ -580,6 +596,10 @@ class KomunitasEkspor extends BaseController
     public function registrasiMember()
     {
         $userModel = new Member();
+        $model_webprofile = new WebProfile();
+        $no_hp = $model_webprofile->select('nohp_web')->first();
+        $no_hp = $no_hp['nohp_web']; // Access the specific field from the array
+        $no_hp = str_replace('+', '', $no_hp);
 
         // Ambil input dari form
         $username = $this->request->getPost('username');
@@ -633,12 +653,8 @@ class KomunitasEkspor extends BaseController
             "- Mohon pastikan data perusahaan sudah benar.\n" .
             "- Mohon juga diberikan file gambar Logo Perusahaan.\n";
 
-
-        // Nomor tujuan WA
-        $nomor_wa = '6283153270334'; // Ganti dengan nomor WA yang benar
-
         // Membuat URL WhatsApp dengan pesan
-        $whatsapp = "https://wa.me/$nomor_wa?text=" . urlencode($pesan);
+        $whatsapp = "https://wa.me/$no_hp?text=" . urlencode($pesan);
 
         // Redirect ke WhatsApp dengan pesan yang sudah dibuat
         return redirect()->to($whatsapp);
@@ -1095,49 +1111,50 @@ class KomunitasEkspor extends BaseController
     //     return view('data-buyers/index', $data);
     // }
 
-    // public function search_buyers()
-    // {
-    //     $model_webprofile = new WebProfile();
+    public function search_buyers()
+    {
+        $model_webprofile = new WebProfile();
 
-    //     $webprofile = $model_webprofile->findAll();
+        $webprofile = $model_webprofile->findAll();
 
-    //     $data['webprofile'] = $webprofile;
+        $data['webprofile'] = $webprofile;
 
-    //     $lang = session()->get('lang') ?? 'id';
-    //     $data['lang'] = $lang;
+        $lang = session()->get('lang') ?? 'id';
+        $data['lang'] = $lang;
 
-    //     helper('text');
+        helper('text');
 
-    //     // Ambil keyword dari query string
-    //     $keyword = $this->request->getGet('keyword');
+        // Ambil keyword dari query string
+        $keyword = $this->request->getGet('keyword');
 
-    //     $model_buyers = new Buyers();
+        $model_buyers = new Buyers();
 
-    //     // Set pagination
-    //     $perPage = 10; // Number of members per page
-    //     $page = $this->request->getVar('page') ?? 1; // Get the current page number
+        // Set pagination
+        $perPage = 10; // Number of members per page
+        $page = $this->request->getVar('page') ?? 1; // Get the current page number
 
-    //     // Query pencarian: mencari berdasarkan judul, tags, atau deskripsi
-    //     $hasilPencarian = $model_buyers->like('nama_perusahaan', $keyword)
-    //         ->orLike('hs_code', $keyword)
-    //         ->orLike('negara_perusahaan', $keyword)
-    //         ->paginate($perPage); // Pastikan method ini mengembalikan data dengan kategori
+        // Query pencarian: mencari berdasarkan judul, tags, atau deskripsi
+        $hasilPencarian = $model_buyers->like('nama_perusahaan', $keyword)
+            ->orLike('negara_perusahaan', $keyword)
+            ->orLike('hs_code', $keyword)
+            ->orLike('deskripsi_hs_code', $keyword)
+            ->paginate($perPage); // Pastikan method ini mengembalikan data dengan kategori
 
-    //     // Jika ada hasil pencarian
-    //     if (count($hasilPencarian) > 0) {
-    //         $data['hasilPencarian'] = $hasilPencarian;
-    //     } else {
-    //         $data['hasilPencarian'] = [];
-    //     }
+        // Jika ada hasil pencarian
+        if (count($hasilPencarian) > 0) {
+            $data['hasilPencarian'] = $hasilPencarian;
+        } else {
+            $data['hasilPencarian'] = [];
+        }
 
-    //     // Kirimkan keyword pencarian untuk ditampilkan di view
-    //     $data['keyword'] = $keyword;
-    //     $data['pager'] = $model_buyers->pager;
-    //     $data['page'] = $page;
-    //     $data['perPage'] = $perPage;
+        // Kirimkan keyword pencarian untuk ditampilkan di view
+        $data['keyword'] = $keyword;
+        $data['pager'] = $model_buyers->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
 
-    //     return view('data-buyers/search', $data);
-    // }
+        return view('/member/data-buyers/search', $data);
+    }
 
     public function data_buyers()
     {
@@ -3883,6 +3900,7 @@ class KomunitasEkspor extends BaseController
             'email_perusahaan' => $this->request->getPost('email_perusahaan'),
             'website_perusahaan' => $this->request->getPost('website_perusahaan'),
             'hs_code' => $this->request->getPost('hs_code'),
+            'deskripsi_hs_code' => $this->request->getPost('deskripsi_hs_code'),
             'negara_perusahaan' => $this->request->getPost('negara_perusahaan'),
             'verif_date' => $now,
         ];
@@ -3912,6 +3930,7 @@ class KomunitasEkspor extends BaseController
             'email_perusahaan' => $this->request->getPost('email_perusahaan'),
             'website_perusahaan' => $this->request->getPost('website_perusahaan'),
             'hs_code' => $this->request->getPost('hs_code'),
+            'deskripsi_hs_code' => $this->request->getPost('deskripsi_hs_code'),
             'negara_perusahaan' => $this->request->getPost('negara_perusahaan'),
         ];
 
@@ -5952,11 +5971,15 @@ class KomunitasEkspor extends BaseController
             'nama_web_en' => $this->request->getPost('nama_web_en'),
             'deskripsi_web' => $this->request->getPost('deskripsi_webprofile'),
             'deskripsi_web_en' => $this->request->getPost('deskripsi_webprofile_en'),
-            'lokasi_web' => $this->request->getPost('lokasi_web'),
+            'nohp_web' => $this->request->getPost('nohp_web'),
             'email_web' => $this->request->getPost('email_web'),
             'link_ig_web' => $this->request->getPost('link_ig_web'),
             'link_yt_web' => $this->request->getPost('link_yt_web'),
             'link_fb_web' => $this->request->getPost('link_fb_web'),
+            'judul_ajakan' => $this->request->getPost('judul_ajakan'),
+            'judul_ajakan_en' => $this->request->getPost('judul_ajakan_en'),
+            'deskripsi_ajakan' => $this->request->getPost('deskripsi_ajakan'),
+            'deskripsi_ajakan_en' => $this->request->getPost('deskripsi_ajakan_en'),
             'footer_text' => $this->request->getPost('footer_text'),
         ];
 
@@ -6270,5 +6293,153 @@ class KomunitasEkspor extends BaseController
         $model_meta->update($meta['id_meta'], $data);
 
         return redirect()->to('admin-meta');
+    }
+
+    public function admin_fitur()
+    {
+        $model_fitur = new Fitur();
+
+        $perPage = 10;
+        $page = $this->request->getVar('page') ?? 1;
+
+        $fitur = $model_fitur
+            ->paginate($perPage);
+
+        $data['fitur'] = $fitur;
+        $data['pager'] = $model_fitur->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+
+        return view('admin/fitur/index', $data);
+    }
+
+    public function admin_fitur_add()
+    {
+        return view('admin/fitur/add');
+    }
+
+    public function admin_fitur_create()
+    {
+        $model_fitur = new Fitur();
+
+        $data = [
+            'role' => $this->request->getPost('role'),
+            'nama_fitur' => $this->request->getPost('nama_fitur'),
+            'nama_fitur_en' => $this->request->getPost('nama_fitur_en'),
+        ];
+
+        $model_fitur->insert($data);
+
+        return redirect()->to('admin-fitur');
+    }
+
+    public function admin_fitur_edit($id)
+    {
+        $model_fitur = new Fitur();
+
+        $fitur = $model_fitur->find($id);
+
+        $data['fitur'] = $fitur;
+
+        return view('admin/fitur/edit', $data);
+    }
+
+    public function admin_fitur_update($id)
+    {
+        $model_fitur = new Fitur();
+
+        $data = [
+            'role' => $this->request->getPost('role'),
+            'nama_fitur' => $this->request->getPost('nama_fitur'),
+            'nama_fitur_en' => $this->request->getPost('nama_fitur_en'),
+        ];
+
+        $model_fitur->update($id, $data);
+
+        return redirect()->to('admin-fitur');
+    }
+
+    public function admin_fitur_delete($id)
+    {
+        $model_fitur = new Fitur();
+
+        $model_fitur->delete($id);
+
+        return redirect()->to('admin-fitur');
+    }
+
+    public function admin_keuntungan()
+    {
+        $model_keuntungan = new Keuntungan();
+
+        $perPage = 10;
+        $page = $this->request->getVar('page') ?? 1;
+
+        $keuntungan = $model_keuntungan
+            ->paginate($perPage);
+
+        $data['keuntungan'] = $keuntungan;
+        $data['pager'] = $model_keuntungan->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+
+        return view('admin/keuntungan-daftar/index', $data);
+    }
+
+    public function admin_keuntungan_add()
+    {
+        return view('admin/keuntungan-daftar/add');
+    }
+
+    public function admin_keuntungan_create()
+    {
+        $model_keuntungan = new Keuntungan();
+
+        $data = [
+            'judul_keuntungan' => $this->request->getPost('judul_keuntungan'),
+            'judul_keuntungan_en' => $this->request->getPost('judul_keuntungan_en'),
+            'deskripsi_keuntungan' => $this->request->getPost('deskripsi_keuntungan'),
+            'deskripsi_keuntungan_en' => $this->request->getPost('deskripsi_keuntungan_en'),
+        ];
+
+        $model_keuntungan->insert($data);
+
+        return redirect()->to('admin-keuntungan');
+    }
+
+    public function admin_keuntungan_edit($id)
+    {
+        $model_keuntungan = new Keuntungan();
+
+        $keuntungan = $model_keuntungan->find($id);
+
+        $data['keuntungan'] = $keuntungan;
+
+        return view('admin/keuntungan-daftar/edit', $data);
+    }
+
+    public function admin_keuntungan_update($id)
+    {
+        $model_keuntungan = new Keuntungan();
+
+        $data = [
+            'judul_keuntungan' => $this->request->getPost('judul_keuntungan'),
+            'judul_keuntungan_en' => $this->request->getPost('judul_keuntungan_en'),
+            'deskripsi_keuntungan' => $this->request->getPost('deskripsi_keuntungan'),
+            'deskripsi_keuntungan_en' => $this->request->getPost('deskripsi_keuntungan_en'),
+        ];
+
+        $model_keuntungan->update($id, $data);
+
+        return redirect()->to('admin-keuntungan');
+    }
+
+    public function admin_keuntungan_delete($id)
+    {
+        $model_keuntungan = new Keuntungan();
+
+        $model_keuntungan->delete($id);
+
+        return redirect()->to('admin-keuntungan');
     }
 }
