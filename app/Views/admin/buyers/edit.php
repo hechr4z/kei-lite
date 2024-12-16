@@ -28,6 +28,11 @@
                             </div>
 
                             <div class="mb-3">
+                                <label class="form-label">Deskripsi Kode HS</label>
+                                <input type="text" class="form-control" name="deskripsi_hs_code" value="<?= $buyers['deskripsi_hs_code'] ?>" required>
+                            </div>
+
+                            <div class="mb-3">
                                 <label class="form-label">Email</label>
                                 <input type="email" class="form-control" name="email_perusahaan" value="<?= $buyers['email_perusahaan'] ?>" required>
                             </div>
@@ -72,6 +77,11 @@
                     const option = document.createElement('option');
                     option.value = country.name;
                     option.textContent = country.name;
+
+                    if (country.name === selectedCountry) {
+                        option.selected = true;
+                    }
+
                     selectElement.appendChild(option);
                 });
             })
