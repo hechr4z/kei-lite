@@ -28,7 +28,7 @@ return [
     // 'carouselSlide3Description' => 'This community connects you with buyers and exporters from various countries.',
     'btnCarousel' => 'Register Now',
     // Populer Member Section
-    'populerMemberTitle' => 'POPULAR MEMBER',
+    'populerMemberTitle' => 'POPULAR MEMBERS',
     'topMemberTitle' => 'TOP MEMBER',
     'spotlightTitle' => 'SPOTLIGHT',
     'yourPackageTitle' => 'YOUR PACKAGE',
@@ -58,7 +58,7 @@ return [
     // Join Exporter Community Section
     'joinExporterCommunityTitle' => 'Join the Exporter Community!',
     'joinExporterCommunityDescription' => 'Be part of a successful exporter network. Gain opportunities, knowledge, and support to grow your export business.', // Member Map and Spotlight Section
-    'memberMapTitle' => 'MEMBER MAP',
+    'memberMapTitle' => 'MEMBERS MAP',
     'communityMemberSpotlightTitle' => 'INDONESIAN EXPORT',
     'communityMemberSpotlightTitle2' => 'COMMUNITY MEMBER SPOTLIGHT',
 
@@ -125,7 +125,7 @@ return [
     'picPhone' => 'PIC Phone Number: ',
 
 
-    'populerMember' => 'POPULAR MEMBER',
+    'populerMember' => 'POPULAR MEMBERS',
     'topMemberSpotlight' => 'TOP MEMBER',
     'populerMemberLower' => 'Popular Member',
     'komunitasEksporIndonesia' => 'Indonesian Export Community',
