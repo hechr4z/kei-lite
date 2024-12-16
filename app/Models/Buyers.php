@@ -17,6 +17,7 @@ class Buyers extends Model
         'email_perusahaan',
         'website_perusahaan',
         'hs_code',
+        'deskripsi_hs_code',
         'negara_perusahaan',
         'verif_date',
     ];
