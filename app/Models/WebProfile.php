@@ -18,11 +18,15 @@ class WebProfile extends Model
         'deskripsi_web',
         'deskripsi_web_en',
         'logo_web',
-        'lokasi_web',
+        'nohp_web',
         'email_web',
         'link_ig_web',
         'link_yt_web',
         'link_fb_web',
+        'judul_ajakan',
+        'judul_ajakan_en',
+        'deskripsi_ajakan',
+        'deskripsi_ajakan_en',
         'footer_text',
     ];
 
