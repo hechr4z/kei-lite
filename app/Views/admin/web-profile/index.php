@@ -189,11 +189,15 @@
                                         <th class="text-center align-middle" style="width: 100px;">Nama Web English</th>
                                         <th class="text-center align-middle" style="width: 500px;">Deskripsi Perusahaan Indonesia</th>
                                         <th class="text-center align-middle" style="width: 500px;">Deskripsi Perusahaan English</th>
-                                        <th class="text-center align-middle" style="width: 100px;">Lokasi Web</th>
+                                        <th class="text-center align-middle" style="width: 100px;">Nomor HP Web</th>
                                         <th class="text-center align-middle" style="width: 100px;">Email Web</th>
                                         <th class="text-center align-middle">Link IG</th>
                                         <th class="text-center align-middle">Link YT</th>
                                         <th class="text-center align-middle">Link FB</th>
+                                        <th class="text-center align-middle" style="width: 100px;">Judul Ajakan Indonesia</th>
+                                        <th class="text-center align-middle" style="width: 100px;">Judul Ajakan English</th>
+                                        <th class="text-center align-middle" style="width: 500px;">Deskripsi Ajakan Indonesia</th>
+                                        <th class="text-center align-middle" style="width: 500px;">Deskripsi Ajakan English</th>
                                         <th class="text-center align-middle">Footer</th>
                                         <th class="text-center align-middle">Aksi</th>
                                     </tr>
@@ -218,11 +222,15 @@
                                                     <?= $item['deskripsi_web_en']; ?>
                                                 </div>
                                             </td>
-                                            <td class="text-center align-middle"><?= $item['lokasi_web']; ?></td>
+                                            <td class="text-center align-middle"><?= $item['nohp_web']; ?></td>
                                             <td class="text-center align-middle"><?= $item['email_web']; ?></td>
                                             <td class="text-center align-middle"><?= $item['link_ig_web']; ?></td>
                                             <td class="text-center align-middle"><?= $item['link_yt_web']; ?></td>
                                             <td class="text-center align-middle"><?= $item['link_fb_web']; ?></td>
+                                            <td class="text-center align-middle"><?= $item['judul_ajakan']; ?></td>
+                                            <td class="text-center align-middle"><?= $item['judul_ajakan_en']; ?></td>
+                                            <td class="text-center align-middle"><?= $item['deskripsi_ajakan']; ?></td>
+                                            <td class="text-center align-middle"><?= $item['deskripsi_ajakan_en']; ?></td>
                                             <td class="text-center align-middle"><?= $item['footer_text']; ?></td>
                                             <td class="text-center align-middle">
                                                 <div class="d-flex justify-content-center align-items-center">
