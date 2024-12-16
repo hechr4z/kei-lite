@@ -214,6 +214,7 @@
                                         <th class="text-center" valign="middle">Email Perusahaan</th>
                                         <th class="text-center" valign="middle">Website Perusahaan</th>
                                         <th class="text-center" valign="middle">HS Code</th>
+                                        <th class="text-center" valign="middle">Deskripsi HS Code</th>
                                         <th class="text-center" valign="middle">Negara Perusahaan</th>
                                         <th class="text-center" valign="middle">Aksi</th>
                                     </tr>
@@ -236,6 +237,7 @@
                                         <td class="text-center" valign="middle"><?= $item['email_perusahaan'] ?></td>
                                         <td class="text-center" valign="middle"><?= $item['website_perusahaan'] ?></td>
                                         <td class="text-center" valign="middle"><?= $item['hs_code'] ?></td>
+                                        <td class="text-center" valign="middle"><?= $item['deskripsi_hs_code'] ?></td>
                                         <td class="text-center" valign="middle"><?= $item['negara_perusahaan'] ?></td>
                                         <td class="text-center align-middle">
                                             <div class="d-flex justify-content-center align-items-center">
