@@ -156,13 +156,35 @@
     }
 </style>
 
-<!-- judul -->
-<div class="py-5" style="text-align: center;">
-    <h2 class="text-custom-title"><?= lang('Blog.buyersDataTitle') ?></h2>
-    <p class="text-custom-paragraph mt-2"><?= lang('Blog.buyersDataDescription') ?></p>
+<div class="container">
+    <!-- judul -->
+    <div class="py-5" style="text-align: center;">
+        <h2 class="text-custom-title"><?= lang('Blog.buyersDataTitle') ?></h2>
+        <p class="text-custom-paragraph mt-2"><?= lang('Blog.buyersDataDescription') ?></p>
+    </div>
+
+    <!-- Search Bar Start -->
+    <form class="form" action="<?= base_url('/data-buyers/search') ?>" method="GET">
+        <button>
+            <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img"
+                aria-labelledby="search">
+                <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
+                    stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+        </button>
+        <input class="input" autocomplete="off" placeholder="<?= lang('Blog.searchArticlePlaceholder') ?>"
+            name="keyword" required="" type="text" value="<?= isset($keyword) ? esc($keyword) : '' ?>">
+        <button class="reset" type="reset">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+    </form>
+    <!-- Search Bar End -->
 </div>
 
-<div class="container mb-5">
+<div class="container mt-5 mb-5">
     <!-- Table Content -->
     <div class="table-responsive">
         <table class="table table-bordered table-striped custom-table">
@@ -172,6 +194,7 @@
                     <th>Nama Perusahaan</th>
                     <th>Negara</th>
                     <th>Kode HS</th>
+                    <th>Deskripsi Kode HS</th>
                     <th>Email</th>
                     <th>Website</th>
                 </tr>
@@ -179,7 +202,7 @@
             <?php if (empty($buyers)): ?>
                 <tbody>
                     <tr>
-                        <td colspan="6" class="text-center">Tidak ada Data Buyers yang cocok dengan Kode HS produk Anda.</td>
+                        <td colspan="6" class="text-center">Masih belum ada Data Buyers.</td>
                     </tr>
                 </tbody>
         </table>
@@ -192,6 +215,7 @@
                 <td><?= $item['nama_perusahaan'] ?></td>
                 <td><?= $item['negara_perusahaan'] ?></td>
                 <td><?= $item['hs_code'] ?></td>
+                <td><?= $item['deskripsi_hs_code'] ?></td>
                 <td><?= $item['email_perusahaan'] ?></td>
                 <td><?= $item['website_perusahaan'] ?></td>
             </tr>
