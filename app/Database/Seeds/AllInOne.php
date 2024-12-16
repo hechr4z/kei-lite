@@ -24,5 +24,7 @@ class AllInOne extends Seeder
         $this->call(KategoriInduk::class);
         $this->call(KategoriProduk::class);
         $this->call(Meta::class);
+        $this->call(FiturSeeder::class);
+        $this->call(KeuntunganSeeder::class);
     }
 }
