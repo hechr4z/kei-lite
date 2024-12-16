@@ -28,6 +28,11 @@
                             </div>
 
                             <div class="mb-3">
+                                <label class="form-label">Deskripsi HS Code</label>
+                                <input type="text" class="form-control" name="deskripsi_hs_code" placeholder="Masukkan HS Code" required>
+                            </div>
+
+                            <div class="mb-3">
                                 <label class="form-label">Email Perusahaan</label>
                                 <input type="email" class="form-control" name="email_perusahaan" placeholder="Masukkan Email Perusahaan" required>
                             </div>
