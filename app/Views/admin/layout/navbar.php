@@ -209,6 +209,28 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link <?=
+                                        (current_url() == base_url('admin-fitur')) ? 'active' : ((current_url() == base_url('admin-search-fitur')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-fitur')) === 0) ? 'active' : ''))
+                                        ?>" href="<?= base_url('admin-fitur') ?>">
+                        <span class="nav-icon">
+                            <i class="fas fa-cogs"></i>
+                        </span>
+                        <span class="nav-link-text">Fitur</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link <?=
+                                        (current_url() == base_url('admin-keuntungan')) ? 'active' : ((current_url() == base_url('admin-search-keuntungan')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-keuntungan')) === 0) ? 'active' : ''))
+                                        ?>" href="<?= base_url('admin-keuntungan') ?>">
+                        <span class="nav-icon">
+                            <i class="fas fa-check"></i>
+                        </span>
+                        <span class="nav-link-text">Keuntungan Daftar</span>
+                    </a>
+                </li>
+
                 <!-- <li class="nav-item">
                     <a class="nav-link <?= (current_url() == base_url('admin-website-audit') || current_url() == base_url('admin-search-website-audit') || (strpos(current_url(), base_url('admin-process-website-audit')) === 0)) ? 'active' : '' ?>" href="<?= base_url('admin-website-audit') ?>">
                         <span class="nav-icon">
