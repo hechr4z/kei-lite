@@ -160,29 +160,17 @@ $this->setData([
         <div class="col-md-6 left-section">
             <h3><?= lang('Blog.keuntunganMember'); ?></h3>
             <hr class="line-separator">
-
             <p><?= lang('Blog.keuntunganDeskripsi'); ?></p>
-
-            <p><strong><?= lang('Blog.keuntungan1Judul'); ?></strong><br>
-                <?= lang('Blog.keuntungan1Deskripsi'); ?></p>
-
-            <p><strong><?= lang('Blog.keuntungan2Judul'); ?></strong><br>
-                <?= lang('Blog.keuntungan2Deskripsi'); ?></p>
-
-            <p><strong><?= lang('Blog.keuntungan3Judul'); ?></strong><br>
-                <?= lang('Blog.keuntungan3Deskripsi'); ?></p>
-
-            <p><strong><?= lang('Blog.keuntungan4Judul'); ?></strong><br>
-                <?= lang('Blog.keuntungan4Deskripsi'); ?></p>
-
-            <p><strong><?= lang('Blog.keuntungan5Judul'); ?></strong><br>
-                <?= lang('Blog.keuntungan5Deskripsi'); ?></p>
-
-            <p><strong><?= lang('Blog.keuntungan6Judul'); ?></strong><br>
-                <?= lang('Blog.keuntungan6Deskripsi'); ?></p>
-
-            <p><strong><?= lang('Blog.keuntungan7Judul'); ?></strong><br>
-                <?= lang('Blog.keuntungan7Deskripsi'); ?></p>
+            <?php $no = 1; ?>
+            <?php foreach ($keuntungan as $item): ?>
+                <p>
+                    <strong>
+                        <?= $no++ ?>. <?= ($lang == 'id') ? $item['judul_keuntungan'] : $item['judul_keuntungan_en'] ?>
+                    </strong>
+                    <br>
+                    <?= ($lang == 'id') ? $item['deskripsi_keuntungan'] : $item['deskripsi_keuntungan_en'] ?>
+                </p>
+            <?php endforeach; ?>
         </div>
 
         <div class="col-md-6 right-section">
@@ -482,10 +470,7 @@ $this->setData([
 
         });
     });
-</script>
 
-
-<script>
     function togglePassword() {
         var passwordField = document.getElementById("password");
         var showPassword = document.getElementById("show-password");
