@@ -71,8 +71,8 @@
                                 <img src="<?= base_url('img/' . $item['foto_profil']) ?>" class="card-img-top img-fluid member-img" alt="Member Photo" style="height: 220px;">
                             <?php endif; ?>
                             <div class="card-body text-center">
-                                <h5 class="card-title"><?= $item['username'] ?></h5>
-                                <p class="card-text"><?= $item['nama_perusahaan'] ?></p>
+                                <h5 class="card-title"><?= $item['nama_perusahaan'] ?></h5>
+                                <p class="card-text"><?= $item['username'] ?></p>
                                 <span class="btn btn-custom mt-auto" style="border-radius: 8px;">Lihat Profil</span>
                             </div>
                         </div>
