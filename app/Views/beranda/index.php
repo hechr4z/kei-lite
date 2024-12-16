@@ -693,57 +693,6 @@ $this->setData([
     <!-- end -->
 <?php endif; ?>
 
-
-<!-- populer member -->
-<section>
-    <div class="member container mt-5">
-        <div class="d-flex justify-content-center">
-            <div class="garis d-flex justify-content-center align-items-center mb-2">
-                <div class="border-top1 mx-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
-            </div>
-            <h5 class="fw-lighter" data-en="ABOUT US" data-id="TENTANG KAMI"><?= lang('Blog.populerMemberTitle'); ?>
-            </h5>
-            <div class="garis d-flex justify-content-center align-items-center mb-2">
-                <div class="border-top1 ms-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
-            </div>
-        </div>
-        <h1 class="text-center" data-en="WHO WE ARE" data-id="SIAPA KAMI"><b><?= lang('Blog.topMemberTitle'); ?><span style="color: #03AADE;"> <?= lang('Blog.spotlightTitle'); ?></span></b></h1>
-    </div>
-    <div class="card-member container mt-5">
-        <?php if (empty($top4_member)): ?>
-            <div class="col-12 mt-2">
-                <div class="alert alert-info text-center" role="alert">
-                    <?php echo lang('Blog.alertDataMemberBeranda'); ?>
-                </div>
-            </div>
-        <?php else: ?>
-            <div class="row justify-content-center g-4"> <!-- Use Bootstrap's grid system -->
-                <?php foreach ($top4_member as $item): ?>
-                    <div class="col-12 col-md-6 col-lg-3 rounded"> <!-- Responsive column sizes -->
-                        <div class="card">
-                            <div class="img-content" style="display: flex; justify-content: center;">
-                                <img src="<?= base_url('img/' . $item['foto_profil']); ?>" class="card-img-top"
-                                    style="width: 90%; height: 90%; object-fit: cover; border-radius: 10px;" alt="...">
-                            </div>
-                            <div class="content text-center" style="padding: 10px 0; color: #03AADE;">
-                                <p class="heading"
-                                    style="margin-bottom: 5px; font-weight: bold; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;">
-                                    <?= $item['username'] ?>
-                                </p>
-                                <p class="heading"
-                                    style="margin-bottom: 5px; font-size: 15px; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;">
-                                    <?= $item['nama_perusahaan'] ?>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        <?php endif; ?>
-    </div>
-</section>
-<!-- end -->
-
 <!-- tombol daftar -->
 <section class="container-fluid text-dark rounded-5 daftar-section"
     style="background-color: #03AADE; max-width: 1100px; margin-top: 80px; padding: 40px;">
@@ -752,13 +701,12 @@ $this->setData([
         <div class="col-md-6 mb-4 mb-md-0 d-flex flex-column align-items-center align-items-md-start">
             <div class="card-body p-3 p-md-5">
                 <p class="text-light fw-lighter h6 mb-2" style="font-size: 18px;">
-                    <?= lang('Blog.joinUsTitle'); ?>
                 </p>
                 <p class="text-light fw-bold" style="font-size: 48px; font-family: Poetsen One, sans-serif;">
-                    <?= lang('Blog.communityExporterTitle'); ?>
+                    <?= ($lang == 'en') ? $webprofile[0]['judul_ajakan_en'] : $webprofile[0]['judul_ajakan'] ?>
                 </p>
                 <p class="text-light fw-lighter mb-4" style="font-size: 16px;">
-                    <?= lang('Blog.joinUsDescription'); ?>
+                    <?= ($lang == 'en') ? $webprofile[0]['deskripsi_ajakan_en'] : $webprofile[0]['deskripsi_ajakan'] ?>
                 </p>
                 <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
                     <button type="button" class="btn btn-outline-light btn-lg px-4 py-2" style="font-size: 16px;">
@@ -814,9 +762,7 @@ $this->setData([
             <?php endforeach; ?>
         </div>
     </div>
-
 </section>
-
 <!-- end -->
 
 <!-- ajakan -->
@@ -824,9 +770,13 @@ $this->setData([
     <div class="background-image animated-element">
         <div class="centered-text">
             <h2 class="text-center text-light" style="padding-top: 100px; font-family: Lato, sans-serif;">
-                <b><?= lang('Blog.joinExporterCommunityTitle'); ?></b>
+                <b>
+                    <?= ($lang == 'en') ? $webprofile[0]['judul_ajakan_en'] : $webprofile[0]['judul_ajakan'] ?>
+                </b>
             </h2>
-            <p class="text-center fw-lighter text-light"><?= lang('Blog.joinExporterCommunityDescription'); ?></p>
+            <p class="text-center fw-lighter text-light">
+                <?= ($lang == 'en') ? $webprofile[0]['deskripsi_ajakan_en'] : $webprofile[0]['deskripsi_ajakan'] ?>
+            </p>
         </div>
         <div class="text-center centered-button pt-2">
             <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>"
@@ -837,6 +787,57 @@ $this->setData([
     </div>
 </section>
 <!-- ajakan end -->
+
+<!-- populer member -->
+<section>
+    <div class="member container mt-5">
+        <div class="d-flex justify-content-center">
+            <div class="garis d-flex justify-content-center align-items-center mb-2">
+                <div class="border-top1 mx-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
+            </div>
+            <h5 class="fw-lighter" data-en="ABOUT US" data-id="TENTANG KAMI">
+                <?= lang('Blog.populerMemberTitle'); ?>
+            </h5>
+            <div class="garis d-flex justify-content-center align-items-center mb-2">
+                <div class="border-top1 ms-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
+            </div>
+        </div>
+        <h1 class="text-center" data-en="WHO WE ARE" data-id="SIAPA KAMI"><b><?= lang('Blog.topMemberTitle'); ?><span style="color: #03AADE;"> <?= lang('Blog.spotlightTitle'); ?></span></b></h1>
+    </div>
+    <div class="card-member container mt-5">
+        <?php if (empty($top4_member)): ?>
+            <div class="col-12 mt-2">
+                <div class="alert alert-info text-center" role="alert">
+                    <?php echo lang('Blog.alertDataMemberBeranda'); ?>
+                </div>
+            </div>
+        <?php else: ?>
+            <div class="row justify-content-center g-4"> <!-- Use Bootstrap's grid system -->
+                <?php foreach ($top4_member as $item): ?>
+                    <div class="col-12 col-md-6 col-lg-3 rounded"> <!-- Responsive column sizes -->
+                        <div class="card">
+                            <div class="img-content" style="display: flex; justify-content: center;">
+                                <img src="<?= base_url('img/' . $item['foto_profil']); ?>" class="card-img-top"
+                                    style="width: 90%; height: 90%; object-fit: cover; border-radius: 10px;" alt="...">
+                            </div>
+                            <div class="content text-center" style="padding: 10px 0; color: #03AADE;">
+                                <p class="heading"
+                                    style="margin-bottom: 5px; font-weight: bold; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;">
+                                    <?= $item['username'] ?>
+                                </p>
+                                <p class="heading"
+                                    style="margin-bottom: 5px; font-size: 15px; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;">
+                                    <?= $item['nama_perusahaan'] ?>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+    </div>
+</section>
+<!-- end -->
 
 <!-- Card Section -->
 <section class="container mt-5">
@@ -867,20 +868,10 @@ $this->setData([
                     <h6 class="fw-bold text-secondary"><?= lang('Blog.freeTitle'); ?></h6>
                     <p><?php echo lang('Blog.deskNonMember'); ?></p>
                     <div class="benefits-list">
-                        <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerBeranda'); ?></p>
-                        <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerTentang'); ?></p>
-                        <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerMateri'); ?>
-                            (<?php echo lang('Blog.packageAllSubject'); ?>)</p>
-                        <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerVideo'); ?>
-                            (<?php echo lang('Blog.packageAllVideo'); ?>)</p>
-                        <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerMember'); ?></p>
-                        <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerPendaftaran'); ?></p>
+                        <?php foreach ($fitur_visitor as $item): ?>
+                            <hr>
+                            <p class="mb-2">- <?= ($lang == 'en') ? $item['nama_fitur_en'] : $item['nama_fitur']; ?></p>
+                        <?php endforeach; ?>
                         <hr>
                     </div>
                 </div>
@@ -905,32 +896,10 @@ $this->setData([
                     <h6 class="fw-bold text-primary"><?php echo lang('Blog.packageRegistered'); ?></h6>
                     <p><?php echo lang('Blog.deskMemberFree'); ?></p>
                     <div class="benefits-list">
-                        <hr>
-                        <p class=" mb-2">- <?php echo lang('Blog.headerBeranda'); ?></p>
-                        <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerTentang'); ?></p>
-                        <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerMateri'); ?>
-                            (<?php echo lang('Blog.packageAllSubject'); ?>)</p>
-                        <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerVideo'); ?>
-                            (<?php echo lang('Blog.packageAllVideo'); ?>)</p>
-                        <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerMember'); ?></p>
-                        <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerBuyers'); ?></p>
-                        <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerAplikasi'); ?>
-                            <?php echo lang('Blog.headerApp1'); ?>
-                        </p>
-                        <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerAplikasi'); ?>
-                            <?php echo lang('Blog.headerApp2'); ?>
-                        </p>
-                        <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerPengumuman'); ?></p>
-                        <hr>
-                        <p class="mb-2">- <?php echo lang('Blog.headerEditProfile'); ?></p>
+                        <?php foreach ($fitur_member as $item): ?>
+                            <hr>
+                            <p class="mb-2">- <?= ($lang == 'en') ? $item['nama_fitur_en'] : $item['nama_fitur']; ?></p>
+                        <?php endforeach; ?>
                         <hr>
                     </div>
                 </div>
