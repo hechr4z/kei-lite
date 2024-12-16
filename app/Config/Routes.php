@@ -128,6 +128,7 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
 
     // Member = Data Buyers
     $routes->get('/data-buyers', 'KomunitasEkspor::member_data_buyers');
+    $routes->get('/data-buyers/search', 'KomunitasEkspor::search_buyers');
 
     // Member - Belajar Ekspor
     $routes->get('/materi-ekspor', 'KomunitasEkspor::member_belajar_ekspor');
@@ -394,4 +395,20 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
     $routes->get('/admin-meta', 'KomunitasEkspor::admin_meta');
     $routes->get('/admin-edit-meta', 'KomunitasEkspor::admin_edit_meta');
     $routes->post('/admin-update-meta', 'KomunitasEkspor::admin_update_meta');
+
+    // Fitur
+    $routes->get('/admin-fitur', 'KomunitasEkspor::admin_fitur');
+    $routes->get('/admin-add-fitur', 'KomunitasEkspor::admin_fitur_add');
+    $routes->post('/admin-create-fitur', 'KomunitasEkspor::admin_fitur_create');
+    $routes->get('/admin-edit-fitur/(:num)', 'KomunitasEkspor::admin_fitur_edit/$1');
+    $routes->post('/admin-update-fitur/(:num)', 'KomunitasEkspor::admin_fitur_update/$1');
+    $routes->get('/admin-delete-fitur/(:num)', 'KomunitasEkspor::admin_fitur_delete/$1');
+    
+    // Keuntungan Daftar
+    $routes->get('/admin-keuntungan', 'KomunitasEkspor::admin_keuntungan');
+    $routes->get('/admin-add-keuntungan', 'KomunitasEkspor::admin_keuntungan_add');
+    $routes->post('/admin-create-keuntungan', 'KomunitasEkspor::admin_keuntungan_create');
+    $routes->get('/admin-edit-keuntungan/(:num)', 'KomunitasEkspor::admin_keuntungan_edit/$1');
+    $routes->post('/admin-update-keuntungan/(:num)', 'KomunitasEkspor::admin_keuntungan_update/$1');
+    $routes->get('/admin-delete-keuntungan/(:num)', 'KomunitasEkspor::admin_keuntungan_delete/$1');
 });
