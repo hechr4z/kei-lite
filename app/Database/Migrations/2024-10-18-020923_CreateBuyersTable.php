@@ -31,6 +31,9 @@ class CreateBuyersTable extends Migration
             'hs_code' => [
                 'type'       => 'TEXT',
             ],
+            'deskripsi_hs_code' => [
+                'type'       => 'TEXT',
+            ],
             'negara_perusahaan' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
