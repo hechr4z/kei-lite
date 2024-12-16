@@ -44,8 +44,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="lokasi_web" class="form-label">Lokasi Web</label>
-                                <input type="text" class="form-control" id="lokasi_web" name="lokasi_web" value="<?= esc($webprofile['lokasi_web']); ?>" required>
+                                <label for="nohp_web" class="form-label">Nomor HP Web</label>
+                                <input type="text" class="form-control" id="nohp_web" name="nohp_web" value="<?= esc($webprofile['nohp_web']); ?>" required>
                             </div>
 
                             <div class="mb-3">
@@ -66,6 +66,26 @@
                             <div class="mb-3">
                                 <label for="link_fb_web" class="form-label">Link Facebook Web</label>
                                 <input type="url" class="form-control" id="link_fb_web" name="link_fb_web" value="<?= esc($webprofile['link_fb_web']); ?>" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="judul_ajakan" class="form-label">Judul Ajakan Indonesia</label>
+                                <input type="text" class="form-control" id="judul_ajakan" name="judul_ajakan" value="<?= esc($webprofile['judul_ajakan']); ?>" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="judul_ajakan_en" class="form-label">Judul Ajakan English</label>
+                                <input type="text" class="form-control" id="judul_ajakan_en" name="judul_ajakan_en" value="<?= esc($webprofile['judul_ajakan_en']); ?>" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="deskripsi_ajakan" class="form-label">Deskripsi Ajakan Indonesia</label>
+                                <input type="text" class="form-control" id="deskripsi_ajakan" name="deskripsi_ajakan" value="<?= esc($webprofile['deskripsi_ajakan']); ?>" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="deskripsi_ajakan_en" class="form-label">Deskripsi Ajakan English</label>
+                                <input type="text" class="form-control" id="deskripsi_ajakan_en" name="deskripsi_ajakan_en" value="<?= esc($webprofile['deskripsi_ajakan_en']); ?>" required>
                             </div>
 
                             <div class="mb-3">
